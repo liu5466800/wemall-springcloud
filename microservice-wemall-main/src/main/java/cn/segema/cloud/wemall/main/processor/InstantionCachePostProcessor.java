@@ -14,6 +14,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
+import cn.segema.cloud.common.constants.OptionConstant;
+import cn.segema.cloud.common.constants.RedisCacheConstant;
 import cn.segema.cloud.system.domain.Option;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.OptionRepository;
@@ -36,34 +38,23 @@ public class InstantionCachePostProcessor implements ApplicationListener<Context
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		// root application context 没有parent，他就是老大.
+		//applicationContext 没有parent，他就是老大.
 		if (event.getApplicationContext().getParent() == null) {
-			// 需要执行的逻辑代码，当spring容器初始化完成后就会执行该方法。
 			System.out.println("需要执行的逻辑代码");
 		}
-		System.out.println("外面" + event.getApplicationContext().getParent());
-		ValueOperations<String, String> valueOps = stringRedisTemplate.opsForValue();
-		
 		 HashOperations<String, Object, Object>  optionHash = redisTemplate.opsForHash();
 		 Map<String,Object> optionMap = new HashMap<String,Object>();
 		List<Option> optionList = optionRepository.findOptionList();
-		
-		 List<User> userList = userRepository.findAllUser();
-		
 		if(optionList!=null&&optionList.size()>0) {
-			for(int i=0;i<optionList.size();i++) {
-				Option option = optionList.get(i);
+			for(Option option:optionList) {
 				optionMap.put(option.getOptionKey(), option.getOptionValue());
 			}
-//			for(Option option:optionList) {
-//				optionMap.put(option.getOptionKey(), option.getOptionValue());
-//			}
 		}
-		optionHash.putAll("optionMap", optionMap);
-		 
-		ValueOperations<String, String> valueOps2 = stringRedisTemplate.opsForValue();
-	     System.out.println("oauth2_wechat_appkey:"+valueOps2.get("oauth2_wechat_appkey"));
-
+		optionHash.putAll(RedisCacheConstant.REDIS_OPTION_MAP, optionMap);
+		//取出值示例：
+		 HashOperations<String, Object, Object>  optionHash2 = redisTemplate.opsForHash();
+		 String keyValue = (String) optionHash2.get(RedisCacheConstant.REDIS_OPTION_MAP, OptionConstant.OPTION_WEB_DOMAIN);
+	     System.out.println("option_web_domain:"+keyValue);
 	}
 
 }
