@@ -7,7 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/vangyong/microservice-segema.git/
+          uri: https://github.com/vangyong/wemall-springcloud.git/
           search-paths: config-repo
           username: vangyong
           password: wy513288
