@@ -52,9 +52,9 @@ public class InstantionCachePostProcessor implements ApplicationListener<Context
 		}
 		optionHash.putAll(RedisCacheConstant.REDIS_OPTION_MAP, optionMap);
 		//取出值示例：
-		 HashOperations<String, Object, Object>  optionHash2 = redisTemplate.opsForHash();
-		 String keyValue = (String) optionHash2.get(RedisCacheConstant.REDIS_OPTION_MAP, OptionConstant.OPTION_WEB_DOMAIN);
-	     System.out.println("option_web_domain:"+keyValue);
+//		 HashOperations<String, Object, Object>  optionHash2 = redisTemplate.opsForHash();
+//		 String keyValue = (String) optionHash2.get(RedisCacheConstant.REDIS_OPTION_MAP, OptionConstant.OPTION_WEB_DOMAIN);
+//	     System.out.println("option_web_domain:"+keyValue);
 	}
 
 }
