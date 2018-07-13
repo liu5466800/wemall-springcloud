@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cn.segema.cloud</groupId>
+  <artifactId>wemall-springcloud</artifactId>
+  <version>0.0.1</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>microservice-common</module>
+    <module>microservice-api-gateway</module>
+    <module>microservice-config</module>
+    <module>microservice-discovery</module>
+    <module>microservice-hystrix-dashboard</module>
+    <module>microservice-hystrix-turbine</module>
+    <module>microservice-demo</module>
+    <module>microservice-demo-mybatis</module>
+    <module>microservice-demo-web</module>
+    <module>microservice-filecenter</module>
+    <module>microservice-shiro</module>
+    <module>microservice-auth-server</module>
+    <module>microservice-system</module>
+    <module>microservice-system-web</module>
+    <module>microservice-cms</module>
+    <module>microservice-cms-web</module>
+    <module>microservice-wemall-main</module>
+    <module>microservice-wemall-main-web</module>
+    <module>microservice-wemall-order</module>
+    <module>microservice-wemall-product</module>
+    <module>microservice-wemall-user</module>
+  </modules>
+
+  <!-- 使用最新的spring-boot版本 -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.6.RELEASE</version>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Dalston.SR4</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration> 
+        		<executable>true</executable> 
+      	</configuration> 
+      </plugin>
+    </plugins>
+  </build>
+</project>
