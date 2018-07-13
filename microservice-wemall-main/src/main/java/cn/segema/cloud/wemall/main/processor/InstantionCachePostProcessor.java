@@ -1,20 +1,23 @@
 package cn.segema.cloud.wemall.main.processor;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
 import cn.segema.cloud.system.domain.Option;
+import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.OptionRepository;
+import cn.segema.cloud.system.repository.UserRepository;
 
 @Component
 public class InstantionCachePostProcessor implements ApplicationListener<ContextRefreshedEvent> {
@@ -27,6 +30,9 @@ public class InstantionCachePostProcessor implements ApplicationListener<Context
 	
 	@Resource
 	private OptionRepository optionRepository;
+	
+	@Resource
+	private UserRepository userRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -36,14 +42,27 @@ public class InstantionCachePostProcessor implements ApplicationListener<Context
 			System.out.println("需要执行的逻辑代码");
 		}
 		System.out.println("外面" + event.getApplicationContext().getParent());
-		//ValueOperations<String, String> valueOps = redisTemplate.opsForValue();
+		ValueOperations<String, String> valueOps = stringRedisTemplate.opsForValue();
+		
+		 HashOperations<String, Object, Object>  optionHash = redisTemplate.opsForHash();
+		 Map<String,Object> optionMap = new HashMap<String,Object>();
 		List<Option> optionList = optionRepository.findOptionList();
+		
+		 List<User> userList = userRepository.findAllUser();
+		
 		if(optionList!=null&&optionList.size()>0) {
-			for(Option option:optionList) {
-				redisTemplate.opsForValue().set(option.getOptionKey(),option.getOptionValue());
+			for(int i=0;i<optionList.size();i++) {
+				Option option = optionList.get(i);
+				optionMap.put(option.getOptionKey(), option.getOptionValue());
 			}
+//			for(Option option:optionList) {
+//				optionMap.put(option.getOptionKey(), option.getOptionValue());
+//			}
 		}
-	     System.out.println("oauth2_wechat_appkey:"+redisTemplate.opsForValue().get("oauth2_wechat_appkey"));
+		optionHash.putAll("optionMap", optionMap);
+		 
+		ValueOperations<String, String> valueOps2 = stringRedisTemplate.opsForValue();
+	     System.out.println("oauth2_wechat_appkey:"+valueOps2.get("oauth2_wechat_appkey"));
 
 	}
 

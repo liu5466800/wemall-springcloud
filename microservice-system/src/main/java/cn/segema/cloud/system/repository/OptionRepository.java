@@ -16,10 +16,13 @@ public interface OptionRepository extends PagingAndSortingRepository<Option, Str
 	
 	 
 	 @Query("SELECT o from Option o  where o.optionKey = ?1 ") 
-	 public List<Option> findByOptionName(String optionKey); 
+	 public Option findByOptionKey(String optionKey); 
 	 
 	 
 	 
-	 @Query("SELECT o from Option o") 
+//	 @Query("SELECT o FROM Option o") 
+//	 public List<Option> findOptionList(); 
+	 
+	 @Query(value ="SELECT * FROM SYS_OPTION ",nativeQuery = true) 
 	 public List<Option> findOptionList(); 
 }

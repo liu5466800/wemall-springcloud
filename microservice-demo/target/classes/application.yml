@@ -29,17 +29,17 @@ spring:
 #    driverClassName: org.postgresql.Driver
 #    username: postgres  
 #    password: postgres  
-#  redis:                               # 指定redis数据源
-#    database: 0
-#    host: 127.0.0.1
-#    port: 6379
-#    password: 123456
-#    pool: 
-#      max-active: 8
-#      max-wait: -1
-#      max-idle: 8
-#      min-idle: 0
-#    timeout: 0
+  redis:                               # 指定redis数据源
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    pool: 
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 0
 
   rabbitmq:                               # 指定rabbitmq源
      addresses: 127.0.0.1:5672
@@ -53,7 +53,7 @@ logging:
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-    com.itmuch.youran.persistence: ERROR
+#    com.itmuch.youran.persistence: ERROR
 eureka:
   client:
     serviceUrl:

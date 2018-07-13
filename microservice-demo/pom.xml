@@ -85,6 +85,12 @@
 			<artifactId>microservice-common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>cn.segema.cloud</groupId>
+			<artifactId>microservice-system</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
 	</dependencies>
 </project>

@@ -1,12 +1,12 @@
-spring:
-  cloud:
-    config:
-      #uri: http://127.0.0.1:8050
-      profile: dev
-      label: master #后端存储是git默认是master
-      discovery: 
-        enabled: true
-        serviceId: microservice-config
+#spring:
+#  cloud:
+#    config:
+#      #uri: http://127.0.0.1:8050
+#      profile: dev
+#      label: master #后端存储是git默认是master
+#      discovery: 
+#        enabled: true
+#        serviceId: microservice-config
 eureka: 
   client: 
     serviceUrl:

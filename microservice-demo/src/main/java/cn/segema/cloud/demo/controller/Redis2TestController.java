@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.vo.DemoUserVO;
+import cn.segema.cloud.system.domain.Option;
+import cn.segema.cloud.system.repository.OptionRepository;
 
 @RestController
 @RequestMapping(value = "/redis2/test")
@@ -36,6 +38,9 @@ public class Redis2TestController {
 
   @Resource
   private RedisTemplate redisTemplate; //使用的是JdkSerializationRedisSerializer
+  
+  @Resource
+  private OptionRepository optionRepository;
   
   @GetMapping("/redis")
 	public List<DemoUserVO> redis(DemoUser user, Model model) {
@@ -50,10 +55,35 @@ public class Redis2TestController {
 		userList.add(user2);
 		
 		redisTemplate.opsForValue().set("key1a", "key1avalue");
+		redisTemplate.opsForValue().set("key2a", "key2avalue");
+		redisTemplate.opsForValue().set("key3a", "key3avalue");
 		stringRedisTemplate.opsForValue().set("key1b", "key1bvalue");
+		stringRedisTemplate.opsForValue().set("key2b", "key2bvalue");
+		stringRedisTemplate.opsForValue().set("key3b", "key3bvalue");
 		 
-		System.out.println(redisTemplate.opsForValue().get("key1a"));
-		System.out.println(redisTemplate.opsForValue().get("key1b"));
+		System.out.println("key1a:"+redisTemplate.opsForValue().get("key1a"));
+		System.out.println("key2a:"+redisTemplate.opsForValue().get("key2a"));
+		System.out.println("key3a:"+redisTemplate.opsForValue().get("key3a"));
+		System.out.println("key1b:"+stringRedisTemplate.opsForValue().get("key1b"));
+		System.out.println("key2b:"+stringRedisTemplate.opsForValue().get("key2b"));
+		System.out.println("key3b:"+stringRedisTemplate.opsForValue().get("key3b"));
+		
+		List<Option> optionList = optionRepository.findOptionList();
+		
+		for(Option option:optionList) {
+			stringRedisTemplate.opsForValue().set(option.getOptionKey(), option.getOptionValue());
+		}
+		
+		for(Option option:optionList) {
+			stringRedisTemplate.opsForValue().get("插入后数据:"+option.getOptionKey());
+		}
+		
+		//获取optionMap
+		HashOperations<String, Object, Object>  optionHash = redisTemplate.opsForHash();
+		Map optionMap = optionHash.entries("optionMap");
+		
+		System.out.println("optionMap:"+optionHash.entries("optionMap"));
+		
   
 		System.out.println(stringRedisTemplate.opsForValue().get("key1a"));
 		System.out.println(stringRedisTemplate.opsForValue().get("key1b"));
