@@ -1,5 +1,5 @@
 server:
-  port: 12000
+  port: 13004
 spring:
   application:
     name: microservice-wemall-product    

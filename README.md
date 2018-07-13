@@ -1,6 +1,5 @@
 # 项目简介
-本项目是《使用Spring Cloud与Docker实战微服务》：
-
+本项目是springcloud微商销售服务平台：
 
 内容主要包含：
 
@@ -12,8 +11,6 @@
 | 熔断器                    | Hystrix，包括Hystrix Dashboard以及Turbine    |
 | 配置服务                  | Spring Cloud Config Server                  |
 | API Gateway              | Zuul                                        |
-
-
 
 # 准备
 
@@ -29,7 +26,7 @@
 
 | 主机名配置（C:\Windows\System32\drivers\etc\hosts文件） |
 | ---------------------------------------- |
-| 127.0.0.1 discovery peer1 peer2 config api-gateway demo filecenter system contract |
+| 127.0.0.1 discovery peer1 peer2 config api-gateway demo filecenter system |
 
 ## 主机规划：
 
@@ -43,10 +40,16 @@
 | microservice-demo                        | 8080 | 实例demo服务                    | /1              |
 | microservice-demo-mybatis                | 8080 | 实例demo-mybatis服务            | /1              |
 | microservice-demo-web                    | 8081 | 实例demo服务WEB                 | /1              |
-| microservice-filecenter                  | 8082 | 文件中心服务                    | /1               |
+| microservice-filecenter                  | 6060 | 文件中心服务                    | /1               |
 | microservice-shiro                       | 8084 | 权限认证服务提供者               | /1               |
 | microservice-auth-server                 | 8086 | 认证服务提供者                   | /1               |
-| microservice-system                      | 12000 | 系统管理服务                   | /1               |
+| microservice-system                      | 12000 | 系统管理服务                    | /1               |
 | microservice-system-web                  | 12001 | 系统管理服务WEB                 | /1              |
 | microservice-cms                         | 12014 | 内容管理服务提供者               | /1              |
 | microservice-cms-web                     | 12015 | 内容管理服务WEB                 | /1              |
+
+| microservice-wemall-main                 | 13000 | 微商平台前端主入口               | /1              |
+| microservice-wemall-main-web             | 13001 | 微商平台前端主入口WEB            | /1              |
+| microservice-wemall-order                | 13002 | 微商平台前端订单                 | /1              |
+| microservice-wemall-product              | 13004 | 微商平台前端商品                 | /1              |
+| microservice-wemall-user                 | 13006 | 微商平台前端用户                 | /1              |

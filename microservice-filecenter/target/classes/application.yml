@@ -1,10 +1,10 @@
 server:
-  port: 12012
+  port: 6060
   tomcat:
     uri-encoding: UTF-8
 spring:
   application:
-    name: microservice-filecenter    # 项目名称尽量用小写
+    name: microservice-filecenter
   http:
     encoding:
       charset: UTF-8
