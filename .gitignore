@@ -8,6 +8,8 @@ target/
 
 # eclipse ignore
 .settings/
+.classpath
+.target/
 .project
 .classpath
 
