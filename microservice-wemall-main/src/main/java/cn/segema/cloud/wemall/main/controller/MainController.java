@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * MainController
  */
 @RestController
-@RequestMapping(value = "/main")
+@RequestMapping(value = "/wemall/main")
 public class MainController {
   @Autowired
   private DiscoveryClient discoveryClient;
