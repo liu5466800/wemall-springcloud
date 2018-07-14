@@ -60,7 +60,7 @@ public class ShiroConfiguration {
 			Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>(); 
 			// 配置不会被拦截的链接 顺序判断 
 			filterChainDefinitionMap.put("/static/**", "anon"); 
-			filterChainDefinitionMap.put("/webui/**", "anon");
+			filterChainDefinitionMap.put("/html/**", "anon");
 	        filterChainDefinitionMap.put("/plugins/**", "anon");
 			filterChainDefinitionMap.put("/login", "anon"); 
 			// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了 
@@ -78,6 +78,14 @@ public class ShiroConfiguration {
 			DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(); 
 			// 设置realm. 
 			securityManager.setRealm(myShiroRealm()); 
+			
+			// 自定义缓存实现 使用redis
+	        //securityManager.setCacheManager(cacheManager());
+	        // 自定义session管理 使用redis
+	        //securityManager.setSessionManager(sessionManager());
+	        //注入记住我管理器;
+	        securityManager.setRememberMeManager(rememberMeManager());
+			
 			return securityManager;
 		} 
 	/**

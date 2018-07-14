@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta charset="UTF-8" />
+<title>用户列表</title>
+
+</head>
+<body>
+Hello, <shiro:principal/>, how are you today?
+<shiro:hasRole name="ADMIN">
+	<br />I'm fine, 我拥有管理员角色--<span th:text="${username}"></span>
+</shiro:hasRole>
+<shiro:lacksRole name="ADMIN">
+	<br />I'm fine, 普通角色--<span th:text="${username}"></span>
+</shiro:lacksRole>
+
+<shiro:hasRole name="NORMAL">
+	<br />I'm 普通角色--<span th:text="${username}"></span>
+</shiro:hasRole>
+
+
+<shiro:hasPermission name="system:user:listUI">
+	<br />拥有用户列表权限
+</shiro:hasPermission>
+<div>
+	
+</div>
+</body>
+</html>

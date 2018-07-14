@@ -16,6 +16,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
 import cn.segema.cloud.shrio.domain.Role;
@@ -40,18 +41,13 @@ public class MyShiroRealm  extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
     		System.out.println("权限认证方法：MyShiroRealm.doGetAuthenticationInfo()");
-    		 User token = (User)SecurityUtils.getSubject().getPrincipal();
-    		 String userId = token.getUserId();
-    		 SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
-    		 
-    		 
+    		Subject currentUser = SecurityUtils.getSubject();
         String currentLoginName = (String)principals.getPrimaryPrincipal();
         List<String> userRoleCodes = new ArrayList<String>();  
         List<String> userPermissions = new ArrayList<String>();  
         //从数据库中获取当前登录用户的详细信息  
         User user = userRepository.findByUserName(currentLoginName);
         if(null != user){  
-            //获取当前用户下所有ACL权限列表  待续。。。
             //获取当前用户下拥有的所有角色列表
             List<Role> roles = roleRepository.findRoleByUserId(user.getUserId());
             for (int i = 0; i < roles.size(); i++) {
