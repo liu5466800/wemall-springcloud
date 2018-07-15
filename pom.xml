@@ -20,6 +20,7 @@
     <module>microservice-demo-web</module>
     <module>microservice-filecenter</module>
     <module>microservice-shiro</module>
+    <module>microservice-auth-client</module>
     <module>microservice-auth-server</module>
     <module>microservice-system</module>
     <module>microservice-system-web</module>

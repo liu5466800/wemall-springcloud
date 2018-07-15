@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:cn.segema.cloud.demo.springboot.DemoApplication</config>
+		<config>java:cn.segema.cloud.auth.client.DemoApplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
