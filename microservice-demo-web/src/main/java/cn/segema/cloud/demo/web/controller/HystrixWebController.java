@@ -28,7 +28,7 @@ public class HystrixWebController {
     		return restTemplate.getForObject("http://microservice-demo/demo/"+userId, DemoUserVO.class);
 	}
     
-    public DemoUserVO findByIdFallback(Long id) {
+    public DemoUserVO findByIdFallback(String userId) {
     		DemoUserVO demoUserVO = new DemoUserVO();
     		demoUserVO.setUserId("1L");
     		demoUserVO.setNickName("测试超时");
