@@ -1,6 +1,6 @@
 
 1、访问授权页面：
-http://localhost:8040/oauth/authorize?client_id=client&client_secret=secret&response_type=code&redirect_uri=http://www.baidu.com
+http://localhost:8040/oauth/authorize?client_id=client&client_secret=secret&response_type=code&redirect_uri=http://localhost:8080/test
 
 2、拿到code以后，就可以调用
 POST/GET http://client:secret@localhost:8040/oauth/token
