@@ -5,11 +5,12 @@ target/
 *.zip
 *.tar
 *.tar.gz
+*.class
 
 # eclipse ignore
 .settings/
 .classpath
-.target/
+.target
 .project
 .classpath
 
