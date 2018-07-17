@@ -1,5 +1,7 @@
 package cn.segema.cloud.demo.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 
 /**
  * 用户
+ * 
  * @author wangyong
  *
  */
@@ -18,21 +21,24 @@ public class DemoUser {
 	@Id
 	@Column(name = "USERID")
 	private String userId;
-	
+
 	@Column(name = "USERNAME")
 	private String userName;
-	
+
 	@Column(name = "NICKNAME")
 	private String nickName;
-	
+
 	@Column(name = "PASSWORD")
 	private String password;
-	
+
 	@Column(name = "MOBILENUMBER")
 	private String mobileNumber;
-	
+
 	@Column(name = "CREDENTIALSSALT")
 	private String credentialsSalt;
+
+	@Column(name = "CREATE_TIME")
+	private Date createTime;
 
 	public String getUserId() {
 		return userId;
@@ -80,6 +86,14 @@ public class DemoUser {
 
 	public void setCredentialsSalt(String credentialsSalt) {
 		this.credentialsSalt = credentialsSalt;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 @EnableCircuitBreaker
 public class DemoWebApplication {
-	
+
 	@Bean
 	@LoadBalanced
 	public RestTemplate restTemplate() {
@@ -23,5 +23,6 @@ public class DemoWebApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoWebApplication.class, args);
+
 	}
 }

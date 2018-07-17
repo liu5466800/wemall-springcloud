@@ -13,6 +13,9 @@ public class IdGeneratorUtil {
 	}
 
 	public static synchronized long generateSnowFlakeId() {
+		if(snowflakeIdWorker==null) {
+			snowflakeIdWorker = new SnowflakeIdWorker(0L,0L);
+		}
 		return snowflakeIdWorker.nextId();
 	}
 	

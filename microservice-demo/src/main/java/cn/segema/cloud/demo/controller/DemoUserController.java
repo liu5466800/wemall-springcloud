@@ -1,6 +1,7 @@
 package cn.segema.cloud.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.common.page.Pager;
+import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.repository.DemoRepository;
 import cn.segema.cloud.demo.vo.DemoUserPersonalVO;
@@ -40,6 +42,16 @@ public class DemoUserController {
 	@GetMapping("/{userId}")
 	public DemoUser findById(@PathVariable String userId) {
 		DemoUser findOne = this.demoRepository.findOne(userId);
+		
+		Date today = new Date();
+		today.getTime();
+		
+		DemoUser demoUser  = new DemoUser();
+		demoUser.setUserId(String.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
+		demoUser.setUserName("todayname");
+		demoUser.setCreateTime(new Date(today.getTime()));
+		demoRepository.save(demoUser);
+		
 		return findOne;
 	}
 
@@ -52,6 +64,9 @@ public class DemoUserController {
 	@ApiOperation(value="新增用户信息", notes="新增用户信息")
 	@PostMapping("/add")
 	public TestUserVO add(TestUserVO user, Model model) {
+		
+		
+		
 
 		System.out.println("------user:----------");
 
