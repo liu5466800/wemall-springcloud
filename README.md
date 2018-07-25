@@ -6,12 +6,12 @@
 | 微服务角色                 | 对应的技术选型                              |
 | ---------------------    | ----------------------------------------- |
 | 注册中心(Register Server)  | Eureka                                    |
-| 服务提供者                 | spring mvc、spring-data-jpa、h2等           |
+| 服务提供者                 | spring mvc、spring-data-jpa、mysql等       |
 | 服务消费者                 | Ribbon/Feign消费服务提供者的接口              |
 | 熔断器                    | Hystrix，包括Hystrix Dashboard以及Turbine    |
 | 配置服务                  | Spring Cloud Config Server                  |
 | API Gateway              | Zuul                                        |
-
+| 服务鉴权                  | spring security                              |
 # 准备
 
 ## 环境准备：
@@ -42,6 +42,9 @@
 | microservice-demo-web                    | 8081 | 实例demo服务WEB                 | /1              |
 | microservice-filecenter                  | 6060 | 文件中心服务                    | /1               |
 | microservice-shiro                       | 8084 | 权限认证服务提供者               | /1               |
+| microservice-sso-server                  | 9999 | SSO认证服务提供者                | /1               |
+| microservice-sso-client1                 | 8080 | SSO客户端测试1                   | /1               |
+| microservice-sso-client2                 | 8081 | SSO客户端测试2                   | /1               |
 | microservice-auth-server                 | 8086 | 认证服务提供者                   | /1               |
 | microservice-system                      | 12000 | 系统管理服务                    | /1               |
 | microservice-system-web                  | 12001 | 系统管理服务WEB                 | /1              |

@@ -1,0 +1,19 @@
+server:
+  port: 9999
+  context-path: /sso-server
+  session:
+    timeout: 300
+spring: 
+  application:
+    name: microservice-sso-server
+  datasource:                       
+    url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false
+    driverClassName: com.mysql.jdbc.Driver
+    username: root  
+    password: root
+eureka: 
+  instance:
+    hostname: sso-server
+  client:
+    serviceUrl: 
+      defaultZone: http://discovery:8761/eureka/
