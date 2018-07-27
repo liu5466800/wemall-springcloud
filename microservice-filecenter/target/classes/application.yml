@@ -12,7 +12,6 @@ spring:
     multipart: 
       max-file-size: 20MB
       max-request-size: 20MB
-     # location: /Users/wangyong/test/testfiles
   jpa: 
     database: MYSQL
     generate-ddl: true
@@ -41,11 +40,11 @@ logging:
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-    com.itmuch.youran.persistence: ERROR
+#    com.itmuch.youran.persistence: ERROR
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+      defaultZone: http://discovery:8761/eureka/
   instance:
     preferIpAddress: true
     

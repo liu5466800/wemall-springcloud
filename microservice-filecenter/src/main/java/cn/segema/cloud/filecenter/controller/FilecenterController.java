@@ -1,10 +1,8 @@
 package cn.segema.cloud.filecenter.controller;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -102,7 +100,6 @@ public class FilecenterController {
 	 * @param request
 	 * @param response
 	 * @return
-	 * @throws IOException
 	 */
 	@RequestMapping(value="/uploadfiles", method = RequestMethod.POST)
 	@ResponseBody
@@ -159,21 +156,59 @@ public class FilecenterController {
 	}
     
     /**
-	 * 下载
+	 * 下载文件
 	 * @param request
 	 * @param response
-	 * @throws Exception
 	 */
-	@RequestMapping(value = "download/{id}")
+	@RequestMapping(value = "/download/{id}",method = RequestMethod.GET)
 	public void download(@PathVariable("id") BigInteger id,HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response){
 		Filecenter filecenter  = filecenterRepository.findOne(id);
 		String storeName = filecenter.getAbsolutePath();
 		String fileName = filecenter.getFileName();
-		
 		String contentType = "application/x-download";
-		FileUtil.download(request, response, storeName, contentType,fileName);
+		try {
+			FileUtil.download(request, response, storeName, contentType,fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		}
 	}
+	
+	
+	/**
+	 * 根据业务ID获取所有文件
+	 * @param businessId
+	 * @return
+	 */
+	@RequestMapping(value ="/files/{businessId}",method = RequestMethod.GET)
+	@ResponseBody
+	public ResultVO getfilesByBusinessId(@PathVariable("businessId")BigInteger businessId){
+		List<Filecenter> entities = filecenterRepository.getfilesByBusinessId(businessId);
+		ResultVO resultVO = new ResultVO();
+		resultVO.setStatus(StatusConstant.SUCCESS);
+		resultVO.setMessage("获取文件成功");
+		resultVO.setData(entities);
+		return resultVO;
+	}
+	
+	/**
+	 * 根据业务ID,Code获取所有文件
+	 * @param businessId
+	 * @param businessCode
+	 * @return
+	 */
+	@RequestMapping(value ="/files/{businessId}/{businessCode}",method = RequestMethod.GET)
+	@ResponseBody
+	public ResultVO getfilesByBusinessIdAndCode(@PathVariable("businessId")BigInteger businessId,@PathVariable("businessCode")String businessCode){
+		List<Filecenter> entities = filecenterRepository.getfilesByBusinessIdAndCode(businessId,businessCode);
+		ResultVO resultVO = new ResultVO();
+		resultVO.setStatus(StatusConstant.SUCCESS);
+		resultVO.setMessage("获取文件成功");
+		resultVO.setData(entities);
+		return resultVO;
+	}
+	
 	
 	/**
 	 * 过滤掉特殊字符
@@ -188,4 +223,5 @@ public class FilecenterController {
 		return fileName;
 	}
 
+	
 }

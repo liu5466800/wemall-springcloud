@@ -19,7 +19,7 @@ public class Filecenter {
 	private String fileName;
 	
 	@Column(name="BUSINESSID")
-	private String businessId;
+	private BigInteger businessId;
 	
 	@Column(name="BUSINESSCODE")
 	private String businessCode;
@@ -61,11 +61,11 @@ public class Filecenter {
 		this.fileName = fileName;
 	}
 
-	public String getBusinessId() {
+	public BigInteger getBusinessId() {
 		return businessId;
 	}
 
-	public void setBusinessId(String businessId) {
+	public void setBusinessId(BigInteger businessId) {
 		this.businessId = businessId;
 	}
 
