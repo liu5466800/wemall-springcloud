@@ -5,7 +5,7 @@ package cn.segema.cloud.common.constants;
  * 
  * @author wangyong
  */
-public class WechatConstant {
+public final class WechatConstant {
 
 	// 微信
 	public static final String WECHAT_APPID = "wechat_appid";

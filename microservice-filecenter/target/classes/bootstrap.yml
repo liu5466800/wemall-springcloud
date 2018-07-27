@@ -1,13 +1,13 @@
-spring:
-  application:
-    name: microservice-filecenter
-  cloud:
-    config:
-      profile: dev 
-      label: master
-      discovery: 
-        enabled: true
-        serviceId: microservice-config
+#spring:
+#  application:
+#    name: microservice-filecenter
+#  cloud:
+#    config:
+#      profile: dev 
+#      label: master
+#      discovery: 
+#        enabled: true
+#        serviceId: microservice-config
 eureka:
   client:
     serviceUrl:

@@ -23,8 +23,8 @@ spring:
     properties: 
       hibernate: 
         dialect : org.hibernate.dialect.MySQL5Dialect  
-  datasource:                           # 指定数据源
-     url: jdbc:mysql://127.0.0.1:3306/microservice_filecenter
+  datasource:                         
+     url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
      driverClassName: com.mysql.jdbc.Driver
      username: root
      password: root
@@ -48,3 +48,7 @@ eureka:
       defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
   instance:
     preferIpAddress: true
+    
+ #本地配置   
+segema.filecenter.localDirectory: /Users/wangyong/Downloads/test/testfiles/   
+segema.filecenter.dataSourceSave: false 

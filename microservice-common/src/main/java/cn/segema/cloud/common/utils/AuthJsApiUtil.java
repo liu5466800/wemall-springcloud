@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import cn.segema.cloud.common.vo.ApiResult;
+import cn.segema.cloud.common.vo.ResultVO;
 
 /**
  * JS-SDK使用权限签名
@@ -48,7 +48,7 @@ public class AuthJsApiUtil {
 	public static String getAccessToken(String appId, String appSecret){
 		String accessToken = null;
 		String requestUrl = ACCESS_TOKEN_URL.replace("APPID", appId).replace("APPSECRET", appSecret);
-		ApiResult apiResult = null;
+		ResultVO apiResult = null;
 		try {
 			String jsonResult = HttpUtil.get(requestUrl);
 			if (!StringUtils.isEmpty(jsonResult)) {
@@ -72,7 +72,7 @@ public class AuthJsApiUtil {
 	public static String getTicket(String accessToken) {  
 		String ticket = null;  
         String requestUrl = JSAPI_TICKET_URL.replace("ACCESS_TOKEN", accessToken);
-        ApiResult apiResult = null;
+        ResultVO apiResult = null;
 		try {
 			String jsonResult = HttpUtil.get(requestUrl);
 			if (!StringUtils.isEmpty(jsonResult)) {

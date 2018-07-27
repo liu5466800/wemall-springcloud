@@ -1,25 +1,32 @@
 package cn.segema.cloud.filecenter.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.UUID;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import cn.segema.cloud.common.constants.StatusConstant;
+import cn.segema.cloud.common.utils.IdGeneratorUtil;
+import cn.segema.cloud.common.vo.ResultVO;
 import cn.segema.cloud.filecenter.domain.Filecenter;
 import cn.segema.cloud.filecenter.repository.FilecenterRepository;
 import cn.segema.cloud.filecenter.util.FileUtil;
@@ -30,31 +37,35 @@ import cn.segema.cloud.filecenter.util.FileUtil;
 @Controller
 @RequestMapping(value = "/filecenter")
 public class FilecenterController {
-	@Autowired
-	private DiscoveryClient discoveryClient;
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private FilecenterRepository filecenterRepository;
-	@Autowired
-	private RestTemplate restTemplate;
 	
-	@Value("${filecenter.local.directory}")
+	@Value("${segema.filecenter.localDirectory}")
 	private String filecenterLocalDirectory;
+	
+	@Value("${segema.filecenter.dataSourceSave}")
+	private boolean dataSourceSave;
 	
 	@RequestMapping(value="/uploadfile", method = RequestMethod.GET)
     public String uploadFile() {
         return "uploadfile";
     }
 
-    //处理文件上传
+    //处理文件单个上传
     @RequestMapping(value="/uploadfile", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadFile(@RequestParam("file") MultipartFile file,
+    public ResultVO uploadfile(@RequestParam("file") MultipartFile file,String businessId,String businessCode, String fileDesc,
             HttpServletRequest request) {
+    		ResultVO resultVO = new ResultVO();
         String contentType = file.getContentType();
         String fileName = file.getOriginalFilename();
+        //过滤掉特殊字符
+        fileName = removeSpecialSymbol(fileName);
         String localDirectory = filecenterLocalDirectory;
         try {
-        		String fileId = UUID.randomUUID().toString();
+        		BigInteger fileId = BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId());
             FileUtil.uploadFile(file.getBytes(), localDirectory+fileId+"/", fileName);
             Filecenter filecenter = new Filecenter();
             filecenter.setFileId(fileId);
@@ -64,13 +75,88 @@ public class FilecenterController {
             filecenter.setSuffix(fileName.substring(fileName.lastIndexOf(".")));
             filecenter.setAbsolutePath(localDirectory+fileId+"/"+fileName);
             filecenter.setTotalSize(new BigDecimal(file.getSize()));
-            filecenter.setFileContent(file.getBytes());
+            if(dataSourceSave) {
+            		filecenter.setFileContent(file.getBytes());
+            }
+            filecenter.setBusinessCode(businessId);
+            filecenter.setBusinessCode(businessCode);
+            filecenter.setDescription(fileDesc);
             filecenterRepository.save(filecenter);
+            resultVO.setStatus(StatusConstant.SUCCESS);
+            resultVO.setData(filecenter);
         } catch (Exception e) {
-            // TODO: handle exception
+        		logger.error(e.getMessage());
+        		resultVO.setStatus(StatusConstant.FAILED);
+        		resultVO.setMessage(e.getMessage());
         }
-        return "uploadimg success";
+        return resultVO;
     }
+    
+    
+    /**
+	 * 同步执行上传文件和更新备注
+	 * @param files
+	 * @param businessId 业务数据ID
+	 * @param businessCode 业务数据编码
+	 * @param fileDescs 文件描述
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/uploadfiles", method = RequestMethod.POST)
+	@ResponseBody
+	public ResultVO uploadfiles(@RequestParam("file") MultipartFile[] files,String businessId,String businessCode, String[] fileDescs, HttpServletRequest request, HttpServletResponse response){
+		
+		ResultVO resultVO = new ResultVO();
+		String localDirectory = filecenterLocalDirectory;
+		if(files!=null&&files.length>0) {
+			
+			List<Filecenter> entities = new ArrayList<>();
+			try {
+				for(int i=0;i<files.length;i++) {
+					MultipartFile file = files[i];
+					String contentType = file.getContentType();
+			        String fileName = file.getOriginalFilename();
+			        //过滤掉特殊字符
+			        fileName = removeSpecialSymbol(fileName);
+		        		BigInteger fileId = BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId());
+		            FileUtil.uploadFile(file.getBytes(), localDirectory+fileId+"/", fileName);
+		            Filecenter filecenter = new Filecenter();
+		            filecenter.setFileId(fileId);
+		            filecenter.setFileName(fileName);
+		            filecenter.setFileType(contentType);
+		            filecenter.setRelativePath(fileId+"/"+fileName);
+		            filecenter.setSuffix(fileName.substring(fileName.lastIndexOf(".")));
+		            filecenter.setAbsolutePath(localDirectory+fileId+"/"+fileName);
+		            filecenter.setTotalSize(new BigDecimal(file.getSize()));
+		            if(dataSourceSave) {
+		            		filecenter.setFileContent(file.getBytes());
+		            }
+		            filecenter.setBusinessCode(businessId);
+		            filecenter.setBusinessCode(businessCode);
+		            if(fileDescs.length>=i+1) {
+		            		filecenter.setDescription(fileDescs[i]);
+					}
+		            entities.add(filecenter);
+				}
+				filecenterRepository.save(entities);
+				
+				resultVO.setStatus(StatusConstant.SUCCESS);
+				resultVO.setMessage("上传成功");
+				resultVO.setData(entities);
+				
+			} catch (Exception e) {
+				resultVO.setStatus(StatusConstant.FAILED);
+				resultVO.setMessage(e.getMessage());
+			}
+		}else {
+			resultVO.setStatus(StatusConstant.FAILED);
+			resultVO.setMessage("没有上传文件");
+		}
+		
+		return resultVO;
+	}
     
     /**
 	 * 下载
@@ -79,7 +165,7 @@ public class FilecenterController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "download/{id}")
-	public void download(@PathVariable("id") String id,HttpServletRequest request,
+	public void download(@PathVariable("id") BigInteger id,HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Filecenter filecenter  = filecenterRepository.findOne(id);
 		String storeName = filecenter.getAbsolutePath();
@@ -88,15 +174,18 @@ public class FilecenterController {
 		String contentType = "application/x-download";
 		FileUtil.download(request, response, storeName, contentType,fileName);
 	}
-
+	
 	/**
-	 * 本地服务实例的信息
+	 * 过滤掉特殊字符
+	 * @param fileName
 	 * @return
 	 */
-	@GetMapping("/instance-info")
-	public ServiceInstance showInfo() {
-		ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-		return localServiceInstance;
+	private String removeSpecialSymbol(String fileName) {
+		String regEx="[`~!@#$%^&*()+=|{}':;',\\[\\]<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+		Pattern p = Pattern.compile(regEx);
+		Matcher m = p.matcher(fileName);
+		fileName = m.replaceAll("").trim();
+		return fileName;
 	}
 
 }

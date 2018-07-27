@@ -2,14 +2,13 @@ package cn.segema.cloud.common.vo;
 
 import java.io.Serializable;
 
-public class ApiResult implements Serializable{
+import cn.segema.cloud.common.constants.StatusConstant;
+
+public class ResultVO implements Serializable{
 	
 	private static final long serialVersionUID = -5817878425419706227L;
-	/**
-	 * @fields status 状态信息，正确返回OK，
-	 * 否则返回 ERROR，如果返回ERROR则需要填写Message信息
-	 */
-	private Status status;
+	//1:成功，0:失败
+	private int status;
 	/**
 	 * @fields record 消息对象
 	 */
@@ -19,62 +18,50 @@ public class ApiResult implements Serializable{
 	 */
 	private Object data;
 
-	public ApiResult() {
+	public ResultVO() {
 		super();
 	}
 	/**
-	 * @description
 	 * @param status 状态
 	 * @param message 消息
 	 */
-	public ApiResult(Status status, Object message) {
+	public ResultVO(int status, Object message) {
 		this.status = status;
 		this.message = message;
 	}
 	/**
-	 * @description
 	 * @param status 状态
 	 * @param message 消息
 	 * @param data 数据
 	 */
-	public ApiResult(Status status, Object message, Object data) {
+	public ResultVO(int status, Object message, Object data) {
 		this.status = status;
 		this.message = message;
 		this.data = data;
 	}
 
-	/**
-	 * @ClassName: Status
-	 * @description: 结果类型信息
-	 * @author: wangyong
-	 * @date: 2016年2月27日 下午9:51:10
-	 */
-	public enum Status {
-		OK, ERROR
-	}
+
 
 	/**
-	 * @title: addOK
 	 * @description: 添加成功结果信息
 	 * @return: void
 	 */
-	public void addOK(Object message) {
+	public void addSuccess(Object message) {
 		this.message = message;
-		this.status = Status.OK;
+		this.status =StatusConstant.SUCCESS;
 	}
 	/**
-	 * @title: addError
 	 * @description: 添加错误消息
 	 * @return: void
 	 */
-	public void addError(Object message) {
+	public void addFailed(Object message) {
 		this.message = message;
-		this.status = Status.ERROR;
+		this.status = StatusConstant.FAILED;
 	}
-	public Status getStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public Object getMessage() {

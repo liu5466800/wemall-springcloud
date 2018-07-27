@@ -1,6 +1,7 @@
 package cn.segema.cloud.filecenter.domain;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +13,16 @@ import javax.persistence.Table;
 public class Filecenter {
 	@Id
 	@Column(name="FILEID")
-	private String fileId;
+	private BigInteger fileId;
 	
 	@Column(name="FILENAME")
 	private String fileName;
 	
 	@Column(name="BUSINESSID")
 	private String businessId;
+	
+	@Column(name="BUSINESSCODE")
+	private String businessCode;
 	
 	@Column(name="ABSOLUTEPATH")
 	private String absolutePath;
@@ -37,12 +41,15 @@ public class Filecenter {
 	
 	@Column(name="FILECONTENT")
 	private byte[] fileContent;
+	
+	@Column(name="DESCRIPTION")
+	private String description;
 
-	public String getFileId() {
+	public BigInteger getFileId() {
 		return fileId;
 	}
 
-	public void setFileId(String fileId) {
+	public void setFileId(BigInteger fileId) {
 		this.fileId = fileId;
 	}
 
@@ -60,6 +67,14 @@ public class Filecenter {
 
 	public void setBusinessId(String businessId) {
 		this.businessId = businessId;
+	}
+
+	public String getBusinessCode() {
+		return businessCode;
+	}
+
+	public void setBusinessCode(String businessCode) {
+		this.businessCode = businessCode;
 	}
 
 	public String getAbsolutePath() {
@@ -110,6 +125,12 @@ public class Filecenter {
 		this.fileContent = fileContent;
 	}
 
-	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }
