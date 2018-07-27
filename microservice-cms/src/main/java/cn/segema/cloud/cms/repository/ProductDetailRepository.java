@@ -1,11 +1,14 @@
 package cn.segema.cloud.cms.repository;
 
+import java.math.BigInteger;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import cn.segema.cloud.cms.domain.DemoUser;
+
+import cn.segema.cloud.cms.domain.ProductDetail;
 
 @Repository
-public interface DemoRepository extends JpaRepository<DemoUser, String> {
+public interface ProductDetailRepository extends JpaRepository<ProductDetail, BigInteger> {
 	
 	
 //	 @Query("select new cn.segema.cloud.demo.vo.DemoUserPersonalVO(u.userId,u.userName,u.nickName,p.personalId,p.personalName)"
