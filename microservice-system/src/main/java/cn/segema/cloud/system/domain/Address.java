@@ -1,12 +1,10 @@
 package cn.segema.cloud.system.domain;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,7 +18,7 @@ import javax.persistence.Table;
 public class Address {
 	@Id
 	@Column(name = "ADDRESSID")
-	private String addressId;
+	private BigInteger addressId;
 	
 	@Column(name = "NATION")
 	private String nation;
@@ -55,11 +53,11 @@ public class Address {
 	@Column(name = "LATITUDE")
 	private String latitude;
 
-	public String getAddressId() {
+	public BigInteger getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(String addressId) {
+	public void setAddressId(BigInteger addressId) {
 		this.addressId = addressId;
 	}
 

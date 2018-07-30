@@ -1,9 +1,9 @@
 package cn.segema.cloud.system.domain;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class UserRole {
 	@Id
 	@Column(name = "USERROLEID")
-	private String userRoleId;
+	private BigInteger userRoleId;
 
 	@OneToOne
 	@JoinColumn(name = "USERID")
@@ -29,11 +29,11 @@ public class UserRole {
 	@JoinColumn(name = "ROLEID")
 	private Role role;
 
-	public String getUserRoleId() {
+	public BigInteger getUserRoleId() {
 		return userRoleId;
 	}
 
-	public void setUserRoleId(String userRoleId) {
+	public void setUserRoleId(BigInteger userRoleId) {
 		this.userRoleId = userRoleId;
 	}
 

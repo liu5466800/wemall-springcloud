@@ -11,9 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,7 +48,7 @@ public class SpecificationController {
 		return specification;
 	}
 
-	@RequestMapping(value = "edit")
+	@PutMapping(value = "edit")
 	public Specification edit(Specification specification, Model model) {
 		 Specification oldSpecification = specificationRepository.getOne(specification.getSpecificationId());
 		 BeanUtils.copyProperties(specification, oldSpecification);
@@ -54,7 +56,7 @@ public class SpecificationController {
 		return specification;
 	}
 
-	@RequestMapping(value = "delete")
+	@DeleteMapping(value = "delete")
 	public Specification delete(Specification specification) {
 		specificationRepository.delete(specification);
 		return specification;

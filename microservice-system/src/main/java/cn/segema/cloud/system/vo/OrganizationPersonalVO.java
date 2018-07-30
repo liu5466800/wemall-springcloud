@@ -1,28 +1,30 @@
 package cn.segema.cloud.system.vo;
 
+import java.math.BigInteger;
+
 /**
  * 组织机构人员信息
  * @author wangyong
  */
 public class OrganizationPersonalVO {
 
-	private String organizationId;
+	private BigInteger organizationId;
 
 	private String organizationName;
 
-	private Integer organizationCode;
+	private BigInteger organizationCode;
 
-	private String personalId;
+	private BigInteger personalId;
 
 	private String personalName;
 
 	private Integer type;
 
-	public String getOrganizationId() {
+	public BigInteger getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(BigInteger organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -34,19 +36,19 @@ public class OrganizationPersonalVO {
 		this.organizationName = organizationName;
 	}
 
-	public Integer getOrganizationCode() {
+	public BigInteger getOrganizationCode() {
 		return organizationCode;
 	}
 
-	public void setOrganizationCode(Integer organizationCode) {
+	public void setOrganizationCode(BigInteger organizationCode) {
 		this.organizationCode = organizationCode;
 	}
 
-	public String getPersonalId() {
+	public BigInteger getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(String personalId) {
+	public void setPersonalId(BigInteger personalId) {
 		this.personalId = personalId;
 	}
 
@@ -66,8 +68,8 @@ public class OrganizationPersonalVO {
 		this.type = type;
 	}
 
-	public OrganizationPersonalVO(String organizationId, String organizationName, Integer organizationCode,
-			String personalId, String personalName, Integer type) {
+	public OrganizationPersonalVO(BigInteger organizationId, String organizationName, BigInteger organizationCode,
+			BigInteger personalId, String personalName, Integer type) {
 		super();
 		this.organizationId = organizationId;
 		this.organizationName = organizationName;

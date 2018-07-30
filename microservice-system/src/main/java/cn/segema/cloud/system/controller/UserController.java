@@ -1,5 +1,6 @@
 package cn.segema.cloud.system.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,8 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.page.PagerParamVO;
+import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.UserRepository;
+import cn.segema.cloud.system.service.OrganizationService;
+import cn.segema.cloud.system.service.UserService;
 import cn.segema.cloud.system.vo.UserPersonalVO;
 
 /**
@@ -32,6 +36,10 @@ import cn.segema.cloud.system.vo.UserPersonalVO;
 public class UserController {
   @Autowired
   private DiscoveryClient discoveryClient;
+  
+  @Autowired
+	private UserService userService;
+  
   @Autowired
   private UserRepository userRepository;
   
@@ -40,8 +48,7 @@ public class UserController {
    * @return user信息
    */
   @GetMapping("/{userId}")
-  public User findById(@PathVariable String userId) throws Exception {
-
+  public User findById(@PathVariable BigInteger userId) throws Exception {
 	  User user = this.userRepository.findOne(userId);
     return user;
   }
@@ -55,7 +62,7 @@ public class UserController {
 	@PostMapping("/add")
 	public User add(User user, Model model) {
 		if (user.getUserId() == null || "".equals(user.getUserId())) {
-			user.setUserId(UUID.randomUUID().toString());
+			user.setUserId(BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
 		}
 		userRepository.save(user);
 		return user;
@@ -86,7 +93,7 @@ public class UserController {
 	public Pager<User> listByPage(PagerParamVO pagerParam) {
 		Sort sort = new Sort(Direction.DESC, "userId");
 		Pageable pageable = new PageRequest(pagerParam.getCurr()-1, pagerParam.getNums(), sort);
-		Page<User> page = userRepository.findAll(pageable);
+		Page<User> page = userService.findByPage(pageable, pagerParam.getParams());
 		Pager<User> pager = new Pager<User>();
 		pager.setCode("0");
 		pager.setMsg("success");

@@ -28,7 +28,6 @@
     <module>microservice-system</module>
     <module>microservice-system-web</module>
     <module>microservice-cms</module>
-    <module>microservice-cms-web</module>
     <module>microservice-wemall-main</module>
     <module>microservice-wemall-main-web</module>
     <module>microservice-wemall-order</module>

@@ -1,22 +1,23 @@
 package cn.segema.cloud.system.vo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class OrganizationTreeVO {
 
-	private String organizationId;
+	private BigInteger organizationId;
 
 	private String organizationName;
 
-	private Integer organizationCode;
+	private BigInteger organizationCode;
 
 	private List<OrganizationTreeVO> children;
 
-	public String getOrganizationId() {
+	public BigInteger getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(BigInteger organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -28,11 +29,11 @@ public class OrganizationTreeVO {
 		this.organizationName = organizationName;
 	}
 
-	public Integer getOrganizationCode() {
+	public BigInteger getOrganizationCode() {
 		return organizationCode;
 	}
 
-	public void setOrganizationCode(Integer organizationCode) {
+	public void setOrganizationCode(BigInteger organizationCode) {
 		this.organizationCode = organizationCode;
 	}
 

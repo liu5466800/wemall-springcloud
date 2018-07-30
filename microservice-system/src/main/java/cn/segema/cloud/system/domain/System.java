@@ -1,9 +1,9 @@
 package cn.segema.cloud.system.domain;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class System {
 	@Id
 	@Column(name = "SYSTEMID")
-	private String systemId;
+	private BigInteger systemId;
 	
 	@Column(name = "SYSTEMNAME")
 	private String systemName;
@@ -31,11 +31,11 @@ public class System {
 	@Column(name = "DELETESTATUS")
 	private Integer deletestatus;
 
-	public String getSystemId() {
+	public BigInteger getSystemId() {
 		return systemId;
 	}
 
-	public void setSystemId(String systemId) {
+	public void setSystemId(BigInteger systemId) {
 		this.systemId = systemId;
 	}
 

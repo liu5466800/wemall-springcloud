@@ -1,6 +1,6 @@
 package cn.segema.cloud.system.vo;
 
-import cn.segema.cloud.system.domain.Organization;
+import java.math.BigInteger;
 
 /**
  * 组织机构信息VO(排除chidren,parent)
@@ -8,23 +8,23 @@ import cn.segema.cloud.system.domain.Organization;
  */
 public class OrganizationVO{
 	
-	private String organizationId;
+	private BigInteger organizationId;
 
 	private String organizationName;
 
-	private Integer organizationCode;
+	private BigInteger organizationCode;
 
 	private String description;
     
 	private Integer type;
 	
-	 private String parentId;
+	 private BigInteger parentId;
 
-	public String getOrganizationId() {
+	public BigInteger getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(BigInteger organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -36,11 +36,11 @@ public class OrganizationVO{
 		this.organizationName = organizationName;
 	}
 
-	public Integer getOrganizationCode() {
+	public BigInteger getOrganizationCode() {
 		return organizationCode;
 	}
 
-	public void setOrganizationCode(Integer organizationCode) {
+	public void setOrganizationCode(BigInteger organizationCode) {
 		this.organizationCode = organizationCode;
 	}
 
@@ -60,11 +60,11 @@ public class OrganizationVO{
 		this.type = type;
 	}
 
-	public String getParentId() {
+	public BigInteger getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(String parentId) {
+	public void setParentId(BigInteger parentId) {
 		this.parentId = parentId;
 	}
 

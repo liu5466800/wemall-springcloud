@@ -1,9 +1,9 @@
 package cn.segema.cloud.system.domain;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Role {
 	@Id
 	@Column(name = "ROLEID")
-	private String roleId;
+	private BigInteger roleId;
 	
 	@Column(name = "ROLENAME")
 	private String roleName;
@@ -34,11 +34,11 @@ public class Role {
 	@Column(name = "DELETESTATUS")
 	private Integer deletestatus;
 
-	public String getRoleId() {
+	public BigInteger getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(String roleId) {
+	public void setRoleId(BigInteger roleId) {
 		this.roleId = roleId;
 	}
 

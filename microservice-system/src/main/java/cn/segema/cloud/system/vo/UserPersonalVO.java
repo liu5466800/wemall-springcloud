@@ -1,5 +1,7 @@
 package cn.segema.cloud.system.vo;
 
+import java.math.BigInteger;
+
 /**
  * 用户人员信息
  * @author wangyong
@@ -7,21 +9,21 @@ package cn.segema.cloud.system.vo;
  */
 public class UserPersonalVO {
 
-	private String userId;
+	private BigInteger userId;
 
 	private String userName;
 
 	private String nickName;
 	
-	private String personalId;
+	private BigInteger personalId;
 	
 	private String personalName;
 
-	public String getUserId() {
+	public BigInteger getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(BigInteger userId) {
 		this.userId = userId;
 	}
 
@@ -41,11 +43,11 @@ public class UserPersonalVO {
 		this.nickName = nickName;
 	}
 
-	public String getPersonalId() {
+	public BigInteger getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(String personalId) {
+	public void setPersonalId(BigInteger personalId) {
 		this.personalId = personalId;
 	}
 
@@ -57,7 +59,7 @@ public class UserPersonalVO {
 		this.personalName = personalName;
 	}
 
-	public UserPersonalVO(String userId, String userName, String nickName, String personalId, String personalName) {
+	public UserPersonalVO(BigInteger userId, String userName, String nickName, BigInteger personalId, String personalName) {
 		super();
 		this.userId = userId;
 		this.userName = userName;

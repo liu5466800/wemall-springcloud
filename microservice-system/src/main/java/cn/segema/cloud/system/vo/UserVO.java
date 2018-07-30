@@ -1,6 +1,7 @@
 package cn.segema.cloud.system.vo;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 /**
  * 用户VO
@@ -11,7 +12,7 @@ public class UserVO  implements Serializable{
 
 	private static final long serialVersionUID = 3336026114894190728L;
 
-	private String userId;
+	private BigInteger userId;
 	
 	private String userName;
 	
@@ -23,11 +24,11 @@ public class UserVO  implements Serializable{
 	
 	private String credentialsSalt;
 
-	public String getUserId() {
+	public BigInteger getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(BigInteger userId) {
 		this.userId = userId;
 	}
 

@@ -1,5 +1,6 @@
 package cn.segema.cloud.system.domain;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,13 +24,13 @@ import javax.persistence.Table;
 public class Organization {
 	@Id
 	@Column(name = "ORGANIZATIONID")
-	private String organizationId;
+	private BigInteger organizationId;
 
 	@Column(name = "ORGANIZATIONNAME")
 	private String organizationName;
 
 	@Column(name = "ORGANIZATIONCODE")
-	private Integer organizationCode;
+	private BigInteger organizationCode;
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -45,11 +46,11 @@ public class Organization {
     @JoinColumn(name="PARENTID")
     private Set<Organization> children = new HashSet<Organization>();
 
-	public String getOrganizationId() {
+	public BigInteger getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(BigInteger organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -61,11 +62,11 @@ public class Organization {
 		this.organizationName = organizationName;
 	}
 
-	public Integer getOrganizationCode() {
+	public BigInteger getOrganizationCode() {
 		return organizationCode;
 	}
 
-	public void setOrganizationCode(Integer organizationCode) {
+	public void setOrganizationCode(BigInteger organizationCode) {
 		this.organizationCode = organizationCode;
 	}
 

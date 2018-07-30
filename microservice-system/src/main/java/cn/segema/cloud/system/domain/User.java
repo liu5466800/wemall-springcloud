@@ -1,5 +1,7 @@
 package cn.segema.cloud.system.domain;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,7 +17,7 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@Column(name = "USERID")
-	private String userId;
+	private BigInteger userId;
 	
 	@Column(name = "USERNAME")
 	private String userName;
@@ -38,11 +40,11 @@ public class User {
 	@Column(name = "DELETESTATUS")
 	private Integer deletestatus;
 
-	public String getUserId() {
+	public BigInteger getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(BigInteger userId) {
 		this.userId = userId;
 	}
 

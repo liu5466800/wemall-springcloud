@@ -1,5 +1,6 @@
 package cn.segema.cloud.system.controller;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.page.PagerParamVO;
 import cn.segema.cloud.system.domain.Organization;
@@ -45,19 +47,27 @@ public class OrganizationController {
 	 * @return Organization
 	 */
 	@GetMapping("/{organizationId}")
-	public Organization findById(@PathVariable String organizationId) throws Exception {
+	public Organization findById(@PathVariable BigInteger organizationId) throws Exception {
 		Organization organization = organizationRepository.findOne(organizationId);
 		return organization;
 	}
 
 	/**
 	 * @param organization
-	 * @return List<Organization>
+	 * @return List<OrganizationVO>
 	 */
 	@GetMapping("/list")
-	public List<Organization> list(Organization organization) {
+	public List<OrganizationVO> list(Organization organization) {
 		List<Organization> organizationList = organizationRepository.findAll();
-		return organizationList;
+		List<OrganizationVO> organizationVoList = new ArrayList<OrganizationVO>();
+		if(organizationList!=null&&organizationList.size()>0) {
+			for(Organization org:organizationList) {
+				OrganizationVO organizationVO = new  OrganizationVO();
+				BeanUtils.copyProperties(org, organizationVO);
+				organizationVoList.add(organizationVO);
+			}
+		}
+		return organizationVoList;
 	}
 
 	/**
@@ -67,20 +77,21 @@ public class OrganizationController {
 	@PostMapping("/add")
 	public Organization add(Organization organization) {
 		if(organization.getParent()!=null){
-			Integer maxOrganizationCode = organizationRepository.findMaxOrganization(organization.getParent().getOrganizationId());
+			BigInteger maxOrganizationCode = organizationRepository.findMaxOrganization(organization.getParent().getOrganizationId());
 			if(maxOrganizationCode!=null) {
 				if(organization.getOrganizationCode()!=null) {
-					if(organization.getOrganizationCode()>maxOrganizationCode) {
-						organization.setOrganizationId(String.valueOf(organization.getOrganizationCode()));
+					if(organization.getOrganizationCode().compareTo(maxOrganizationCode)>0) {
+						
+						organization.setOrganizationId(organization.getOrganizationCode());
 					}
 				}else {
-					organization.setOrganizationCode(maxOrganizationCode+1);
-					organization.setOrganizationId(String.valueOf(maxOrganizationCode+1));
+					organization.setOrganizationCode(maxOrganizationCode.add(BigInteger.ONE));
+					organization.setOrganizationId(maxOrganizationCode.add(BigInteger.ONE));
 				}
 			}else {
 				String organizationCode = organization.getParent().getOrganizationId()+"001";
-				organization.setOrganizationCode(Integer.valueOf(organizationCode));
-				organization.setOrganizationId(String.valueOf(organizationCode));
+				organization.setOrganizationCode(BigInteger.valueOf(Long.valueOf(organizationCode)));
+				organization.setOrganizationId(BigInteger.valueOf(Long.valueOf(organizationCode)));
 			}
 		}
 		organizationRepository.save(organization);
@@ -116,13 +127,9 @@ public class OrganizationController {
 
 	@GetMapping("/listByPage")
 	public Pager<OrganizationVO> listByPage(PagerParamVO pagerParam) {
-		//Sort sort = new Sort(Direction.DESC, pagerParam.getOrder());
 		Sort sort = new Sort(Direction.DESC, "organizationId");
 		Pageable pageable = new PageRequest(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
 		Page<Organization> page = organizationService.findByPage(pageable, pagerParam.getParams());
-		
-		//Page<Organization> page = organizationRepository.findAll(pageable);
-		
 		Pager<OrganizationVO> pager = new Pager<OrganizationVO>();
 		pager.setCode("0");
 		pager.setMsg("success");
@@ -142,8 +149,8 @@ public class OrganizationController {
 	}
 	
 	@GetMapping("/maxOrganization/{parentId}")
-	public Integer maxOrganization(@PathVariable String parentId) {
-		Integer organizationCode = organizationRepository.findMaxOrganization(parentId);
+	public BigInteger maxOrganization(@PathVariable BigInteger parentId) {
+		BigInteger organizationCode = organizationRepository.findMaxOrganization(parentId);
 		return organizationCode;
 	}
 	
@@ -170,19 +177,19 @@ public class OrganizationController {
 		
 		List<TreeVO> treeList = new ArrayList<TreeVO>();
 		TreeVO treeVO1 = new TreeVO();
-		treeVO1.setId("1");
+		treeVO1.setId(new BigInteger("1"));
 		treeVO1.setText("NODE1节点1");
 		TreeVO treeVO2 = new TreeVO();
-		treeVO2.setId("2");
+		treeVO2.setId(new BigInteger("2"));
 		treeVO2.setText("NODE2节点2");
 		TreeVO treeVO3 = new TreeVO();
-		treeVO3.setId("3");
+		treeVO3.setId(new BigInteger("3"));
 		treeVO3.setText("NODE3节点3");
 		TreeVO treeVO4 = new TreeVO();
-		treeVO4.setId("4");
+		treeVO4.setId(new BigInteger("4"));
 		treeVO4.setText("NODE4节点4");
 		TreeVO treeVO5 = new TreeVO();
-		treeVO5.setId("5");
+		treeVO5.setId(new BigInteger("5"));
 		treeVO5.setText("NODE5节点5");
 		List<TreeVO> children4 = new ArrayList<TreeVO>();
 		children4.add(treeVO5);

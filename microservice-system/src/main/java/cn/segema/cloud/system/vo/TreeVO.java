@@ -1,20 +1,21 @@
 package cn.segema.cloud.system.vo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class TreeVO {
 
-	private String id;
+	private BigInteger id;
 
 	private String text;
 
 	private List<TreeVO> children;
 
-	public String getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 

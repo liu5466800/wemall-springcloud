@@ -1,5 +1,6 @@
 package cn.segema.cloud.system.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.Role;
 import cn.segema.cloud.system.repository.RoleRepository;
 
@@ -51,7 +53,7 @@ public class RoleController {
 	@PostMapping("/add")
 	public Role add(Role role, Model model) {
 		if (role.getRoleId() == null || "".equals(role.getRoleId())) {
-			role.setRoleId(UUID.randomUUID().toString());
+			role.setRoleId(BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
 		}
 		roleRepository.save(role);
 		return role;

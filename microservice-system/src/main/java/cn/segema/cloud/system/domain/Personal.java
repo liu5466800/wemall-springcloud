@@ -1,6 +1,7 @@
 package cn.segema.cloud.system.domain;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 public class Personal {
 	@Id
 	@Column(name = "PERSONALID")
-	private String personalId;
+	private BigInteger personalId;
 	
 	@Column(name = "PERSONALNAME")
 	private String personalName;
@@ -63,11 +64,11 @@ public class Personal {
 	private LocalDateTime createTime;
 
 
-	public String getPersonalId() {
+	public BigInteger getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(String personalId) {
+	public void setPersonalId(BigInteger personalId) {
 		this.personalId = personalId;
 	}
 
