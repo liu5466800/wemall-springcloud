@@ -28,7 +28,6 @@ import cn.segema.cloud.demo.repository.DemoRepository;
 import cn.segema.cloud.demo.vo.DemoUserPersonalVO;
 import cn.segema.cloud.demo.vo.TestEmployeeVO;
 import cn.segema.cloud.demo.vo.TestUserVO;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 @RestController

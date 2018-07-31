@@ -3,12 +3,15 @@ package cn.segema.cloud.cms.repository;
 import java.math.BigInteger;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import cn.segema.cloud.cms.domain.ProductCategory;
 import cn.segema.cloud.cms.domain.ProductDetail;
 
 @Repository
-public interface ProductDetailRepository extends JpaRepository<ProductDetail, BigInteger> {
+public interface ProductDetailRepository extends  PagingAndSortingRepository<ProductDetail, BigInteger>,JpaRepository<ProductDetail, BigInteger> ,JpaSpecificationExecutor<ProductDetail> {
 	
 	
 //	 @Query("select new cn.segema.cloud.demo.vo.DemoUserPersonalVO(u.userId,u.userName,u.nickName,p.personalId,p.personalName)"

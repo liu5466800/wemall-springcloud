@@ -1,5 +1,6 @@
 package cn.segema.cloud.cms.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  */
 @Table(name = "CMS_PRODUCT")
 @Entity
-public class Product {
+public class Product implements Serializable{
 	@Id
 	@Column(name = "PRODUCTID")
 	private BigInteger productId;
@@ -74,7 +75,7 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
+
 	public BigInteger getCategoryId() {
 		return categoryId;
 	}

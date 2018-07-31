@@ -1,12 +1,18 @@
 package cn.segema.cloud.common.utils;
 
+/**
+ * 根据雪花算法，降低长度位数到15位以内
+ * 以适应js对数字处理的最大长度范围
+ * @author wangyong
+ *
+ */
 public class SnowflakeIdWorker {
 	private final long twepoch = 1288834974657L;
-	private final long workerIdBits = 5L;
-	private final long datacenterIdBits = 5L;
+	private final long workerIdBits = 1L;
+	private final long datacenterIdBits = 1L;
 	private final long maxWorkerId = -1L ^ (-1L << workerIdBits);
 	private final long maxDatacenterId = -1L ^ (-1L << datacenterIdBits);
-	private final long sequenceBits = 12L;
+	private final long sequenceBits = 8L;
 	private final long workerIdShift = sequenceBits;
 	private final long datacenterIdShift = sequenceBits + workerIdBits;
 	private final long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;

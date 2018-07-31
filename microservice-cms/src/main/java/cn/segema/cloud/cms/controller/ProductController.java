@@ -20,12 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.cms.domain.Product;
+import cn.segema.cloud.cms.domain.ProductCategory;
 import cn.segema.cloud.cms.repository.ProductRepository;
+import cn.segema.cloud.cms.service.ProductService;
 import cn.segema.cloud.common.page.Pager;
+import cn.segema.cloud.common.page.PagerParamVO;
 
 @RestController
 @RequestMapping(value = "/product")
 public class ProductController {
+
+	@Autowired
+	private ProductService productService;
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -63,10 +69,10 @@ public class ProductController {
 	}
 
 	@GetMapping("/listByPage")
-	public Pager<Product> listByPage() {
+	public Pager<Product> listByPage(PagerParamVO pagerParam) {
 		Sort sort = new Sort(Direction.DESC, "productId");
-		Pageable pageable = new PageRequest(0, 30, sort);
-		Page<Product> page = productRepository.findAll(pageable);
+		Pageable pageable = new PageRequest(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
+		Page<Product> page = productService.findByPage(pageable, pagerParam.getParams());
 		Pager<Product> pager = new Pager<Product>();
 		pager.setCode("0");
 		pager.setMsg("success");

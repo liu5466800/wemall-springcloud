@@ -20,11 +20,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.cms.domain.ProductCategory;
 import cn.segema.cloud.cms.repository.ProductCategoryRepository;
+import cn.segema.cloud.cms.service.ProductCategoryService;
 import cn.segema.cloud.common.page.Pager;
+import cn.segema.cloud.common.page.PagerParamVO;
+import cn.segema.cloud.common.utils.IdGeneratorUtil;
+import cn.segema.cloud.common.vo.ResultVO;
 
 @RestController
 @RequestMapping(value = "/productCategory")
 public class ProductCategoryController {
+	
+	@Autowired
+	private ProductCategoryService productCategoryService;
  
   @Autowired
   private ProductCategoryRepository productCategoryRepository;
@@ -43,11 +50,14 @@ public class ProductCategoryController {
 
 	@PostMapping("/add")
 	public ProductCategory add(ProductCategory productCategory, Model model) {
+		if (productCategory.getCategoryId() == null || "".equals(productCategory.getCategoryId())) {
+			productCategory.setCategoryId(BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
+		}
 		productCategoryRepository.save(productCategory);
 		return productCategory;
 	}
 
-	@PutMapping(value = "edit")
+	@PutMapping(value = "/edit")
 	public ProductCategory edit(ProductCategory productCategory, Model model) {
 		// Role oldRole = roleRepository.getOne(role.getRoleId());
 		// BeanUtils.copyProperties(role, oldRole);
@@ -55,17 +65,19 @@ public class ProductCategoryController {
 		return productCategory;
 	}
 
-	@DeleteMapping(value = "delete")
-	public ProductCategory delete(ProductCategory productCategory) {
-		productCategoryRepository.delete(productCategory);
-		return productCategory;
+	@DeleteMapping(value = "/delete/{categoryId}")
+	public ResultVO delete(@PathVariable("categoryId") BigInteger categoryId) {
+		ResultVO resultVO = new ResultVO();
+		productCategoryRepository.delete(categoryId);
+		resultVO.addSuccess("删除成功");
+		return resultVO;
 	}
   
   @GetMapping("/listByPage")
-	public Pager<ProductCategory> listByPage() {
-		Sort sort = new Sort(Direction.DESC, "productId");
-		Pageable pageable = new PageRequest(0, 30, sort);
-		Page<ProductCategory> page = productCategoryRepository.findAll(pageable);
+	public Pager<ProductCategory> listByPage(PagerParamVO pagerParam) {
+	  	Sort sort = new Sort(Direction.DESC, "categoryId");
+		Pageable pageable = new PageRequest(pagerParam.getCurr()-1, pagerParam.getNums(), sort);
+		Page<ProductCategory> page = productCategoryService.findByPage(pageable, pagerParam.getParams());
 		Pager<ProductCategory> pager = new Pager<ProductCategory>();
 		pager.setCode("0");
 		pager.setMsg("success");
