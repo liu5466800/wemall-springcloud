@@ -93,7 +93,7 @@
 			 $.ajax({
 	                type: "GET",
 	                dataType: "json",
-	                url: contextPath+"/system/organization/list",
+	                url: contextPath+"/MICROSERVICE-SYSTEM/organization/list",
 	                data: organization,
 	                success: function (obj) {
 	                	    var parentOptionsHtml="";
@@ -177,13 +177,13 @@
 			                type: "POST",
 			                async: false,
 			                dataType: "json",
-			                url: contextPath+"/system/organization/add",
+			                url: contextPath+"/MICROSERVICE-SYSTEM/organization/add",
 			                data: data.field,
 			                success: function (obj) {
 			                     layer.msg("添加成功");
 			                     var index = parent.layer.getFrameIndex(window.name);
 				                 parent.layer.close(index);
-				                 parent.window.location.href=contextPath+"/system-web/html/system/organization/organization-list.html";
+				                 parent.window.location.href=contextPath+"/MICROSERVICE-SYSTEM-WEB/html/system/organization/organization-list.html";
 			                },
 			                error: function(data) {
 			                	 	layer.msg("网络错误");
@@ -205,7 +205,7 @@
 			$.ajax({
 	            type: "GET",
 	            async: false,
-	            url: contextPath+"/system/organization/maxOrganization/"+parentOrganizationCode,
+	            url: contextPath+"/MICROSERVICE-SYSTEM/organization/maxOrganization/"+parentOrganizationCode,
 	            success: function (obj) {
 	            		 maxOrganizationCode = obj;
 	            },

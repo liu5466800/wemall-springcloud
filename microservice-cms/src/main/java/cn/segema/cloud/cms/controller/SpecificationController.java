@@ -2,6 +2,7 @@ package cn.segema.cloud.cms.controller;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class SpecificationController {
   private SpecificationRepository specificationRepository;
 
   @GetMapping("/{specificationId}")
-  public Specification findById(@PathVariable BigInteger specificationId) {
-    Specification findOne = this.specificationRepository.findOne(specificationId);
+  public Optional<Specification> findById(@PathVariable BigInteger specificationId) {
+	  Optional<Specification> findOne = this.specificationRepository.findById(specificationId);
     return findOne;
   }
   

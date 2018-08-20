@@ -29,8 +29,6 @@ import cn.segema.cloud.demo.vo.DemoUserVO;
 @RestController
 @RequestMapping(value = "/redis/test")
 public class RedisTestController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
   
   @Resource
   private StringRedisTemplate stringRedisTemplate;
@@ -108,15 +106,5 @@ public class RedisTestController {
 		
 		return userList;
 	}
- 
 
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

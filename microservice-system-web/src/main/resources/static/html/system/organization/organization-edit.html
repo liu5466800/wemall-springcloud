@@ -102,7 +102,7 @@
 			 $.ajax({
 	                type: "GET",
 	                dataType: "json",
-	                url: "/system/organization/list",
+	                url: "/MICROSERVICE-SYSTEM/organization/list",
 	                data: organization,
 	                success: function (obj) {
 	                	    var parentCodeOptionsHtml="";
@@ -189,7 +189,7 @@
 			                type: "POST",
 			                async: false,
 			                dataType: "json",
-			                url: "/system/organization/edit",
+			                url: "/MICROSERVICE-SYSTEM/organization/edit",
 			                data: data.field,
 			                success: function (obj) {
 			                		var parentindex = parent.getlay(); 
@@ -222,7 +222,7 @@
 			$.ajax({
 	            type: "GET",
 	            async: false,
-	            url: "/system/organization/maxOrganization/"+parentOrganizationCode,
+	            url: "/MICROSERVICE-SYSTEM/organization/maxOrganization/"+parentOrganizationCode,
 	            success: function (obj) {
 	            		 maxOrganizationCode = obj;
 	            },

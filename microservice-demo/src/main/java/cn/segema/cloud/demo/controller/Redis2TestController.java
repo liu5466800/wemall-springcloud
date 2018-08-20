@@ -7,9 +7,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,23 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.vo.DemoUserVO;
-import cn.segema.cloud.system.domain.Option;
-import cn.segema.cloud.system.repository.OptionRepository;
 
 @RestController
 @RequestMapping(value = "/redis2/test")
 public class Redis2TestController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
   
   @Resource
   private StringRedisTemplate stringRedisTemplate;  //使用的是StringRedisSerializer
 
   @Resource
   private RedisTemplate redisTemplate; //使用的是JdkSerializationRedisSerializer
-  
-  @Resource
-  private OptionRepository optionRepository;
   
   @GetMapping("/redis")
 	public List<DemoUserVO> redis(DemoUser user, Model model) {
@@ -68,15 +58,15 @@ public class Redis2TestController {
 		System.out.println("key2b:"+stringRedisTemplate.opsForValue().get("key2b"));
 		System.out.println("key3b:"+stringRedisTemplate.opsForValue().get("key3b"));
 		
-		List<Option> optionList = optionRepository.findOptionList();
-		
-		for(Option option:optionList) {
-			stringRedisTemplate.opsForValue().set(option.getOptionKey(), option.getOptionValue());
-		}
-		
-		for(Option option:optionList) {
-			stringRedisTemplate.opsForValue().get("插入后数据:"+option.getOptionKey());
-		}
+//		List<Option> optionList = optionRepository.findOptionList();
+//		
+//		for(Option option:optionList) {
+//			stringRedisTemplate.opsForValue().set(option.getOptionKey(), option.getOptionValue());
+//		}
+//		
+//		for(Option option:optionList) {
+//			stringRedisTemplate.opsForValue().get("插入后数据:"+option.getOptionKey());
+//		}
 		
 		//获取optionMap
 		HashOperations<String, Object, Object>  optionHash = redisTemplate.opsForHash();
@@ -124,15 +114,5 @@ public class Redis2TestController {
 		
 		return userList;
 	}
- 
 
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

@@ -1,6 +1,7 @@
 package cn.segema.cloud.wemall.user.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
@@ -42,8 +43,8 @@ public class UserController {
    * @return user信息
    */
   @GetMapping("/{userId}")
-  public User findById(@PathVariable Long userId) throws Exception {
-    User user = this.userRepository.findOne(userId);
+  public Optional<User> findById(@PathVariable Long userId) throws Exception {
+	  Optional<User> user = this.userRepository.findById(userId);
     return user;
   }
   
@@ -89,13 +90,4 @@ public class UserController {
 		return pager;
 	}
   
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

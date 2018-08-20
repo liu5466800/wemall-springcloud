@@ -11,8 +11,8 @@ import cn.segema.cloud.system.web.vo.UserVO;
 @Service
 public class UserWebService {
 
-	@Autowired
-	private RestTemplate restTemplate;
+//	@Autowired
+//	private RestTemplate restTemplate;
 
 	public UserVO findById(String userId) {
 		Map<String, String> parameter = new HashMap<String, String>();

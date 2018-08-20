@@ -87,10 +87,10 @@
 			    		$.ajax({
 			                type: "POST",
 			                dataType: "json",
-			                url: "/system/user/add",
+			                url: "/MICROSERVICE-SYSTEM/user/add",
 			                data: data.field,
 			                success: function (obj) {
-			                	 	parent.window.location.href="/system-web/html/system/user/userlist.html";
+			                	 	parent.window.location.href="/MICROSERVICE-SYSTEM-WEB/html/system/user/userlist.html";
 			                 	var index = parent.layer.getFrameIndex(window.name);
 			                 	parent.layer.close(index);
 			                },

@@ -3,11 +3,10 @@ package cn.segema.cloud.system.controller;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,8 +34,7 @@ import cn.segema.cloud.system.vo.TreeVO;
 @RestController
 @RequestMapping(value = "/organization")
 public class OrganizationController {
-	@Autowired
-	private DiscoveryClient discoveryClient;
+	
 	@Autowired
 	private OrganizationService organizationService;
 	@Autowired
@@ -47,8 +45,8 @@ public class OrganizationController {
 	 * @return Organization
 	 */
 	@GetMapping("/{organizationId}")
-	public Organization findById(@PathVariable BigInteger organizationId) throws Exception {
-		Organization organization = organizationRepository.findOne(organizationId);
+	public Optional<Organization> findById(@PathVariable BigInteger organizationId) throws Exception {
+		Optional<Organization> organization = organizationRepository.findById(organizationId);
 		return organization;
 	}
 
@@ -128,7 +126,7 @@ public class OrganizationController {
 	@GetMapping("/listByPage")
 	public Pager<OrganizationVO> listByPage(PagerParamVO pagerParam) {
 		Sort sort = new Sort(Direction.DESC, "organizationId");
-		Pageable pageable = new PageRequest(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
+		Pageable pageable = PageRequest.of(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
 		Page<Organization> page = organizationService.findByPage(pageable, pagerParam.getParams());
 		Pager<OrganizationVO> pager = new Pager<OrganizationVO>();
 		pager.setCode("0");
@@ -205,14 +203,4 @@ public class OrganizationController {
 		return treeList;
 	}
 
-	/**
-	 * 本地服务实例的信息
-	 * 
-	 * @return
-	 */
-	@GetMapping("/instance-info")
-	public ServiceInstance showInfo() {
-		ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-		return localServiceInstance;
-	}
 }

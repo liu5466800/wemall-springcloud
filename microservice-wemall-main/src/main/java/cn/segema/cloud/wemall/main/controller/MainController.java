@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/wemall/main")
 public class MainController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
-  
   /**
    * @param id
    * @return user信息
@@ -30,13 +27,4 @@ public class MainController {
     return map;
   }
   
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

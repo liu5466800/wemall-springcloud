@@ -1,6 +1,7 @@
 package cn.segema.cloud.wemall.product.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,7 @@ import cn.segema.cloud.wemall.product.repository.ProductRepository;
 @RestController
 @RequestMapping(value = "/user")
 public class ProductController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
+
   @Autowired
   private ProductRepository userRepository;
   
@@ -38,8 +38,8 @@ public class ProductController {
    * @return user信息
    */
   @GetMapping("/{userId}")
-  public Product findById(@PathVariable Long userId) throws Exception {
-    Product user = this.userRepository.findOne(userId);
+  public Optional<Product> findById(@PathVariable Long userId) throws Exception {
+	  Optional<Product> user = this.userRepository.findById(userId);
     return user;
   }
   
@@ -86,13 +86,4 @@ public class ProductController {
 		return pager;
 	}
   
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

@@ -1,6 +1,6 @@
 
 
-http://127.0.0.1:8040/system-web/html/index.html
+http://127.0.0.1:8040/MICROSERVICE-SYSTEM-WEB/html/index.html
 
 http://127.0.0.1:12001/html/index.html
 

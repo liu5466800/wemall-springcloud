@@ -18,8 +18,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/demo")
 public class DemoController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
+ 
   @Autowired
   private DemoRepository demoRepository;
 
@@ -36,14 +35,4 @@ public class DemoController {
 	  return map;
   }
   
-  
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
 }

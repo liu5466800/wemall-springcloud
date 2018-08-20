@@ -68,7 +68,7 @@
 		  	element = layui.element;
 		  	table.render({
 			    elem: '#productcategoryTable',
-			    url: contextPath+'/cms/productCategory/listByPage',
+			    url: contextPath+'/MICROSERVICE-CMS/productCategory/listByPage',
 			    request:{
 			    		pageName:'curr',
 			    		limitName:'nums'
@@ -121,7 +121,7 @@
 	    		    	  area: ['700px', '450px'],
 	    		    	  fixed: false,
 	    		    	  maxmin: true,
-	    		    	  content: contextPath+'/system-web/html/cms/productcategory/productcategory-add.html',
+	    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/productcategory/productcategory-add.html',
 	    	          zIndex: layer.zIndex, 
 	    	          success: function(layero){
 	    	          	layer.setTop(layero);//加载完成后置顶
@@ -146,7 +146,7 @@
 				            async: false,
 				            dataType: "json",
 				           // data:productcategory,
-				            url: contextPath+"/cms/productCategory/delete/"+data[i].categoryId,
+				            url: contextPath+"/MICROSERVICE-CMS/productCategory/delete/"+data[i].categoryId,
 				            success: function (obj) {
 				            		
 				            },
@@ -172,7 +172,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/cms/productcategory/productcategory-edit.html?categoryId='+categoryId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/productcategory/productcategory-edit.html?categoryId='+categoryId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
@@ -203,7 +203,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/cms/productcategory/productcategory-view.html?categoryId='+categoryId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/productcategory/productcategory-view.html?categoryId='+categoryId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦

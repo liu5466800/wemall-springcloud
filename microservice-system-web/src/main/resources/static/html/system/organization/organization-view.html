@@ -170,7 +170,7 @@
 	                width: 180,
 	                selectBoxWidth: 200,
 	                selectBoxHeight: 200, valueField: 'text',
-	                tree: { url: '/system/organization/treeTest/'+'0', ajaxType: 'get', idFieldName: 'text' }
+	                tree: { url: '/MICROSERVICE-SYSTEM/organization/treeTest/'+'0', ajaxType: 'get', idFieldName: 'text' }
 	            });
 	           form.render();// 需要重新渲染一遍，不然显示不出来
        		   form.render('select','treeTest');
@@ -248,7 +248,7 @@
 			$.ajax({
 	            type: "GET",
 	            async: false,
-	            url: "/system/organization/maxOrganization/"+parentOrganizationCode,
+	            url: "/MICROSERVICE-SYSTEM/organization/maxOrganization/"+parentOrganizationCode,
 	            success: function (obj) {
 	            		 maxOrganizationCode = obj;
 	            },

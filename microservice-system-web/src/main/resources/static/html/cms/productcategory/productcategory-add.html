@@ -89,13 +89,13 @@
 		                type: "POST",
 		                async: false,
 		                dataType: "json",
-		                url: contextPath+"/cms/productCategory/add",
+		                url: contextPath+"/MICROSERVICE-CMS/productCategory/add",
 		                data: data.field,
 		                success: function (obj) {
 		                     layer.msg("添加成功");
 		                     var index = parent.layer.getFrameIndex(window.name);
 			                 parent.layer.close(index);
-			                 parent.window.location.href=contextPath+"/system-web/html/cms/productcategory/productcategory-list.html";
+			                 parent.window.location.href=contextPath+"/MICROSERVICE-SYSTEM-WEB/html/cms/productcategory/productcategory-list.html";
 		                },
 		                error: function(data) {
 		                	 	layer.msg("网络错误");

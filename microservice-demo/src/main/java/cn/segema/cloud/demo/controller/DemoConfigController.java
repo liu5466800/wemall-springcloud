@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.common.utils.AuthJsApiUtil;
 import cn.segema.cloud.demo.repository.DemoRepository;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,8 +25,6 @@ import io.swagger.annotations.ApiOperation;
 public class DemoConfigController {
   private static Logger log = LoggerFactory.getLogger(DemoConfigController.class);
 	
-  @Autowired
-  private DiscoveryClient discoveryClient;
   @Autowired
   private DemoRepository demoRepository;
   
@@ -49,13 +46,5 @@ public class DemoConfigController {
   }
   
   
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
+ 
 }

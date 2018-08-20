@@ -68,7 +68,7 @@
 		  	element = layui.element;
 		  	table.render({
 			    elem: '#productTable',
-			    url: contextPath+'/cms/product/listByPage',
+			    url: contextPath+'/MICROSERVICE-CMS/product/listByPage',
 			    request:{
 			    		pageName:'curr',
 			    		limitName:'nums'
@@ -121,7 +121,7 @@
 	    		    	  area: ['700px', '450px'],
 	    		    	  fixed: false,
 	    		    	  maxmin: true,
-	    		    	  content: contextPath+'/system-web/html/cms/product/product-add.html',
+	    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/product/product-add.html',
 	    	          zIndex: layer.zIndex, 
 	    	          success: function(layero){
 	    	          	layer.setTop(layero);//加载完成后置顶
@@ -146,7 +146,7 @@
 				            async: false,
 				            dataType: "json",
 				           // data:product,
-				            url: contextPath+"/cms/product/delete/"+data[i].categoryId,
+				            url: contextPath+"/MICROSERVICE-CMS/product/delete/"+data[i].categoryId,
 				            success: function (obj) {
 				            		
 				            },
@@ -172,7 +172,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/cms/product/product-edit.html?categoryId='+categoryId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/product/product-edit.html?categoryId='+categoryId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
@@ -203,7 +203,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/cms/product/product-view.html?categoryId='+categoryId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/cms/product/product-view.html?categoryId='+categoryId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦

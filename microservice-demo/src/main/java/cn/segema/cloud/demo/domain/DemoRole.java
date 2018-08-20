@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 /**
  * 角色
  * @author wangyong
@@ -14,6 +16,7 @@ import javax.persistence.Table;
  */
 @Table(name = "DEMO_ROLE")
 @Entity
+@Data
 public class DemoRole {
 	@Id
 	@Column(name = "ROLEID")

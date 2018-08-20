@@ -24,8 +24,10 @@ public class HystrixWebController {
 	
     @HystrixCommand(fallbackMethod="findByIdFallback")
     @GetMapping("/{userId}")
+    @ResponseBody
 	public DemoUserVO findById(@PathVariable String userId) {
-    		return restTemplate.getForObject("http://microservice-demo/demo/"+userId, DemoUserVO.class);
+    		DemoUserVO demoUserVO = restTemplate.getForObject("http://microservice-demo/demo/user/"+userId, DemoUserVO.class);
+    		return demoUserVO;
 	}
     
     public DemoUserVO findByIdFallback(String userId) {

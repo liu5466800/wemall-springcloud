@@ -2,6 +2,7 @@ package cn.segema.cloud.cms.controller;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,8 +38,8 @@ public class ProductCategoryController {
   private ProductCategoryRepository productCategoryRepository;
 
   @GetMapping("/{productCategoryId}")
-  public ProductCategory findById(@PathVariable BigInteger productCategoryId) {
-    ProductCategory findOne = this.productCategoryRepository.findOne(productCategoryId);
+  public Optional<ProductCategory> findById(@PathVariable BigInteger productCategoryId) {
+	  Optional<ProductCategory> findOne = this.productCategoryRepository.findById(productCategoryId);
     return findOne;
   }
   
@@ -68,7 +69,7 @@ public class ProductCategoryController {
 	@DeleteMapping(value = "/delete/{categoryId}")
 	public ResultVO delete(@PathVariable("categoryId") BigInteger categoryId) {
 		ResultVO resultVO = new ResultVO();
-		productCategoryRepository.delete(categoryId);
+		productCategoryRepository.deleteById(categoryId);
 		resultVO.addSuccess("删除成功");
 		return resultVO;
 	}

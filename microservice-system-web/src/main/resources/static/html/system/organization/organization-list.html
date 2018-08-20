@@ -65,7 +65,7 @@
 		  	element = layui.element;
 		  	table.render({
 			    elem: '#organizationTable',
-			    url: contextPath+'/system/organization/listByPage',
+			    url: contextPath+'/MICROSERVICE-SYSTEM/organization/listByPage',
 			    request:{
 			    		pageName:'curr',
 			    		limitName:'nums'
@@ -120,7 +120,7 @@
 	    		    	  area: ['700px', '450px'],
 	    		    	  fixed: false,
 	    		    	  maxmin: true,
-	    		    	  content: contextPath+'/system-web/html/system/organization/organization-add.html',
+	    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/system/organization/organization-add.html',
 	    	          zIndex: layer.zIndex, 
 	    	          success: function(layero){
 	    	          	layer.setTop(layero);//加载完成后置顶
@@ -145,7 +145,7 @@
 				            async: false,
 				            dataType: "json",
 				            data:organization,
-				            url: contextPath+"/system/organization/delete",
+				            url: contextPath+"/MICROSERVICE-SYSTEM/organization/delete",
 				            success: function (obj) {
 				            		
 				            },
@@ -171,7 +171,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/system/organization/organization-edit.html?organizationId='+organizationId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/system/organization/organization-edit.html?organizationId='+organizationId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
@@ -202,7 +202,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/system/organization/organization-view.html?organizationId='+organizationId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/system/organization/organization-view.html?organizationId='+organizationId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
@@ -235,7 +235,7 @@
 			    		    	  area: ['700px', '450px'],
 			    		    	  fixed: false,
 			    		    	  maxmin: true,
-			    		    	  content: contextPath+'/system-web/html/system/organization/organizationviewtest.html?organizationId='+organizationId,
+			    		    	  content: contextPath+'/MICROSERVICE-SYSTEM-WEB/html/system/organization/organizationviewtest.html?organizationId='+organizationId,
 			    	          zIndex: layer.zIndex, 
 			    	          success: function(layero,index){
 			    	        	  		var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦

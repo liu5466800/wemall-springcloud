@@ -2,6 +2,7 @@ package cn.segema.cloud.system.controller;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,7 @@ import cn.segema.cloud.system.vo.UserPersonalVO;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
-  @Autowired
-  private DiscoveryClient discoveryClient;
-  
+	
   @Autowired
 	private UserService userService;
   
@@ -48,8 +47,8 @@ public class UserController {
    * @return user信息
    */
   @GetMapping("/{userId}")
-  public User findById(@PathVariable BigInteger userId) throws Exception {
-	  User user = this.userRepository.findOne(userId);
+  public Optional<User> findById(@PathVariable BigInteger userId) throws Exception {
+	  Optional<User> user = this.userRepository.findById(userId);
     return user;
   }
   
@@ -92,7 +91,7 @@ public class UserController {
   @GetMapping("/listByPage")
 	public Pager<User> listByPage(PagerParamVO pagerParam) {
 		Sort sort = new Sort(Direction.DESC, "userId");
-		Pageable pageable = new PageRequest(pagerParam.getCurr()-1, pagerParam.getNums(), sort);
+		Pageable pageable = PageRequest.of(pagerParam.getCurr()-1, pagerParam.getNums(), sort);
 		Page<User> page = userService.findByPage(pageable, pagerParam.getParams());
 		Pager<User> pager = new Pager<User>();
 		pager.setCode("0");
@@ -101,14 +100,5 @@ public class UserController {
 		pager.setData(page.getContent());
 		return pager;
 	}
-  
-  /**
-   * 本地服务实例的信息
-   * @return
-   */
-  @GetMapping("/instance-info")
-  public ServiceInstance showInfo() {
-    ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-    return localServiceInstance;
-  }
+
 }

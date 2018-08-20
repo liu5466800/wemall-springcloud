@@ -30,10 +30,14 @@ logging:
     org.hibernate: INFO
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
-    com.itmuch.youran.persistence: ERROR
+#    com.itmuch.youran.persistence: ERROR
 eureka:
   client:
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
   instance:
     preferIpAddress: true
+    
+feign: 
+    hystrix:
+      enabled: true    #feign开启hystrix熔断器

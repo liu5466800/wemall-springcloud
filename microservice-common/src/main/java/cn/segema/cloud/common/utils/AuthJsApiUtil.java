@@ -7,9 +7,10 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
 import cn.segema.cloud.common.vo.ResultVO;
 

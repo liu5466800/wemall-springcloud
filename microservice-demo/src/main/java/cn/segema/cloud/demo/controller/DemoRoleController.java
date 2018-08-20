@@ -1,6 +1,8 @@
 package cn.segema.cloud.demo.controller;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,6 @@ import io.swagger.annotations.ApiOperation;
 public class DemoRoleController {
 
 	@Autowired
-	private DiscoveryClient discoveryClient;
-
-	@Autowired
 	private DemoRoleRepository roleRepository;
 
 	@ApiOperation(value="获取角色信息", notes="根据id获取角色信息")
@@ -37,15 +36,11 @@ public class DemoRoleController {
 	          @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String", paramType="path")  
 	  })
 	@GetMapping("/{id}")
-	public DemoRole findById(@PathVariable String id) {
-		DemoRole findOne = this.roleRepository.findOne(id);
+	public Optional<DemoRole> findById(@PathVariable BigInteger id) {
+		 Optional<DemoRole> findOne = this.roleRepository.findById(id);
 		return findOne;
 	}
 
-	@ApiOperation(value="获取角色列表", notes="根据条件获取角色列表")
-	  @ApiImplicitParams({  
-	          @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String", paramType="path")  
-	  })
 	@GetMapping("/list")
 	public List<DemoRole> list(DemoRole role, Model model) {
 		List<DemoRole> list = roleRepository.findAll();
@@ -71,17 +66,6 @@ public class DemoRoleController {
 	public DemoRole delete(DemoRole role) {
 		roleRepository.delete(role);
 		return role;
-	}
-
-	/**
-	 * 本地服务实例的信息
-	 * 
-	 * @return ServiceInstance
-	 */
-	@GetMapping("/instance-info")
-	public ServiceInstance showInfo() {
-		ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
-		return localServiceInstance;
 	}
 
 }

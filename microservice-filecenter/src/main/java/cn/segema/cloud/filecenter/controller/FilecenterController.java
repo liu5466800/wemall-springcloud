@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import cn.segema.cloud.common.constants.StatusConstant;
@@ -137,7 +140,7 @@ public class FilecenterController {
 					}
 		            entities.add(filecenter);
 				}
-				filecenterRepository.save(entities);
+				filecenterRepository.saveAll(entities);
 				
 				resultVO.setStatus(StatusConstant.SUCCESS);
 				resultVO.setMessage("上传成功");
@@ -163,9 +166,11 @@ public class FilecenterController {
 	@RequestMapping(value = "/download/{id}",method = RequestMethod.GET)
 	public void download(@PathVariable("id") BigInteger id,HttpServletRequest request,
 			HttpServletResponse response){
-		Filecenter filecenter  = filecenterRepository.findOne(id);
-		String storeName = filecenter.getAbsolutePath();
-		String fileName = filecenter.getFileName();
+		Optional<Filecenter> filecenter  = filecenterRepository.findById(id);
+//		String storeName = filecenter.getAbsolutePath();
+//		String fileName = filecenter.getFileName();
+		String storeName = "";
+		String fileName = "";
 		String contentType = "application/x-download";
 		try {
 			FileUtil.download(request, response, storeName, contentType,fileName);
