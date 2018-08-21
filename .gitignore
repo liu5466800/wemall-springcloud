@@ -1,5 +1,6 @@
 # maven ignore
 target/
+/target/
 *.jar
 *.war
 *.zip
@@ -11,11 +12,13 @@ target/
 .settings/
 .classpath
 .target
+.target/
 .project
 .classpath
 
 # idea ignore
 .idea/
+*.target/
 *.ipr
 *.iml
 *.iws
