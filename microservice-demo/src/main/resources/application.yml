@@ -18,7 +18,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/microservice_demo?useUnicode=true&amp;characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     username: root  
-    password: root
+    password: 123456
 #    plateform: h2
 #    schema: classpath:schema.sql
 #    data: classpath:data.sql 

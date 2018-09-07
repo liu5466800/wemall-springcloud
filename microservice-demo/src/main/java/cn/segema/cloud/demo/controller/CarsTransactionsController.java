@@ -1,5 +1,6 @@
 package cn.segema.cloud.demo.controller;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,43 +8,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.repository.GoodsRepository;
-import cn.segema.cloud.demo.vo.GoodsVO;
+import cn.segema.cloud.demo.repository.CarsTransactionsRepository;
+import cn.segema.cloud.demo.vo.CarsTransactionsVO;
 
 @RestController
-@RequestMapping(value = "/goods")
-public class GoodsController {
+@RequestMapping(value = "/cars/transactions")
+public class CarsTransactionsController {
 	@Autowired
-	private GoodsRepository goodsRepository;
+	private CarsTransactionsRepository carsTransactionsRepository;
 
-	// http://localhost:8888/goods/save
 	@GetMapping("/save")
 	public String save() {
-		GoodsVO GoodsVO = new GoodsVO();
-		goodsRepository.save(GoodsVO);
+		CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		carsTransactionsVO.setPrice(123);
+		carsTransactionsVO.setColor("red");
+		carsTransactionsVO.setMake("HONDA");
+		carsTransactionsVO.setSold(new Date());
+		carsTransactionsRepository.save(carsTransactionsVO);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/delete?id=1525415333329
 	@GetMapping("delete")
 	public String delete(Integer id) {
-		goodsRepository.deleteById(id);
+		carsTransactionsRepository.deleteById(id);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/update?id=1525417362754&name=修改&description=修改
 	@GetMapping("update")
 	public String update(Integer id, String name, String description) {
-		GoodsVO GoodsVO = new GoodsVO(id, name, description);
-		goodsRepository.save(GoodsVO);
+		CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		carsTransactionsRepository.save(carsTransactionsVO);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/getOne?id=1525417362754
 	@GetMapping("getOne")
-	public Optional<GoodsVO> getOne(Integer id) {
-		Optional<GoodsVO> GoodsVO = goodsRepository.findById(id);
-		return GoodsVO;
+	public Optional<CarsTransactionsVO> getOne(Integer id) {
+		Optional<CarsTransactionsVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
+		return carsTransactionsVO;
 	}
 
 	// 每页数量
