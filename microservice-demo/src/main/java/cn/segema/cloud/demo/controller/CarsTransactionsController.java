@@ -24,7 +24,10 @@ import org.elasticsearch.search.SearchHit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,7 +48,7 @@ public class CarsTransactionsController {
 	@Autowired
 	TransportClient client;
 
-	@GetMapping("/save")
+	@PostMapping("/save")
 	public ResponseEntity save(String id) {
 		try {
 			XContentBuilder content = XContentFactory.jsonBuilder().startObject()
@@ -64,7 +67,7 @@ public class CarsTransactionsController {
 		}
 	}
 
-	@GetMapping("/saveAll")
+	@PostMapping("/saveAll")
 	public String saveAll() {
 		List<CarsTransactionsVO> list = new ArrayList<CarsTransactionsVO>();
 		for (int i = 0; i < 10; i++) {
@@ -79,14 +82,14 @@ public class CarsTransactionsController {
 		return "success";
 	}
 
-	@GetMapping("/delete")
+	@DeleteMapping("/delete")
 	public ResponseEntity delete(String id) {
-		DeleteResponse result = client.prepareDelete(indexName, indexType, id).get();
+		DeleteResponse result = this.client.prepareDelete(indexName, indexType, id).get();
 		return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
 
 	}
 
-	@GetMapping("/update")
+	@PutMapping("/update")
 	public ResponseEntity update(String id, String color, String make) {
 		UpdateResponse result;
 		try {
@@ -101,7 +104,7 @@ public class CarsTransactionsController {
 			UpdateRequest updateRequest = new UpdateRequest(indexName, indexType, id);
 			updateRequest.doc(builder);
 
-			result = client.update(updateRequest).get();
+			result = this.client.update(updateRequest).get();
 			return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,11 +114,11 @@ public class CarsTransactionsController {
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		GetResponse result = client.prepareGet(indexName, indexType,id).get();
+		GetResponse result = this.client.prepareGet(indexName, indexType,id).get();
 		return new ResponseEntity(result.getSource().toString(), HttpStatus.OK);
 	}
 
-	@GetMapping("/getList")
+	@PostMapping("/getList")
 	public ResponseEntity getList(String color, String make) {
 		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 		if (color != null) {
@@ -133,7 +136,7 @@ public class CarsTransactionsController {
 		// }
 		// boolQueryBuilder.filter(rangeQueryBuilder);
 
-		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(indexName).setTypes(indexType)
+		SearchRequestBuilder searchRequestBuilder = this.client.prepareSearch(indexName).setTypes(indexType)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(boolQueryBuilder).setFrom(0).setSize(100);
 		System.out.println(searchRequestBuilder);
 
