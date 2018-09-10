@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
@@ -32,36 +33,22 @@ import cn.segema.cloud.demo.repository.CarsTransactionsRepository;
 import cn.segema.cloud.demo.vo.CarsTransactionsVO;
 
 @RestController
-@RequestMapping(value = "/cars/transactions")
-public class CarsTransactionsController {
-
-	private static String indexName = "cars";
-
-	private static String indexType = "transactions";
+@RequestMapping(value = "/elastic_search/test")
+public class ElasticSearchTestController {
 
 	@Autowired
 	private CarsTransactionsRepository carsTransactionsRepository;
 
-	@Autowired
-	TransportClient client;
-
 	@GetMapping("/save")
 	public ResponseEntity save(String id) {
-		try {
-			XContentBuilder content = XContentFactory.jsonBuilder().startObject()
-					.field("id", id)
-					.field("price", 100)
-					.field("color", "red")
-					.field("sold", new Date())
-					.endObject();
-
-			IndexResponse result = this.client.prepareIndex(indexName, indexType).setSource(content).get();
-			return new ResponseEntity(result.getId(), HttpStatus.OK);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		 CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		 carsTransactionsVO.setId(id);
+		 carsTransactionsVO.setPrice(123);
+		 carsTransactionsVO.setColor("red");
+		 carsTransactionsVO.setMake("HONDA");
+		 carsTransactionsVO.setSold(LocalDateTime.now());
+		 CarsTransactionsVO resultVO = carsTransactionsRepository.save(carsTransactionsVO);
+		return  new ResponseEntity(resultVO, HttpStatus.OK);
 	}
 
 	@GetMapping("/saveAll")
@@ -81,69 +68,47 @@ public class CarsTransactionsController {
 
 	@GetMapping("/delete")
 	public ResponseEntity delete(String id) {
-		DeleteResponse result = client.prepareDelete(indexName, indexType, id).get();
-		return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
+		carsTransactionsRepository.deleteById(id);
+		return new ResponseEntity("刪除成功", HttpStatus.OK);
 
 	}
 
 	@GetMapping("/update")
 	public ResponseEntity update(String id, String color, String make) {
-		UpdateResponse result;
-		try {
-			XContentBuilder builder = XContentFactory.jsonBuilder().startObject();
-			if (color != null) {
-				builder.field("color", color);
-			}
-			if (make != null) {
-				builder.field("make", make);
-			}
-			builder.endObject();
-			UpdateRequest updateRequest = new UpdateRequest(indexName, indexType, id);
-			updateRequest.doc(builder);
-
-			result = client.update(updateRequest).get();
-			return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		 CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		 carsTransactionsRepository.save(carsTransactionsVO);
 		return new ResponseEntity("更新失败", HttpStatus.OK);
 	}
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		GetResponse result = client.prepareGet(indexName, indexType,id).get();
-		return new ResponseEntity(result.getSource().toString(), HttpStatus.OK);
+		 Optional<CarsTransactionsVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
+		return new ResponseEntity(carsTransactionsVO, HttpStatus.OK);
 	}
 
 	@GetMapping("/getList")
 	public ResponseEntity getList(String color, String make) {
-		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-		if (color != null) {
-			boolQueryBuilder.must(QueryBuilders.matchQuery("color", color));
-		}
-		if (make != null) {
+		 BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+		 if (color != null) {
+				boolQueryBuilder.must(QueryBuilders.matchQuery("color", color));
+		 }
+		 if (make != null) {
 			boolQueryBuilder.must(QueryBuilders.matchQuery("make", make));
-		}
+		 }
+		 // RangeQueryBuilder rangeQueryBuilder =
+		 // QueryBuilders.rangeQuery("price").from(2000);
+		 // if (price != null && price > 0)
+		 // {
+		 // rangeQueryBuilder.to(price);
+		 // }
+		 // boolQueryBuilder.filter(rangeQueryBuilder);
+		 Iterable<CarsTransactionsVO> carsTransactionsList = carsTransactionsRepository.search(boolQueryBuilder);
+		 return new ResponseEntity(carsTransactionsList, HttpStatus.OK);
 
-		// RangeQueryBuilder rangeQueryBuilder =
-		// QueryBuilders.rangeQuery("price").from(2000);
-		// if (price != null && price > 0)
-		// {
-		// rangeQueryBuilder.to(price);
-		// }
-		// boolQueryBuilder.filter(rangeQueryBuilder);
 
-		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(indexName).setTypes(indexType)
-				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(boolQueryBuilder).setFrom(0).setSize(100);
-		System.out.println(searchRequestBuilder);
+		
 
-		SearchResponse response = searchRequestBuilder.get();
-		List<Map<String, Object>> result = new ArrayList<>();
-		for (SearchHit hit : response.getHits()) {
-			result.add(hit.getSource());
-		}
-
-		return new ResponseEntity(result, HttpStatus.OK);
+	
 	}
 
 }
