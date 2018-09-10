@@ -9,6 +9,7 @@
   <packaging>pom</packaging>
   
   <modules>
+  	<module>microservice-common</module>
     <module>microservice-gateway</module>
     <module>microservice-config</module>
     <module>microservice-discovery</module>

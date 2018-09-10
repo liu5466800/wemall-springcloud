@@ -57,6 +57,8 @@ spring:
       password: elastic
       read-timeout: 5000
       connection-timeout: 5000 
+    transportClient:
+      port: 9300
      
 logging:
   level:

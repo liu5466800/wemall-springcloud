@@ -1,5 +1,6 @@
 package cn.segema.cloud.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ClickhouseTestController {
 		carsTransactionsVO.setPrice(123);
 		carsTransactionsVO.setColor("red");
 		carsTransactionsVO.setMake("HONDA");
-		carsTransactionsVO.setSold(new Date());
+		carsTransactionsVO.setSold(LocalDateTime.now());
 		clickhouseTestService.save(carsTransactionsVO);
 		return "success";
 	}
