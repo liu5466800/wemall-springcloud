@@ -17,7 +17,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 @Aspect
-@Component
+//@Component
 public class WebLogAspect {
 	private static final Logger logger =  LoggerFactory.getLogger(WebLogAspect.class);
 	

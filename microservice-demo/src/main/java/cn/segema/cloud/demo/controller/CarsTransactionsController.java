@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,10 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,12 +56,8 @@ public class CarsTransactionsController {
 	@PostMapping("/save")
 	public ResponseEntity save(String id) {
 		try {
-			XContentBuilder content = XContentFactory.jsonBuilder().startObject()
-					.field("id", id)
-					.field("price", 100)
-					.field("color", "red")
-					.field("sold", new Date())
-					.endObject();
+			XContentBuilder content = XContentFactory.jsonBuilder().startObject().field("id", id).field("price", 100)
+					.field("color", "red").field("sold", new Date()).endObject();
 
 			IndexResponse result = this.client.prepareIndex(indexName, indexType).setSource(content).get();
 			return new ResponseEntity(result.getId(), HttpStatus.OK);
@@ -114,11 +115,11 @@ public class CarsTransactionsController {
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		GetResponse result = this.client.prepareGet(indexName, indexType,id).get();
+		GetResponse result = this.client.prepareGet(indexName, indexType, id).get();
 		return new ResponseEntity(result.getSource().toString(), HttpStatus.OK);
 	}
 
-	@PostMapping("/getList")
+	@GetMapping("/getList")
 	public ResponseEntity getList(String color, String make) {
 		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 		if (color != null) {
@@ -129,11 +130,7 @@ public class CarsTransactionsController {
 		}
 
 		// RangeQueryBuilder rangeQueryBuilder =
-		// QueryBuilders.rangeQuery("price").from(2000);
-		// if (price != null && price > 0)
-		// {
-		// rangeQueryBuilder.to(price);
-		// }
+		// QueryBuilders.rangeQuery("price").from(15000).to(20000);
 		// boolQueryBuilder.filter(rangeQueryBuilder);
 
 		SearchRequestBuilder searchRequestBuilder = this.client.prepareSearch(indexName).setTypes(indexType)
@@ -144,6 +141,42 @@ public class CarsTransactionsController {
 		List<Map<String, Object>> result = new ArrayList<>();
 		for (SearchHit hit : response.getHits()) {
 			result.add(hit.getSource());
+		}
+
+		return new ResponseEntity(result, HttpStatus.OK);
+	}
+
+	@GetMapping("/getStatistcs")
+	public ResponseEntity getStatistcs() throws Exception {
+		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+		// boolQueryBuilder.must(QueryBuilders.matchQuery("color", "red"));
+		// boolQueryBuilder.must(QueryBuilders.matchQuery("make", "honda"));
+
+		// RangeQueryBuilder rangeQueryBuilder =
+		// QueryBuilders.rangeQuery("price").from(15000).to(20000);
+		// boolQueryBuilder.filter(rangeQueryBuilder);
+
+		//string类型的字段存进elasticsearch时，一个字符串字段有两个类型，一个text类型，分词类型；一个keyword类型，不分词类型；
+		//所以加上.keyword就可以正常聚合了，对于es2.x版本有可能不分词的类型为.raw；
+		AggregationBuilder termsBuilder = AggregationBuilders.terms("colorAgg").field("color.keyword").size(5);
+
+		SearchRequestBuilder searchRequestBuilder = this.client.prepareSearch(indexName).setTypes(indexType)
+				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(boolQueryBuilder).setFrom(0).setSize(100);
+		searchRequestBuilder.addAggregation(termsBuilder);
+		SearchResponse response = searchRequestBuilder.get();
+
+		Terms terms = response.getAggregations().get("colorAgg");
+		for (Terms.Bucket bucket : terms.getBuckets()) {
+			StringBuilder builder = new StringBuilder();
+			builder.append(bucket.getKey()).append(": ").append(bucket.getDocCount());
+			System.out.println(builder);
+		}
+
+		List<Map<String, Object>> result = new ArrayList<>();
+		for (Terms.Bucket bucket : terms.getBuckets()) {
+			Map map = new HashMap();
+			map.put(bucket.getKey(), bucket.getDocCount());
+			result.add(map);
 		}
 
 		return new ResponseEntity(result, HttpStatus.OK);
