@@ -25,11 +25,8 @@
     <module>microservice-system</module>
     <module>microservice-system-web</module>
     <module>microservice-cms</module>
-    <module>microservice-wemall-main</module>
-    <module>microservice-wemall-main-web</module>
-    <module>microservice-wemall-order</module>
-    <module>microservice-wemall-product</module>
-    <module>microservice-wemall-user</module>
+    <module>microservice-wemall</module>
+    <module>microservice-wemall-web</module>
   </modules>
 
   <!-- 使用最新的spring-boot版本 -->
