@@ -26,7 +26,7 @@ import cn.segema.cloud.wemall.repository.ProductRepository;
  * 用户Controller
  */
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/product")
 public class ProductController {
 
   @Autowired

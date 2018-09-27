@@ -28,7 +28,7 @@ import cn.segema.cloud.wemall.repository.UserRepository;
  * 用户Controller
  */
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/v1/user")
 public class UserController {
   @Autowired
   private DiscoveryClient discoveryClient;

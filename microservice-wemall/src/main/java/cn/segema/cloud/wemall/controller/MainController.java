@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * MainController
  */
 @RestController
-@RequestMapping(value = "/wemall/main")
+@RequestMapping(value = "/main")
 public class MainController {
   /**
    * @param id
