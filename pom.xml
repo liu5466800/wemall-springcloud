@@ -23,7 +23,7 @@
     <module>microservice-sso-client2</module>
     <module>microservice-system</module>
     <module>microservice-system-web</module>
-    <module>microservice-cms</module>
+    <module>microservice-mall</module>
     <module>microservice-wemall</module>
     <module>microservice-wemall-web</module>
   </modules>
