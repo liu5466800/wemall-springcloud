@@ -1,67 +1,46 @@
--- used in tests that use HSQL
-create table oauth_client_details (
-  client_id VARCHAR(256) PRIMARY KEY,
-  resource_ids VARCHAR(256),
-  client_secret VARCHAR(256),
-  scope VARCHAR(256),
-  authorized_grant_types VARCHAR(256),
-  web_server_redirect_uri VARCHAR(256),
-  authorities VARCHAR(256),
-  access_token_validity INTEGER,
-  refresh_token_validity INTEGER,
-  additional_information VARCHAR(4096),
-  autoapprove VARCHAR(256)
-);
+/*
+ Navicat Premium Data Transfer
 
-create table oauth_client_token (
-  token_id VARCHAR(256),
-  token LONGVARBINARY,
-  authentication_id VARCHAR(256) PRIMARY KEY,
-  user_name VARCHAR(256),
-  client_id VARCHAR(256)
-);
+ Source Server         : local_mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50720
+ Source Host           : localhost
+ Source Database       : microservice_system
 
-create table oauth_access_token (
-  token_id VARCHAR(256),
-  token LONGVARBINARY,
-  authentication_id VARCHAR(256) PRIMARY KEY,
-  user_name VARCHAR(256),
-  client_id VARCHAR(256),
-  authentication LONGVARBINARY,
-  refresh_token VARCHAR(256)
-);
+ Target Server Type    : MySQL
+ Target Server Version : 50720
+ File Encoding         : utf-8
 
-create table oauth_refresh_token (
-  token_id VARCHAR(256),
-  token LONGVARBINARY,
-  authentication LONGVARBINARY
-);
+ Date: 10/17/2018 23:25:26 PM
+*/
 
-create table oauth_code (
-  code VARCHAR(256), authentication LONGVARBINARY
-);
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
-create table oauth_approvals (
-	userId VARCHAR(256),
-	clientId VARCHAR(256),
-	scope VARCHAR(256),
-	status VARCHAR(10),
-	expiresAt TIMESTAMP,
-	lastModifiedAt TIMESTAMP
-);
+-- ----------------------------
+--  Table structure for `oauth_client_details`
+-- ----------------------------
+DROP TABLE IF EXISTS `oauth_client_details`;
+CREATE TABLE `oauth_client_details` (
+  `client_id` varchar(256) COLLATE utf8_bin NOT NULL,
+  `resource_ids` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `client_secret` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `scope` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `authorized_grant_types` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `web_server_redirect_uri` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `authorities` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  `access_token_validity` int(11) DEFAULT NULL,
+  `refresh_token_validity` int(11) DEFAULT NULL,
+  `additional_information` varchar(4096) COLLATE utf8_bin DEFAULT NULL,
+  `autoapprove` varchar(256) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+-- ----------------------------
+--  Records of `oauth_client_details`
+-- ----------------------------
+BEGIN;
+INSERT INTO `oauth_client_details` VALUES ('CouponSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8082/login', null, null, null, null, 'user_info'), ('MemberSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8081/login', null, null, null, null, 'user_info');
+COMMIT;
 
--- customized oauth_client_details table
-create table ClientDetails (
-  appId VARCHAR(256) PRIMARY KEY,
-  resourceIds VARCHAR(256),
-  appSecret VARCHAR(256),
-  scope VARCHAR(256),
-  grantTypes VARCHAR(256),
-  redirectUrl VARCHAR(256),
-  authorities VARCHAR(256),
-  access_token_validity INTEGER,
-  refresh_token_validity INTEGER,
-  additionalInformation VARCHAR(4096),
-  autoApproveScopes VARCHAR(256)
-);
+SET FOREIGN_KEY_CHECKS = 1;
