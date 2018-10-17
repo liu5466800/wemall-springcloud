@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.repository;
+package cn.segema.cloud.mall.repository;
 
 import java.math.BigInteger;
 
@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import cn.segema.cloud.cms.domain.ProductCategory;
-import cn.segema.cloud.cms.domain.Specification;
+import cn.segema.cloud.mall.domain.ProductCategory;
+import cn.segema.cloud.mall.domain.ProductDetail;
 
 @Repository
-public interface SpecificationRepository extends PagingAndSortingRepository<Specification, BigInteger>,JpaRepository<Specification, BigInteger> ,JpaSpecificationExecutor<Specification> {
+public interface ProductDetailRepository extends  PagingAndSortingRepository<ProductDetail, BigInteger>,JpaRepository<ProductDetail, BigInteger> ,JpaSpecificationExecutor<ProductDetail> {
 	
 	
 //	 @Query("select new cn.segema.cloud.demo.vo.DemoUserPersonalVO(u.userId,u.userName,u.nickName,p.personalId,p.personalName)"

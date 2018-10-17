@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.vo;
+package cn.segema.cloud.mall.vo;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package cn.segema.cloud.hystrix.dashboard;
+package cn.segema.cloud.monitor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,25 +26,14 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrixDashboard
 @EnableCircuitBreaker
 @EnableTurbine
-public class HystrixDashboardApplication {
+public class MonitorHystrixDashboardApplication {
 	@Bean
     @LoadBalanced
     RestTemplate restTemplate() {
         return new RestTemplate();
     }
 	
-//	@Bean
-//    public ServletRegistrationBean getServlet() {
-//        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-//        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
-//        registrationBean.setLoadOnStartup(1);
-//        registrationBean.addUrlMappings("/hystrix.stream");
-//        registrationBean.setName("HystrixMetricsStreamServlet");
-//        return registrationBean;
-//    }      
-	
   public static void main(String[] args) {
-    //new SpringApplicationBuilder(HystrixDashboardApplication.class).web(true).run(args);
-    SpringApplication.run(HystrixDashboardApplication.class, args);
+    SpringApplication.run(MonitorHystrixDashboardApplication.class, args);
   }
 }

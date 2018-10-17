@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.domain;
+package cn.segema.cloud.mall.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
  * 商品
  * @author wangyong
  */
-@Table(name = "CMS_PRODUCT")
+@Table(name = "MALL_PRODUCT")
 @Entity
 public class Product implements Serializable{
 	@Id

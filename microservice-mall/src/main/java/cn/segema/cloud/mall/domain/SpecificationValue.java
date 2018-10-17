@@ -1,5 +1,6 @@
-package cn.segema.cloud.cms.domain;
+package cn.segema.cloud.mall.domain;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -8,31 +9,45 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * 规格
+ * 规格值
  * 
  * @author wangyong
  */
-@Table(name = "CMS_SPECIFICATION")
+@Table(name = "MALL_SPECIFICATION_VALUE")
 @Entity
-public class Specification {
+public class SpecificationValue {
 	@Id
+	@Column(name = "VALUEID")
+	private BigInteger valueId;
+
 	@Column(name = "SPECIFICATIONID")
 	private BigInteger specificationId;
 
-	@Column(name = "SPECIFICATIONNAME")
-	private String specificationname;
-
-	@Column(name = "ORDERNUMBER")
-	private int orderNumber;
+	@Column(name = "VALUE")
+	private BigDecimal value;
+	
+	@Column(name = "unit")
+	private String unit;
 
 	@Column(name = "remarks")
 	private String remarks;
+
+	@Column(name = "ORDERNUMBER")
+	private int orderNumber;
 
 	@Column(name = "STATUS")
 	private int status;
 
 	@Column(name = "createtime")
 	private LocalDateTime createTime;
+
+	public BigInteger getValueId() {
+		return valueId;
+	}
+
+	public void setValueId(BigInteger valueId) {
+		this.valueId = valueId;
+	}
 
 	public BigInteger getSpecificationId() {
 		return specificationId;
@@ -42,20 +57,20 @@ public class Specification {
 		this.specificationId = specificationId;
 	}
 
-	public String getSpecificationname() {
-		return specificationname;
+	public BigDecimal getValue() {
+		return value;
 	}
 
-	public void setSpecificationname(String specificationname) {
-		this.specificationname = specificationname;
+	public void setValue(BigDecimal value) {
+		this.value = value;
+	}
+	
+	public String getUnit() {
+		return unit;
 	}
 
-	public int getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	public String getRemarks() {
@@ -64,6 +79,14 @@ public class Specification {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 
 	public int getStatus() {

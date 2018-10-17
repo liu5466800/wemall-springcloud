@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.service;
+package cn.segema.cloud.mall.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import cn.segema.cloud.cms.domain.Product;
-import cn.segema.cloud.cms.repository.ProductRepository;
+import cn.segema.cloud.mall.domain.Product;
+import cn.segema.cloud.mall.repository.ProductRepository;
 
 @Service
 public class ProductService {

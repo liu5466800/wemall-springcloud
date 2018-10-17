@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms;
+package cn.segema.cloud.mall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,8 +9,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2
-public class CmsApplication {
+public class MallApplication {
   public static void main(String[] args) {
-    SpringApplication.run(CmsApplication.class, args);
+    SpringApplication.run(MallApplication.class, args);
   }
 }

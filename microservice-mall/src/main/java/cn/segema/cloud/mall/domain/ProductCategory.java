@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.domain;
+package cn.segema.cloud.mall.domain;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "CMS_PRODUCT_CATEGORY")
+@Table(name = "MALL_PRODUCT_CATEGORY")
 @Entity
 public class ProductCategory {
 	@Id

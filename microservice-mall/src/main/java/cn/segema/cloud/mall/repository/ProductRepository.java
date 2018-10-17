@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.repository;
+package cn.segema.cloud.mall.repository;
 
 import java.math.BigInteger;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import cn.segema.cloud.cms.domain.Product;
+import cn.segema.cloud.mall.domain.Product;
 
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, BigInteger>,JpaRepository<Product, BigInteger>,JpaSpecificationExecutor<Product>  {

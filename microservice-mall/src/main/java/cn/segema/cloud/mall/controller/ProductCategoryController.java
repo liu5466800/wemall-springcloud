@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.controller;
+package cn.segema.cloud.mall.controller;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.cms.domain.ProductCategory;
-import cn.segema.cloud.cms.repository.ProductCategoryRepository;
-import cn.segema.cloud.cms.service.ProductCategoryService;
 import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.page.PagerParamVO;
 import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.common.vo.ResultVO;
+import cn.segema.cloud.mall.domain.ProductCategory;
+import cn.segema.cloud.mall.repository.ProductCategoryRepository;
+import cn.segema.cloud.mall.service.ProductCategoryService;
 
 @RestController
 @RequestMapping(value = "/productCategory")

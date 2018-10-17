@@ -1,4 +1,4 @@
-package cn.segema.cloud.cms.domain;
+package cn.segema.cloud.mall.domain;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "CMS_PRODUCT_DETAIL")
+@Table(name = "MALL_PRODUCT_DETAIL")
 @Entity
 public class ProductDetail {
 	@Id

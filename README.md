@@ -4,14 +4,15 @@
 内容主要包含：
 
 | 微服务角色                 | 对应的技术选型                              |
-| ---------------------    | ----------------------------------------- |
-| 注册中心                   | Eureka                                    |
-| 服务提供者                 | spring mvc、spring-data-jpa、mysql等       |
-| 服务消费者                 | Ribbon/Feign消费服务提供者的接口              |
-| 熔断器                    | Hystrix，包括Hystrix Turbine                |
-| 配置服务                  | Spring Cloud Config Server                  |
-| API Gateway              | Spring Cloud Gateway                        |
-| 服务鉴权                  | spring security                              |
+| ------------------------------------------------------- |
+| 注册中心                     | Eureka                                    |
+| 监控中心                     | Hystrix Dashboard                         |
+| 服务提供者                 | spring mvc、spring-data-jpa、mysql等                        |
+| 服务消费者                 | Ribbon/Feign消费服务提供者的接口                                                  |
+| 熔断器                         | Hystrix，包括Hystrix Turbine                |
+| 配置服务                     | Spring Cloud Config Server                |
+| API网关                    | Spring Cloud Gateway                      |
+| 服务鉴权                     | spring security                           |
 # 准备
 
 ## 环境准备：
@@ -35,23 +36,18 @@
 | microservice-gateway                     | 8040 | API Gateway                   |                |           
 | microservice-config                      | 8050 | 配置服务                       |                 |
 | microservice-discovery                   | 8761 | 注册中心                       | /               |
-| microservice-hystrix-turbine             | 8030 | hystrix-turbine监控            | /turbine.stream |
+| microservice-monitor                     | 8060 | hystrix-Dashboard监控                                     |  |
 | microservice-demo                        | 8080 | 实例demo服务                    | /1              |
 | microservice-demo-mybatis                | 8080 | 实例demo-mybatis服务            | /1              |
 | microservice-demo-web                    | 8081 | 实例demo服务WEB                 | /1              |
 | microservice-filecenter                  | 6060 | 文件中心服务                    | /1               |
-| microservice-shiro                       | 8084 | 权限认证服务提供者               | /1               |
 | microservice-sso-server                  | 9999 | SSO认证服务提供者               | /1               |
 | microservice-sso-client1                 | 8080 | SSO客户端测试1                  | /1               |
 | microservice-sso-client2                 | 8081 | SSO客户端测试2                  | /1               |
 | microservice-system                      | 12000 | 系统管理服务                    | /1              |
 | microservice-system-web                  | 12001 | 系统管理服务WEB                 | /1              |
-| microservice-cms                         | 12014 | 内容管理服务提供者               | /1              |
-| microservice-wemall-main                 | 13000 | 微商平台前端主入口               | /1              |
-| microservice-wemall-main-web             | 13001 | 微商平台前端主入口WEB            | /1              |
-| microservice-wemall-order                | 13002 | 微商平台前端订单                 | /1              |
-| microservice-wemall-product              | 13004 | 微商平台前端商品                 | /1              |
-| microservice-wemall-user                 | 13006 | 微商平台前端用户                 | /1              |
+| microservice-mall                        | 13000 | 商品管理服务提供者               | /1              |
+| microservice-wemall-web                  | 13001 | 微商平台前端主入口WEB    | /1              |
 
 在线学习地址：
 https://ke.qq.com/user/index/index.html#/plan/cid=260513&tid=100307171&term_id=100307171
