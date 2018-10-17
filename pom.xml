@@ -13,8 +13,7 @@
     <module>microservice-gateway</module>
     <module>microservice-config</module>
     <module>microservice-discovery</module>
-    <module>microservice-hystrix-dashboard</module>
-    <module>microservice-hystrix-turbine</module>
+    <module>microservice-monitor</module>
     <module>microservice-demo</module>
     <module>microservice-demo-mybatis</module>
     <module>microservice-demo-web</module>

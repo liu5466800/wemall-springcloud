@@ -6,3 +6,5 @@ http://127.0.0.1:13016/html/index.html
 http://127.0.0.1:13016/html/system/user/userlist.html
 
 http://127.0.0.1:8080/swagger-ui.html
+
+http://127.0.0.1:8080/actuator/hystrix.stream

@@ -75,7 +75,15 @@ eureka:
     hostname: demo
     preferIpAddress: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
-    
-    
+#hystrix turbin配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+
 #本地配置   
 demo.local.directory: /Users/wangyong/test/testfiles

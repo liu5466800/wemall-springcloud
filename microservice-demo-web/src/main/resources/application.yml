@@ -41,3 +41,13 @@ eureka:
 feign: 
     hystrix:
       enabled: true    #feign开启hystrix熔断器
+ 
+ #hystrix turbin配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"     
