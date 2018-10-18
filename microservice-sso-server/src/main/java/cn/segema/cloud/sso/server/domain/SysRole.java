@@ -1,10 +1,10 @@
 package cn.segema.cloud.sso.server.domain;
 
-import lombok.Data;
-import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.Data;
+import lombok.ToString;
 
 @Data
 @ToString
