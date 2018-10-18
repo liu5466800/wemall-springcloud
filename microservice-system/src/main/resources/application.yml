@@ -1,5 +1,9 @@
 server:
   port: 12000
+  servlet:
+    session: 
+     cookie:
+        name: SESSIONSYSTEM
 spring:
   application:
     name: microservice-system
@@ -46,3 +50,14 @@ eureka:
 feign: 
   hystrix:
     enabled: true   
+ 
+#security: 
+#  oauth2:
+#    client:
+#      client-id: system
+#      client-secret: 12345
+#      access-token-uri: http://localhost:9999/oauth/token
+#      user-authorization-uri: http://localhost:9999/oauth/authorize
+#    resource:
+#      user-info-uri: http://localhost:9999/user/me   
+    
