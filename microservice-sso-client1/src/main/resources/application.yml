@@ -1,10 +1,9 @@
 server:
   port: 8080
   servlet:
-#    context-path: /client1
     session: 
      cookie:
-        name: UISESSIONCLEINT1
+        name: UISESSIONMEMBER
 spring:
   application:
     name: microservice-sso-client1
@@ -13,19 +12,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
     username: root
     password: root
-mybatis:
-  type-aliases-package: cn.segema.cloud.demo.domain 
-redis:                               # 指定redis数据源
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    password: 123456
-    pool: 
-      max-active: 8
-      max-wait: -1
-      max-idle: 8
-      min-idle: 0
-    timeout: 0
+  thymeleaf:
+    cache: false  
 logging:
   level:
     root: INFO
@@ -43,13 +31,11 @@ eureka:
 security:
   oauth2:
     client:
-      client-id: segema1
-      client-secret: segemasecret1
-      user-authorization-uri: http://127.0.0.1:9999/oauth/authorize
-      access-token-uri: http://127.0.0.1:9999/oauth/token
+      client-id: MemberSystem
+      client-secret: 12345
+      access-token-uri: http://localhost:9999/oauth/token
+      user-authorization-uri: http://localhost:9999/oauth/authorize
     resource:
-      user-info-uri: http://127.0.0.1:9999/user/me
-      jwt:
-        key-uri: http://127.0.0.1:9999/oauth/token_key 
+      user-info-uri: http://localhost:9999/user/me
     
       

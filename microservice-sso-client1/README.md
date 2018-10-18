@@ -1,5 +1,5 @@
-http://localhost:8080/client1/test/demo
-http://127.0.0.1:8080/client1/index.html
+http://localhost:8080/member/list
+注意localhost，不能为为127.0.0.1 域名跳转
 
-任意用户名
-密码123456
+用户名:zhangsan
+密 码:123456

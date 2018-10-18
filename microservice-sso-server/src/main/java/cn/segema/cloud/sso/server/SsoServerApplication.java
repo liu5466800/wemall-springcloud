@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 	
 /**
- * @author wangyong
+ * 单点登录SSOserver
  */
 @SpringBootApplication
 @EnableEurekaClient

@@ -1,22 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : local_mysql
- Source Server Type    : MySQL
- Source Server Version : 50720
- Source Host           : localhost
- Source Database       : microservice_system
-
- Target Server Type    : MySQL
- Target Server Version : 50720
- File Encoding         : utf-8
-
- Date: 10/17/2018 23:25:26 PM
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
 -- ----------------------------
 --  Table structure for `oauth_client_details`
 -- ----------------------------
@@ -40,7 +21,7 @@ CREATE TABLE `oauth_client_details` (
 --  Records of `oauth_client_details`
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('CouponSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8082/login', null, null, null, null, 'user_info'), ('MemberSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8081/login', null, null, null, null, 'user_info');
+INSERT INTO `oauth_client_details` VALUES ('CouponSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8081/login', null, null, null, null, 'user_info'), ('MemberSystem', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'user_info', 'authorization_code', 'http://localhost:8080/login', null, null, null, null, 'user_info');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
