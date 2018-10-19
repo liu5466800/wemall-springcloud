@@ -5,14 +5,6 @@
 	<artifactId>microservice-demo</artifactId>
 	<packaging>jar</packaging>
 
-	<repositories>
-		<repository>
-			<id>spring-libs-snapshot</id>
-			<name>Spring Snapshot Repository</name>
-			<url>http://repo.spring.io/libs-snapshot</url>
-		</repository>
-	</repositories>
-
 	<parent>
 		<groupId>cn.segema.cloud</groupId>
 		<artifactId>wemall-springcloud</artifactId>
