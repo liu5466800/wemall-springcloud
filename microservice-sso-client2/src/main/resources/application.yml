@@ -3,7 +3,7 @@ server:
   servlet:
     session:
       cookie:
-        name: UISESSIONCLIENT2
+        name: SSO-CLIENT2
 spring:
   application:
     name: microservice-sso-client2

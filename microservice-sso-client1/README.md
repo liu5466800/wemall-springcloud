@@ -3,3 +3,6 @@ http://localhost:8080/member/list
 
 用户名:zhangsan
 密 码:123456
+
+postman测试:
+https://blog.csdn.net/qq_19671173/article/details/79748422
