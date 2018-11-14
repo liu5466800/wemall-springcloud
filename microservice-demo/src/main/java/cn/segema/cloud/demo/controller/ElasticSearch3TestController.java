@@ -7,42 +7,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.repository.GoodsRepository;
-import cn.segema.cloud.demo.vo.GoodsVO;
+import cn.segema.cloud.demo.repository.GoodsBookRepository;
+import cn.segema.cloud.demo.vo.GoodsBookVO;
 
 @RestController
-@RequestMapping(value = "/goods")
-public class GoodsController {
+@RequestMapping(value = "/elastic_search3/test")
+public class ElasticSearch3TestController {
 	@Autowired
-	private GoodsRepository goodsRepository;
+	private GoodsBookRepository goodsRepository;
 
-	// http://localhost:8888/goods/save
 	@GetMapping("/save")
 	public String save() {
-		GoodsVO GoodsVO = new GoodsVO();
-		goodsRepository.save(GoodsVO);
+		GoodsBookVO goodsBookVO = new GoodsBookVO();
+		goodsBookVO.setId(1);
+		goodsBookVO.setName("测试书");
+		goodsBookVO.setAnthony("金庸");
+		goodsRepository.save(goodsBookVO);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/delete?id=1525415333329
 	@GetMapping("delete")
 	public String delete(Integer id) {
 		goodsRepository.deleteById(id);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/update?id=1525417362754&name=修改&description=修改
 	@GetMapping("update")
 	public String update(Integer id, String name, String description) {
-		GoodsVO GoodsVO = new GoodsVO(id, name, description);
+		GoodsBookVO GoodsVO = new GoodsBookVO(id, name, description);
 		goodsRepository.save(GoodsVO);
 		return "success";
 	}
 
-	// http://localhost:8888/goods/getOne?id=1525417362754
 	@GetMapping("getOne")
-	public Optional<GoodsVO> getOne(Integer id) {
-		Optional<GoodsVO> GoodsVO = goodsRepository.findById(id);
+	public Optional<GoodsBookVO> getOne(Integer id) {
+		Optional<GoodsBookVO> GoodsVO = goodsRepository.findById(id);
 		return GoodsVO;
 	}
 

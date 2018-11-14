@@ -15,18 +15,10 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.alibaba.druid.pool.DruidPooledConnection;
-import com.alibaba.druid.pool.DruidPooledPreparedStatement;
-import com.alibaba.druid.pool.DruidPooledStatement;
 import com.alibaba.druid.util.JdbcUtils;
-import com.alibaba.druid.util.Utils;
 
 import cn.segema.cloud.demo.utils.DBPoolConnection;
-import ru.yandex.clickhouse.ClickHouseConnection;
-import ru.yandex.clickhouse.ClickHouseConnectionImpl;
-import ru.yandex.clickhouse.ClickHouseDataSource;
-import ru.yandex.clickhouse.settings.ClickHouseProperties;
 
 @Repository
 public class ClickhouseRepository<T> {

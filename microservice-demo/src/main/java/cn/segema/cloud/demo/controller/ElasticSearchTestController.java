@@ -1,27 +1,12 @@
 package cn.segema.cloud.demo.controller;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import org.elasticsearch.action.delete.DeleteResponse;
-import org.elasticsearch.action.get.GetResponse;
-import org.elasticsearch.action.index.IndexResponse;
-import org.elasticsearch.action.search.SearchRequestBuilder;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.search.SearchType;
-import org.elasticsearch.action.update.UpdateRequest;
-import org.elasticsearch.action.update.UpdateResponse;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,37 +14,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.repository.CarsTransactionsRepository;
-import cn.segema.cloud.demo.vo.CarsTransactionsVO;
+import cn.segema.cloud.demo.repository.CarTransactionRepository;
+import cn.segema.cloud.demo.vo.CarTransactionVO;
 
 @RestController
 @RequestMapping(value = "/elastic_search/test")
 public class ElasticSearchTestController {
 
 	@Autowired
-	private CarsTransactionsRepository carsTransactionsRepository;
+	private CarTransactionRepository carsTransactionsRepository;
 
 	@GetMapping("/save")
 	public ResponseEntity save(String id) {
-		 CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		 CarTransactionVO carsTransactionsVO = new CarTransactionVO();
 		 carsTransactionsVO.setId(id);
 		 carsTransactionsVO.setPrice(123);
 		 carsTransactionsVO.setColor("red");
 		 carsTransactionsVO.setMake("HONDA");
-		 carsTransactionsVO.setSold(LocalDateTime.now());
-		 CarsTransactionsVO resultVO = carsTransactionsRepository.save(carsTransactionsVO);
+		 carsTransactionsVO.setSold(new Date());
+		 CarTransactionVO resultVO = carsTransactionsRepository.save(carsTransactionsVO);
 		return  new ResponseEntity(resultVO, HttpStatus.OK);
 	}
 
 	@GetMapping("/saveAll")
 	public String saveAll() {
-		List<CarsTransactionsVO> list = new ArrayList<CarsTransactionsVO>();
+		List<CarTransactionVO> list = new ArrayList<CarTransactionVO>();
 		for (int i = 0; i < 10; i++) {
-			CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+			CarTransactionVO carsTransactionsVO = new CarTransactionVO();
 			carsTransactionsVO.setPrice(i);
 			carsTransactionsVO.setColor("red" + i);
 			carsTransactionsVO.setMake("HONDA" + i);
-			carsTransactionsVO.setSold(LocalDateTime.now());
+			carsTransactionsVO.setSold(new Date());
 			list.add(carsTransactionsVO);
 		}
 		carsTransactionsRepository.saveAll(list);
@@ -75,14 +60,14 @@ public class ElasticSearchTestController {
 
 	@GetMapping("/update")
 	public ResponseEntity update(String id, String color, String make) {
-		 CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+		 CarTransactionVO carsTransactionsVO = new CarTransactionVO();
 		 carsTransactionsRepository.save(carsTransactionsVO);
 		return new ResponseEntity("更新失败", HttpStatus.OK);
 	}
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		 Optional<CarsTransactionsVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
+		 Optional<CarTransactionVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
 		return new ResponseEntity(carsTransactionsVO, HttpStatus.OK);
 	}
 
@@ -102,7 +87,7 @@ public class ElasticSearchTestController {
 		 // rangeQueryBuilder.to(price);
 		 // }
 		 // boolQueryBuilder.filter(rangeQueryBuilder);
-		 Iterable<CarsTransactionsVO> carsTransactionsList = carsTransactionsRepository.search(boolQueryBuilder);
+		 Iterable<CarTransactionVO> carsTransactionsList = carsTransactionsRepository.search(boolQueryBuilder);
 		 return new ResponseEntity(carsTransactionsList, HttpStatus.OK);
 
 

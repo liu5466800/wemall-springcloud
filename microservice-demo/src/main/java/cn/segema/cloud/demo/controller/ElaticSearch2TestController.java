@@ -1,13 +1,13 @@
 package cn.segema.cloud.demo.controller;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -25,7 +25,6 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
-import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,30 +35,31 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.repository.CarsTransactionsRepository;
-import cn.segema.cloud.demo.vo.CarsTransactionsVO;
+import cn.segema.cloud.demo.vo.CarTransactionVO;
 
 @RestController
-@RequestMapping(value = "/cars/transactions")
-public class CarsTransactionsController {
+@RequestMapping(value = "/elastic_search2/test")
+public class ElaticSearch2TestController {
 
-	private static String indexName = "cars";
+	private static String indexName = "car";
 
-	private static String indexType = "transactions";
-
-	@Autowired
-	private CarsTransactionsRepository carsTransactionsRepository;
+	private static String indexType = "transaction";
 
 	@Autowired
-	TransportClient client;
+	TransportClient transportClient;
 
 	@PostMapping("/save")
 	public ResponseEntity save(String id) {
 		try {
-			XContentBuilder content = XContentFactory.jsonBuilder().startObject().field("id", id).field("price", 100)
-					.field("color", "red").field("sold", new Date()).endObject();
+			XContentBuilder content = XContentFactory.jsonBuilder()
+					.startObject()
+					.field("id", id)
+					.field("price", 100)
+					.field("color", "red")
+					.field("sold", new Date())
+					.endObject();
 
-			IndexResponse result = this.client.prepareIndex(indexName, indexType).setSource(content).get();
+			IndexResponse result = this.transportClient.prepareIndex(indexName, indexType).setSource(content).get();
 			return new ResponseEntity(result.getId(), HttpStatus.OK);
 
 		} catch (IOException e) {
@@ -70,22 +70,30 @@ public class CarsTransactionsController {
 
 	@PostMapping("/saveAll")
 	public String saveAll() {
-		List<CarsTransactionsVO> list = new ArrayList<CarsTransactionsVO>();
+		List<CarTransactionVO> list = new ArrayList<CarTransactionVO>();
 		for (int i = 0; i < 10; i++) {
-			CarsTransactionsVO carsTransactionsVO = new CarsTransactionsVO();
+			CarTransactionVO carsTransactionsVO = new CarTransactionVO();
 			carsTransactionsVO.setPrice(i);
 			carsTransactionsVO.setColor("red" + i);
 			carsTransactionsVO.setMake("HONDA" + i);
-			carsTransactionsVO.setSold(LocalDateTime.now());
+			carsTransactionsVO.setSold(new Date());
 			list.add(carsTransactionsVO);
 		}
-		carsTransactionsRepository.saveAll(list);
+	  BulkRequestBuilder bulkRequest = this.transportClient.prepareBulk();
+        int count=0;
+        while(count<list.size()){
+            bulkRequest.add(this.transportClient.prepareIndex(indexName,indexType).setSource(list.get(count)));
+            bulkRequest.execute().actionGet();
+            count++;
+        }
+        bulkRequest.execute().actionGet();
+		
 		return "success";
 	}
 
 	@DeleteMapping("/delete")
 	public ResponseEntity delete(String id) {
-		DeleteResponse result = this.client.prepareDelete(indexName, indexType, id).get();
+		DeleteResponse result = this.transportClient.prepareDelete(indexName, indexType, id).get();
 		return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
 
 	}
@@ -105,7 +113,7 @@ public class CarsTransactionsController {
 			UpdateRequest updateRequest = new UpdateRequest(indexName, indexType, id);
 			updateRequest.doc(builder);
 
-			result = this.client.update(updateRequest).get();
+			result = this.transportClient.update(updateRequest).get();
 			return new ResponseEntity(result.getResult().toString(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,7 +123,7 @@ public class CarsTransactionsController {
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		GetResponse result = this.client.prepareGet(indexName, indexType, id).get();
+		GetResponse result = this.transportClient.prepareGet(indexName, indexType, id).get();
 		return new ResponseEntity(result.getSource().toString(), HttpStatus.OK);
 	}
 
@@ -133,7 +141,7 @@ public class CarsTransactionsController {
 		// QueryBuilders.rangeQuery("price").from(15000).to(20000);
 		// boolQueryBuilder.filter(rangeQueryBuilder);
 
-		SearchRequestBuilder searchRequestBuilder = this.client.prepareSearch(indexName).setTypes(indexType)
+		SearchRequestBuilder searchRequestBuilder = this.transportClient.prepareSearch(indexName).setTypes(indexType)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(boolQueryBuilder).setFrom(0).setSize(100);
 		System.out.println(searchRequestBuilder);
 
@@ -160,7 +168,7 @@ public class CarsTransactionsController {
 		//所以加上.keyword就可以正常聚合了，对于es2.x版本有可能不分词的类型为.raw；
 		AggregationBuilder termsBuilder = AggregationBuilders.terms("colorAgg").field("color.keyword").size(5);
 
-		SearchRequestBuilder searchRequestBuilder = this.client.prepareSearch(indexName).setTypes(indexType)
+		SearchRequestBuilder searchRequestBuilder = this.transportClient.prepareSearch(indexName).setTypes(indexType)
 				.setSearchType(SearchType.DFS_QUERY_THEN_FETCH).setQuery(boolQueryBuilder).setFrom(0).setSize(100);
 		searchRequestBuilder.addAggregation(termsBuilder);
 		SearchResponse response = searchRequestBuilder.get();

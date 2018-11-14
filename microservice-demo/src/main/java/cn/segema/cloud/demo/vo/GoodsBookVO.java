@@ -2,10 +2,13 @@ package cn.segema.cloud.demo.vo;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "goods",type = "book") 
-public class GoodsVO  implements Serializable{
+public class GoodsBookVO  implements Serializable{
+	private static final long serialVersionUID = -3041977276379911577L;
+	@Id
 	private Integer id;
 	private String name;
 	private String anthony;
@@ -43,12 +46,12 @@ public class GoodsVO  implements Serializable{
 		this.description = description;
 	}
 
-	public GoodsVO(Integer id, String name, String description) {
+	public GoodsBookVO(Integer id, String name, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 
-	public GoodsVO() {
+	public GoodsBookVO() {
 	}
 }
