@@ -13,44 +13,44 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_ADDRESS")
+@Table(name = "sys_address")
 @Entity
 public class Address {
 	@Id
-	@Column(name = "ADDRESSID")
+	@Column(name = "address_id")
 	private BigInteger addressId;
 	
-	@Column(name = "NATION")
+	@Column(name = "nation")
 	private String nation;
 	
-	@Column(name = "PROVINCE")
+	@Column(name = "province")
 	private String province;
 	
-	@Column(name = "CITY")
+	@Column(name = "city")
 	private String city;
 	
-	@Column(name = "COUNTRY")
+	@Column(name = "country")
 	private String country;
 	
-	@Column(name = "TOWN")
+	@Column(name = "town")
 	private String town;
 	
-	@Column(name = "VILLAGE")
+	@Column(name = "village")
 	private String village;
 	
-	@Column(name = "STREET")
+	@Column(name = "street")
 	private String street;
 	
-	@Column(name = "DISTRICT")
+	@Column(name = "district")
 	private String district;
 	
-	@Column(name = "DOORNUMBER")
+	@Column(name = "door_number")
 	private BigDecimal doorNumber;
 	
-	@Column(name = "LONGITUDE")
+	@Column(name = "longitude")
 	private String longitude;
 	
-	@Column(name = "LATITUDE")
+	@Column(name = "latitude")
 	private String latitude;
 
 	public BigInteger getAddressId() {

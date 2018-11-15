@@ -12,23 +12,23 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_SYSTEM")
+@Table(name = "sys_system")
 @Entity
 public class System {
 	@Id
-	@Column(name = "SYSTEMID")
+	@Column(name = "system_id")
 	private BigInteger systemId;
 	
-	@Column(name = "SYSTEMNAME")
+	@Column(name = "system_name")
 	private String systemName;
 	
-	@Column(name = "SYSTEMCODE")
+	@Column(name = "system_code")
 	private String systemCode;
 	
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "DELETESTATUS")
+	@Column(name = "delete_status")
 	private Integer deletestatus;
 
 	public BigInteger getSystemId() {

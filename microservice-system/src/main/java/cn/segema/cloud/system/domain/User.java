@@ -12,32 +12,32 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_USER")
+@Table(name = "sys_user")
 @Entity
 public class User {
 	@Id
-	@Column(name = "USERID")
+	@Column(name = "user_id")
 	private BigInteger userId;
 	
-	@Column(name = "USERNAME")
+	@Column(name = "user_name")
 	private String userName;
 	
-	@Column(name = "NICKNAME")
+	@Column(name = "nick_name")
 	private String nickName;
 	
-	@Column(name = "PASSWORD")
+	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "MOBILENUMBER")
+	@Column(name = "mobile_number")
 	private String mobileNumber;
 	
-	@Column(name = "CREDENTIALSSALT")
+	@Column(name = "credentials_salt")
 	private String credentialsSalt;
 	
-	@Column(name = "GENDER")
+	@Column(name = "gender")
 	private Integer gender;
 	
-	@Column(name = "DELETESTATUS")
+	@Column(name = "delete_status")
 	private Integer deletestatus;
 
 	public BigInteger getUserId() {

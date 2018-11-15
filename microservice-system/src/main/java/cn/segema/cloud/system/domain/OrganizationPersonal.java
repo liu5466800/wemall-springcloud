@@ -14,22 +14,22 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_ORGANIZATION_PERSONAL")
+@Table(name = "sys_organization_personal")
 @Entity
 public class OrganizationPersonal {
 	@Id
-	@Column(name = "ORGANIZATIONPERSONALID")
+	@Column(name = "organization_personal_id")
 	private BigInteger organizationPersonalId;
 
 	@OneToOne
-	@JoinColumn(name = "ORGANIZATIONID")
+	@JoinColumn(name = "organization_id")
 	private Organization organization;
 
 	@OneToOne
-	@JoinColumn(name = "PERSONALID")
+	@JoinColumn(name = "personal_id")
 	private Personal personal;
 	
-	@Column(name = "TYPE")
+	@Column(name = "type")
 	private Integer type;
 
 	public Personal getPersonal() {

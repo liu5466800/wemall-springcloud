@@ -12,23 +12,23 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_POST")
+@Table(name = "sys_post")
 @Entity
 public class post {
 	@Id
-	@Column(name = "POSTID")
+	@Column(name = "post_id")
 	private BigInteger postId;
 	
-	@Column(name = "POSTNAME")
+	@Column(name = "post_name")
 	private String postName;
 	
-	@Column(name = "POSTCODE")
+	@Column(name = "post_code")
 	private String systemCode;
 	
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "DELETESTATUS")
+	@Column(name = "delete_status")
 	private Integer deletestatus;
 
 	public BigInteger getPostId() {

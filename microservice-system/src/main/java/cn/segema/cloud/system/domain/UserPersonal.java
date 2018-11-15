@@ -14,19 +14,19 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_USER_PERSONAL")
+@Table(name = "sys_user_personal")
 @Entity
 public class UserPersonal {
 	@Id
-	@Column(name = "USERPERSONALID")
+	@Column(name = "user_personal_id")
 	private BigInteger userPersonalId;
 
 	@OneToOne
-	@JoinColumn(name = "USERID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@OneToOne
-	@JoinColumn(name = "PERSONALID")
+	@JoinColumn(name = "personal_id")
 	private Personal personal;
 
 	public BigInteger getUserPersonalId() {

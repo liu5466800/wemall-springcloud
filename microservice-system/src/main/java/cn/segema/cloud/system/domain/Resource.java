@@ -12,31 +12,31 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_RESOURCE")
+@Table(name = "sys_resource")
 @Entity
 public class Resource  {
 	@Id
-	@Column(name = "RESOURCEID")
+	@Column(name = "resource_id")
     private BigInteger resourceId;
-	@Column(name = "RESOURCENAME")
+	@Column(name = "resource_name")
     private String resourceName;
-	@Column(name = "PARENTID")
+	@Column(name = "parent_id")
     private String parentId;
-	@Column(name = "RESOURCECODE")
+	@Column(name = "resource_code")
     private String resourceCode;
-	@Column(name = "TYPE")
+	@Column(name = "type")
     private String type;
-	@Column(name = "RESOURCEURL")
+	@Column(name = "resource_url")
     private String resourceUrl;
-	@Column(name = "RANK")
+	@Column(name = "rank")
     private String rank;
-	@Column(name = "ICON")
+	@Column(name = "icon")
     private String icon;
-	@Column(name = "HIDE")
+	@Column(name = "hide")
     private Integer hide;
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
     private String description;
-	@Column(name = "DELETESTATUS")
+	@Column(name = "delete_status")
     private Integer deleteStatus;
 
     public BigInteger getResourceId() {

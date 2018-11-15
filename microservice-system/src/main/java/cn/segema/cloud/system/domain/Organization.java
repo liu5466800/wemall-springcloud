@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,31 +18,31 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_ORGANIZATION")
+@Table(name = "sys_organization")
 @Entity
 public class Organization {
 	@Id
-	@Column(name = "ORGANIZATIONID")
+	@Column(name = "organization_id")
 	private BigInteger organizationId;
 
-	@Column(name = "ORGANIZATIONNAME")
+	@Column(name = "organization_name")
 	private String organizationName;
 
-	@Column(name = "ORGANIZATIONCODE")
+	@Column(name = "organization_code")
 	private BigInteger organizationCode;
 
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
 	private String description;
 
 	@ManyToOne
-    @JoinColumn(name="PARENTID")
+    @JoinColumn(name="parent_id")
     private Organization parent;
 	
-	@Column(name = "TYPE")
+	@Column(name = "type")
 	private Integer type;
 	
 	@OneToMany(fetch=FetchType.LAZY)
-    @JoinColumn(name="PARENTID")
+    @JoinColumn(name="parent_id")
     private Set<Organization> children = new HashSet<Organization>();
 
 	public BigInteger getOrganizationId() {

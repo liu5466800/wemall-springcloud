@@ -12,26 +12,26 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_ROLE")
+@Table(name = "sys_role")
 @Entity
 public class Role {
 	@Id
-	@Column(name = "ROLEID")
+	@Column(name = "role_id")
 	private BigInteger roleId;
 	
-	@Column(name = "ROLENAME")
+	@Column(name = "role_name")
 	private String roleName;
 	
-	@Column(name = "ROLECODE")
+	@Column(name = "role_code")
 	private String roleCode;
 	
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "LOCKED")
+	@Column(name = "locked")
 	private Integer locked;
 	
-	@Column(name = "DELETESTATUS")
+	@Column(name = "delete_status")
 	private Integer deletestatus;
 
 	public BigInteger getRoleId() {

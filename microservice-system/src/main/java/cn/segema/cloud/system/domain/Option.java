@@ -13,17 +13,17 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_OPTION")
+@Table(name = "sys_option")
 @Entity
 public class Option {
 	@Id
-	@Column(name = "OPTIONID")
+	@Column(name = "option_id")
 	private BigInteger optionId;
 
-	@Column(name = "OPTIONKEY")
+	@Column(name = "option_key")
 	private String optionKey;
 
-	@Column(name = "OPTIONVALUE")
+	@Column(name = "option_value")
 	private String optionValue;
 
 	public BigInteger getOptionId() {

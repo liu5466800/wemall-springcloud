@@ -14,53 +14,53 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_PERSONAL")
+@Table(name = "sys_personal")
 @Entity
 public class Personal {
 	@Id
-	@Column(name = "PERSONALID")
+	@Column(name = "personal_id")
 	private BigInteger personalId;
 	
-	@Column(name = "PERSONALNAME")
+	@Column(name = "personal_name")
 	private String personalName;
 	
-	@Column(name = "MOBILENUMBER")
+	@Column(name = "mobile_number")
 	private String mobileNumber;
 	
-	@Column(name = "GENDER")
+	@Column(name = "gender")
 	private String gender;
 	
-	@Column(name = "BORNADDRESSID")
+	@Column(name = "born_address_id")
 	private String bornAddressId;
 	
-	@Column(name = "BORNTIME")
+	@Column(name = "born_time")
 	private LocalDateTime bornTime;
 	
-	@Column(name = "WEIGHT")
+	@Column(name = "weight")
 	private BigDecimal weight;
 	
-	@Column(name = "HEIGHT")
+	@Column(name = "height")
 	private BigDecimal height;
 	
-	@Column(name = "BLOODTYPE")
+	@Column(name = "blood_type")
 	private BigDecimal bloodType;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "HOMEADDRESSID")
+	@Column(name = "home_address_id")
 	private String homeAddressId;
 	
-	@Column(name = "GROUPID")
+	@Column(name = "group_id")
 	private String groupId;
 	
-	@Column(name = "NATION")
+	@Column(name = "nation")
 	private String nation;
 	
-	@Column(name = "IDENTITYNUMBER")
+	@Column(name = "identity_number")
 	private String identityNumber;
 	
-	@Column(name = "CREATETIME")
+	@Column(name = "create_time")
 	private LocalDateTime createTime;
 
 

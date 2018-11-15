@@ -14,19 +14,19 @@ import javax.persistence.Table;
  * @author wangyong
  *
  */
-@Table(name = "SYS_USER_ROLE")
+@Table(name = "sys_user_role")
 @Entity
 public class UserRole {
 	@Id
-	@Column(name = "USERROLEID")
+	@Column(name = "user_role_id")
 	private BigInteger userRoleId;
 
 	@OneToOne
-	@JoinColumn(name = "USERID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@OneToOne
-	@JoinColumn(name = "ROLEID")
+	@JoinColumn(name = "role_id")
 	private Role role;
 
 	public BigInteger getUserRoleId() {
