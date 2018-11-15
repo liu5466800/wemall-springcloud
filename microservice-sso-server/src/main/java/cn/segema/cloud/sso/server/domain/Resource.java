@@ -7,7 +7,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class SysPermission implements Serializable {
+public class Resource implements Serializable {
 
     private Long id;
 

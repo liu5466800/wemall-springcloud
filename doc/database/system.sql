@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50723
-Source Host           : localhost:3306
-Source Database       : microservice_system
+ Source Server         : local_mysql
+ Source Server Type    : MySQL
+ Source Server Version : 50720
+ Source Host           : localhost
+ Source Database       : microservice_system
 
-Target Server Type    : MYSQL
-Target Server Version : 50723
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50720
+ File Encoding         : utf-8
 
-Date: 2018-11-15 16:23:39
+ Date: 11/15/2018 23:27:58 PM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for clientdetails
+--  Table structure for `clientdetails`
 -- ----------------------------
 DROP TABLE IF EXISTS `clientdetails`;
 CREATE TABLE `clientdetails` (
@@ -35,13 +37,14 @@ CREATE TABLE `clientdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of clientdetails
+--  Records of `clientdetails`
 -- ----------------------------
-INSERT INTO `clientdetails` VALUES ('client', null, 'secret', 'app', 'authorization_code', 'http://localhost:8080/test', null, null, null, null, null);
-INSERT INTO `clientdetails` VALUES ('segema1', null, 'segemasecret1', 'app', 'authorization_code', 'http://localhost:8080/index.html', null, null, null, null, null);
+BEGIN;
+INSERT INTO `clientdetails` VALUES ('client', null, 'secret', 'app', 'authorization_code', 'http://localhost:8080/test', null, null, null, null, null), ('segema1', null, 'segemasecret1', 'app', 'authorization_code', 'http://localhost:8080/index.html', null, null, null, null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for demo_personal
+--  Table structure for `demo_personal`
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_personal`;
 CREATE TABLE `demo_personal` (
@@ -64,11 +67,7 @@ CREATE TABLE `demo_personal` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of demo_personal
--- ----------------------------
-
--- ----------------------------
--- Table structure for demo_role
+--  Table structure for `demo_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_role`;
 CREATE TABLE `demo_role` (
@@ -82,11 +81,7 @@ CREATE TABLE `demo_role` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of demo_role
--- ----------------------------
-
--- ----------------------------
--- Table structure for demo_user
+--  Table structure for `demo_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_user`;
 CREATE TABLE `demo_user` (
@@ -101,11 +96,7 @@ CREATE TABLE `demo_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of demo_user
--- ----------------------------
-
--- ----------------------------
--- Table structure for demo_user_personal
+--  Table structure for `demo_user_personal`
 -- ----------------------------
 DROP TABLE IF EXISTS `demo_user_personal`;
 CREATE TABLE `demo_user_personal` (
@@ -118,11 +109,7 @@ CREATE TABLE `demo_user_personal` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of demo_user_personal
--- ----------------------------
-
--- ----------------------------
--- Table structure for file_filecenter
+--  Table structure for `file_filecenter`
 -- ----------------------------
 DROP TABLE IF EXISTS `file_filecenter`;
 CREATE TABLE `file_filecenter` (
@@ -142,15 +129,14 @@ CREATE TABLE `file_filecenter` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='文件中心';
 
 -- ----------------------------
--- Records of file_filecenter
+--  Records of `file_filecenter`
 -- ----------------------------
-INSERT INTO `file_filecenter` VALUES ('1022739668321435648', '/Users/wangyong/Downloads/test/testfiles/1022739668321435648/index.html', '1', 'attachment', null, 'index.html', 'text/html', '1022739668321435648/index.html', '.html', '1177.00', null, '123');
-INSERT INTO `file_filecenter` VALUES ('1022739668359184384', '/Users/wangyong/Downloads/test/testfiles/1022739668359184384/1.png', '2', 'attachment', null, '1.png', 'image/png', '1022739668359184384/1.png', '.png', '253003.00', null, null);
-INSERT INTO `file_filecenter` VALUES ('1022743579384086528', '/Users/wangyong/Downloads/test/testfiles/1022743579384086528/index.html', '3', 'attachment', null, 'index.html', 'text/html', '1022743579384086528/index.html', '.html', '1177.00', null, '123');
-INSERT INTO `file_filecenter` VALUES ('1022743579392475136', '/Users/wangyong/Downloads/test/testfiles/1022743579392475136/1.png', '4', 'attachment', null, '1.png', 'image/png', '1022743579392475136/1.png', '.png', '253003.00', null, null);
+BEGIN;
+INSERT INTO `file_filecenter` VALUES ('1022739668321435648', '/Users/wangyong/Downloads/test/testfiles/1022739668321435648/index.html', '1', 'attachment', null, 'index.html', 'text/html', '1022739668321435648/index.html', '.html', '1177.00', null, '123'), ('1022739668359184384', '/Users/wangyong/Downloads/test/testfiles/1022739668359184384/1.png', '2', 'attachment', null, '1.png', 'image/png', '1022739668359184384/1.png', '.png', '253003.00', null, null), ('1022743579384086528', '/Users/wangyong/Downloads/test/testfiles/1022743579384086528/index.html', '3', 'attachment', null, 'index.html', 'text/html', '1022743579384086528/index.html', '.html', '1177.00', null, '123'), ('1022743579392475136', '/Users/wangyong/Downloads/test/testfiles/1022743579392475136/1.png', '4', 'attachment', null, '1.png', 'image/png', '1022743579392475136/1.png', '.png', '253003.00', null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_address
+--  Table structure for `mall_address`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_address`;
 CREATE TABLE `mall_address` (
@@ -170,11 +156,7 @@ CREATE TABLE `mall_address` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of mall_address
--- ----------------------------
-
--- ----------------------------
--- Table structure for mall_order
+--  Table structure for `mall_order`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_order`;
 CREATE TABLE `mall_order` (
@@ -184,11 +166,7 @@ CREATE TABLE `mall_order` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of mall_order
--- ----------------------------
-
--- ----------------------------
--- Table structure for mall_product
+--  Table structure for `mall_product`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product`;
 CREATE TABLE `mall_product` (
@@ -213,40 +191,40 @@ CREATE TABLE `mall_product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品内容';
 
 -- ----------------------------
--- Records of mall_product
+--  Records of `mall_product`
 -- ----------------------------
+BEGIN;
 INSERT INTO `mall_product` VALUES ('1', '1', '1', '1', null, null, null, null, '0', null, '0', '0.00', null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_product_category
+--  Table structure for `mall_product_category`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_category`;
 CREATE TABLE `mall_product_category` (
   `categoryid` bigint(64) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `categoryname` varchar(255) DEFAULT NULL COMMENT '类别名称',
-  `text` text COMMENT '内容描述',
-  `icon` varchar(128) DEFAULT NULL COMMENT '图标',
+  `categoryname` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '类别名称',
+  `text` text CHARACTER SET utf8mb4 COMMENT '内容描述',
+  `icon` varchar(128) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图标',
   `status` int(11) DEFAULT NULL COMMENT '状态',
   `ordernumber` int(11) DEFAULT NULL COMMENT '排序编码',
   `parentid` bigint(20) unsigned DEFAULT NULL COMMENT '父级分类的ID',
-  `description` varchar(256) DEFAULT NULL COMMENT '内容描述',
+  `description` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '内容描述',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
   PRIMARY KEY (`categoryid`),
   KEY `parent_id` (`parentid`),
   KEY `created` (`createtime`)
-) ENGINE=InnoDB AUTO_INCREMENT=250565864543233 DEFAULT CHARSET=utf8mb4 COMMENT='商品类别';
+) ENGINE=InnoDB AUTO_INCREMENT=250565864543233 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品类别';
 
 -- ----------------------------
--- Records of mall_product_category
+--  Records of `mall_product_category`
 -- ----------------------------
-INSERT INTO `mall_product_category` VALUES ('3', '大枣', '大枣', null, '0', '0', null, '', null);
-INSERT INTO `mall_product_category` VALUES ('6', '黑枸杞', '黑枸杞', null, '0', '0', '5', null, null);
-INSERT INTO `mall_product_category` VALUES ('250074376726528', '产品分类1', '分类1', null, '1', '0', null, '', null);
-INSERT INTO `mall_product_category` VALUES ('250565812874240', '测试分类1', '测试分类1', null, '1', '0', null, '', null);
-INSERT INTO `mall_product_category` VALUES ('250565864543232', '测试分类2', '测试分类2', null, '1', '0', null, '', null);
+BEGIN;
+INSERT INTO `mall_product_category` VALUES ('3', '大枣', '大枣', null, '0', '0', null, '', null), ('6', '黑枸杞', '黑枸杞', null, '0', '0', '5', null, null), ('250074376726528', '产品分类1', '分类1', null, '1', '0', null, '', null), ('250565812874240', '测试分类1', '测试分类1', null, '1', '0', null, '', null), ('250565864543232', '测试分类2', '测试分类2', null, '1', '0', null, '', null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_product_detail
+--  Table structure for `mall_product_detail`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_product_detail`;
 CREATE TABLE `mall_product_detail` (
@@ -257,77 +235,72 @@ CREATE TABLE `mall_product_detail` (
   `price` decimal(10,2) DEFAULT '0.00' COMMENT '价格',
   `stock` decimal(11,0) DEFAULT '0' COMMENT '库存',
   `createtime` timestamp NULL DEFAULT NULL COMMENT '创建日期',
-  `unit` varchar(255) DEFAULT NULL,
+  `unit` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`productdetailid`),
   KEY `content_id` (`productid`),
   KEY `spec_id` (`specificationid`),
   KEY `spec_value_id` (`valueid`),
   KEY `created` (`createtime`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='商品，规格，规格值，价格，库存关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品，规格，规格值，价格，库存关系表';
 
 -- ----------------------------
--- Records of mall_product_detail
+--  Records of `mall_product_detail`
 -- ----------------------------
-INSERT INTO `mall_product_detail` VALUES ('1', '13', '4', '10004', '123.00', '111', '2018-01-25 22:36:35', null);
-INSERT INTO `mall_product_detail` VALUES ('2', '14', '4', '10004', '123.00', '12', '2018-01-25 22:51:49', null);
-INSERT INTO `mall_product_detail` VALUES ('3', '15', '4', '10004', '1.00', '200', '2018-06-05 22:24:49', null);
-INSERT INTO `mall_product_detail` VALUES ('4', '16', '5', '10005', '23.00', '333', '2018-07-15 23:10:41', null);
+BEGIN;
+INSERT INTO `mall_product_detail` VALUES ('1', '13', '4', '10004', '123.00', '111', '2018-01-25 22:36:35', null), ('2', '14', '4', '10004', '123.00', '12', '2018-01-25 22:51:49', null), ('3', '15', '4', '10004', '1.00', '200', '2018-06-05 22:24:49', null), ('4', '16', '5', '10005', '23.00', '333', '2018-07-15 23:10:41', null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_specification
+--  Table structure for `mall_specification`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_specification`;
 CREATE TABLE `mall_specification` (
   `specificationId` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `specificationname` varchar(128) DEFAULT NULL COMMENT '规格名称',
+  `specificationname` varchar(128) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '规格名称',
   `ordernumber` int(11) DEFAULT NULL COMMENT '排序编码',
-  `remarks` varchar(256) DEFAULT NULL COMMENT '备注',
-  `status` varchar(32) DEFAULT 'normal' COMMENT '状态',
+  `remarks` varchar(256) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '备注',
+  `status` varchar(32) CHARACTER SET utf8mb4 DEFAULT 'normal' COMMENT '状态',
   `createtime` timestamp NULL DEFAULT NULL COMMENT '创建日期',
   PRIMARY KEY (`specificationId`),
   KEY `status` (`status`),
   KEY `created` (`createtime`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='商品规格表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品规格表';
 
 -- ----------------------------
--- Records of mall_specification
+--  Records of `mall_specification`
 -- ----------------------------
-INSERT INTO `mall_specification` VALUES ('1', '规格', '1001', '规格1', 'delete', '2017-11-28 17:21:33');
-INSERT INTO `mall_specification` VALUES ('2', '库存', '1002', '库存1', 'delete', '2017-11-28 17:24:14');
-INSERT INTO `mall_specification` VALUES ('3', '价格', '1003', '价格1', 'delete', '2017-11-28 17:38:33');
-INSERT INTO `mall_specification` VALUES ('4', '规格', '0', null, 'normal', '2017-12-18 23:08:17');
-INSERT INTO `mall_specification` VALUES ('5', '价格', '0', null, 'normal', '2017-12-18 23:08:41');
+BEGIN;
+INSERT INTO `mall_specification` VALUES ('1', '规格', '1001', '规格1', 'delete', '2017-11-28 17:21:33'), ('2', '库存', '1002', '库存1', 'delete', '2017-11-28 17:24:14'), ('3', '价格', '1003', '价格1', 'delete', '2017-11-28 17:38:33'), ('4', '规格', '0', null, 'normal', '2017-12-18 23:08:17'), ('5', '价格', '0', null, 'normal', '2017-12-18 23:08:41');
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_specification_value
+--  Table structure for `mall_specification_value`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_specification_value`;
 CREATE TABLE `mall_specification_value` (
   `valueid` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `specificationid` bigint(20) unsigned NOT NULL COMMENT '规格ID',
-  `value` varchar(200) DEFAULT NULL COMMENT '规格值',
-  `unit` varchar(255) DEFAULT NULL COMMENT '单位',
+  `value` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '规格值',
+  `unit` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '单位',
   `ordernumber` int(11) DEFAULT NULL COMMENT '排序编码',
-  `status` varchar(32) DEFAULT 'normal' COMMENT '状态',
+  `status` varchar(32) CHARACTER SET utf8mb4 DEFAULT 'normal' COMMENT '状态',
   `createtime` timestamp NULL DEFAULT NULL COMMENT '创建日期',
-  `remarks` varchar(255) DEFAULT NULL,
+  `remarks` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`valueid`),
   KEY `spec_id` (`specificationid`),
   KEY `status` (`status`),
   KEY `created` (`createtime`)
-) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8mb4 COMMENT='商品规格值表';
+) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='商品规格值表';
 
 -- ----------------------------
--- Records of mall_specification_value
+--  Records of `mall_specification_value`
 -- ----------------------------
-INSERT INTO `mall_specification_value` VALUES ('10001', '1', '20', null, '1', 'delete', '2017-11-28 17:36:20', null);
-INSERT INTO `mall_specification_value` VALUES ('10002', '2', '30', null, '2', 'delete', '2017-11-28 17:36:40', null);
-INSERT INTO `mall_specification_value` VALUES ('10003', '3', '40', null, '3', 'delete', '2017-11-28 17:38:54', null);
-INSERT INTO `mall_specification_value` VALUES ('10004', '4', '200', null, '1', 'normal', '2017-12-18 23:08:17', null);
-INSERT INTO `mall_specification_value` VALUES ('10005', '5', '50', null, '2', 'normal', '2017-12-18 23:08:41', null);
+BEGIN;
+INSERT INTO `mall_specification_value` VALUES ('10001', '1', '20', null, '1', 'delete', '2017-11-28 17:36:20', null), ('10002', '2', '30', null, '2', 'delete', '2017-11-28 17:36:40', null), ('10003', '3', '40', null, '3', 'delete', '2017-11-28 17:38:54', null), ('10004', '4', '200', null, '1', 'normal', '2017-12-18 23:08:17', null), ('10005', '5', '50', null, '2', 'normal', '2017-12-18 23:08:41', null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_user
+--  Table structure for `mall_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_user`;
 CREATE TABLE `mall_user` (
@@ -354,12 +327,14 @@ CREATE TABLE `mall_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of mall_user
+--  Records of `mall_user`
 -- ----------------------------
+BEGIN;
 INSERT INTO `mall_user` VALUES ('1', '1', '2018-09-27 16:19:15', '2018-09-27 16:19:04', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for mall_user_address
+--  Table structure for `mall_user_address`
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_user_address`;
 CREATE TABLE `mall_user_address` (
@@ -371,48 +346,42 @@ CREATE TABLE `mall_user_address` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of mall_user_address
--- ----------------------------
-
--- ----------------------------
--- Table structure for oauth_access_token
+--  Table structure for `oauth_access_token`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_access_token`;
 CREATE TABLE `oauth_access_token` (
-  `token_id` varchar(256) DEFAULT NULL,
+  `token_id` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `token` blob,
-  `authentication_id` varchar(128) NOT NULL,
-  `user_name` varchar(256) DEFAULT NULL,
-  `client_id` varchar(256) DEFAULT NULL,
+  `authentication_id` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `user_name` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `client_id` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `authentication` blob,
-  `refresh_token` varchar(256) DEFAULT NULL,
+  `refresh_token` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`authentication_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_access_token
+--  Records of `oauth_access_token`
 -- ----------------------------
-INSERT INTO `oauth_access_token` VALUES ('b22a96826065f1d766a387dab5421c72', 0xACED0005737200436F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E636F6D6D6F6E2E44656661756C744F4175746832416363657373546F6B656E0CB29E361B24FACE0200064C00156164646974696F6E616C496E666F726D6174696F6E74000F4C6A6176612F7574696C2F4D61703B4C000A65787069726174696F6E7400104C6A6176612F7574696C2F446174653B4C000C72656672657368546F6B656E74003F4C6F72672F737072696E676672616D65776F726B2F73656375726974792F6F61757468322F636F6D6D6F6E2F4F417574683252656672657368546F6B656E3B4C000573636F706574000F4C6A6176612F7574696C2F5365743B4C0009746F6B656E547970657400124C6A6176612F6C616E672F537472696E673B4C000576616C756571007E000578707372001E6A6176612E7574696C2E436F6C6C656374696F6E7324456D7074794D6170593614855ADCE7D002000078707372000E6A6176612E7574696C2E44617465686A81014B5974190300007870770800000165368930387870737200256A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65536574801D92D18F9B80550200007872002C6A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65436F6C6C656374696F6E19420080CB5EF71E0200014C0001637400164C6A6176612F7574696C2F436F6C6C656374696F6E3B7870737200176A6176612E7574696C2E4C696E6B656448617368536574D86CD75A95DD2A1E020000787200116A6176612E7574696C2E48617368536574BA44859596B8B7340300007870770C000000103F400000000000017400036170707874000662656172657274002434613732633633382D643131392D346263642D626163332D613930666136656231393761, '4fc22277cc4e335186985f7ed7511b9d', 'client', 'client', 0xACED0005737200416F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E4F417574683241757468656E7469636174696F6EBD400B02166252130200024C000D73746F7265645265717565737474003C4C6F72672F737072696E676672616D65776F726B2F73656375726974792F6F61757468322F70726F76696465722F4F4175746832526571756573743B4C00127573657241757468656E7469636174696F6E7400324C6F72672F737072696E676672616D65776F726B2F73656375726974792F636F72652F41757468656E7469636174696F6E3B787200476F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E416273747261637441757468656E7469636174696F6E546F6B656ED3AA287E6E47640E0200035A000D61757468656E746963617465644C000B617574686F7269746965737400164C6A6176612F7574696C2F436F6C6C656374696F6E3B4C000764657461696C737400124C6A6176612F6C616E672F4F626A6563743B787000737200266A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654C697374FC0F2531B5EC8E100200014C00046C6973747400104C6A6176612F7574696C2F4C6973743B7872002C6A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65436F6C6C656374696F6E19420080CB5EF71E0200014C00016371007E00047870737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A657870000000007704000000007871007E000C707372003A6F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E4F41757468325265717565737400000000000000010200075A0008617070726F7665644C000B617574686F72697469657371007E00044C000A657874656E73696F6E7374000F4C6A6176612F7574696C2F4D61703B4C000B72656469726563745572697400124C6A6176612F6C616E672F537472696E673B4C00077265667265736874003B4C6F72672F737072696E676672616D65776F726B2F73656375726974792F6F61757468322F70726F76696465722F546F6B656E526571756573743B4C000B7265736F7572636549647374000F4C6A6176612F7574696C2F5365743B4C000D726573706F6E7365547970657371007E0011787200386F72672E737072696E676672616D65776F726B2E73656375726974792E6F61757468322E70726F76696465722E426173655265717565737436287A3EA37169BD0200034C0008636C69656E74496471007E000F4C001172657175657374506172616D657465727371007E000E4C000573636F706571007E00117870740006636C69656E74737200256A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C654D6170F1A5A8FE74F507420200014C00016D71007E000E7870737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000006740004636F646574000637584D6D797174000A6772616E745F74797065740012617574686F72697A6174696F6E5F636F646574000D726573706F6E73655F74797065740004636F646574000D636C69656E745F73656372657474000673656372657474000C72656469726563745F757269740014687474703A2F2F7777772E62616964752E636F6D740009636C69656E745F696471007E001478737200256A6176612E7574696C2E436F6C6C656374696F6E7324556E6D6F6469666961626C65536574801D92D18F9B80550200007871007E0009737200176A6176612E7574696C2E4C696E6B656448617368536574D86CD75A95DD2A1E020000787200116A6176612E7574696C2E48617368536574BA44859596B8B7340300007870770C000000103F4000000000000174000361707078017371007E0027770C000000103F40000000000000787371007E00173F400000000000007708000000100000000078740014687474703A2F2F7777772E62616964752E636F6D707371007E0027770C000000103F40000000000000787371007E0027770C000000103F4000000000000171007E001E787372004F6F72672E737072696E676672616D65776F726B2E73656375726974792E61757468656E7469636174696F6E2E557365726E616D6550617373776F726441757468656E7469636174696F6E546F6B656E00000000000001A40200024C000B63726564656E7469616C7371007E00054C00097072696E636970616C71007E00057871007E0003017371007E00077371007E000B000000007704000000007871007E0032737200486F72672E737072696E676672616D65776F726B2E73656375726974792E7765622E61757468656E7469636174696F6E2E57656241757468656E7469636174696F6E44657461696C7300000000000001A40200024C000D72656D6F74654164647265737371007E000F4C000973657373696F6E496471007E000F787074000F303A303A303A303A303A303A303A317070740006636C69656E74, null);
+BEGIN;
+INSERT INTO `oauth_access_token` VALUES ('b22a96826065f1d766a387dab5421c72', 0xaced0005737200436f72672e737072696e676672616d65776f726b2e73656375726974792e6f61757468322e636f6d6d6f6e2e44656661756c744f4175746832416363657373546f6b656e0cb29e361b24face0200064c00156164646974696f6e616c496e666f726d6174696f6e74000f4c6a6176612f7574696c2f4d61703b4c000a65787069726174696f6e7400104c6a6176612f7574696c2f446174653b4c000c72656672657368546f6b656e74003f4c6f72672f737072696e676672616d65776f726b2f73656375726974792f6f61757468322f636f6d6d6f6e2f4f417574683252656672657368546f6b656e3b4c000573636f706574000f4c6a6176612f7574696c2f5365743b4c0009746f6b656e547970657400124c6a6176612f6c616e672f537472696e673b4c000576616c756571007e000578707372001e6a6176612e7574696c2e436f6c6c656374696f6e7324456d7074794d6170593614855adce7d002000078707372000e6a6176612e7574696c2e44617465686a81014b5974190300007870770800000165368930387870737200256a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c65536574801d92d18f9b80550200007872002c6a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c65436f6c6c656374696f6e19420080cb5ef71e0200014c0001637400164c6a6176612f7574696c2f436f6c6c656374696f6e3b7870737200176a6176612e7574696c2e4c696e6b656448617368536574d86cd75a95dd2a1e020000787200116a6176612e7574696c2e48617368536574ba44859596b8b7340300007870770c000000103f400000000000017400036170707874000662656172657274002434613732633633382d643131392d346263642d626163332d613930666136656231393761, '4fc22277cc4e335186985f7ed7511b9d', 'client', 'client', 0xaced0005737200416f72672e737072696e676672616d65776f726b2e73656375726974792e6f61757468322e70726f76696465722e4f417574683241757468656e7469636174696f6ebd400b02166252130200024c000d73746f7265645265717565737474003c4c6f72672f737072696e676672616d65776f726b2f73656375726974792f6f61757468322f70726f76696465722f4f4175746832526571756573743b4c00127573657241757468656e7469636174696f6e7400324c6f72672f737072696e676672616d65776f726b2f73656375726974792f636f72652f41757468656e7469636174696f6e3b787200476f72672e737072696e676672616d65776f726b2e73656375726974792e61757468656e7469636174696f6e2e416273747261637441757468656e7469636174696f6e546f6b656ed3aa287e6e47640e0200035a000d61757468656e746963617465644c000b617574686f7269746965737400164c6a6176612f7574696c2f436f6c6c656374696f6e3b4c000764657461696c737400124c6a6176612f6c616e672f4f626a6563743b787000737200266a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c654c697374fc0f2531b5ec8e100200014c00046c6973747400104c6a6176612f7574696c2f4c6973743b7872002c6a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c65436f6c6c656374696f6e19420080cb5ef71e0200014c00016371007e00047870737200136a6176612e7574696c2e41727261794c6973747881d21d99c7619d03000149000473697a657870000000007704000000007871007e000c707372003a6f72672e737072696e676672616d65776f726b2e73656375726974792e6f61757468322e70726f76696465722e4f41757468325265717565737400000000000000010200075a0008617070726f7665644c000b617574686f72697469657371007e00044c000a657874656e73696f6e7374000f4c6a6176612f7574696c2f4d61703b4c000b72656469726563745572697400124c6a6176612f6c616e672f537472696e673b4c00077265667265736874003b4c6f72672f737072696e676672616d65776f726b2f73656375726974792f6f61757468322f70726f76696465722f546f6b656e526571756573743b4c000b7265736f7572636549647374000f4c6a6176612f7574696c2f5365743b4c000d726573706f6e7365547970657371007e0011787200386f72672e737072696e676672616d65776f726b2e73656375726974792e6f61757468322e70726f76696465722e426173655265717565737436287a3ea37169bd0200034c0008636c69656e74496471007e000f4c001172657175657374506172616d657465727371007e000e4c000573636f706571007e00117870740006636c69656e74737200256a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c654d6170f1a5a8fe74f507420200014c00016d71007e000e7870737200116a6176612e7574696c2e486173684d61700507dac1c31660d103000246000a6c6f6164466163746f724900097468726573686f6c6478703f4000000000000c77080000001000000006740004636f646574000637584d6d797174000a6772616e745f74797065740012617574686f72697a6174696f6e5f636f646574000d726573706f6e73655f74797065740004636f646574000d636c69656e745f73656372657474000673656372657474000c72656469726563745f757269740014687474703a2f2f7777772e62616964752e636f6d740009636c69656e745f696471007e001478737200256a6176612e7574696c2e436f6c6c656374696f6e7324556e6d6f6469666961626c65536574801d92d18f9b80550200007871007e0009737200176a6176612e7574696c2e4c696e6b656448617368536574d86cd75a95dd2a1e020000787200116a6176612e7574696c2e48617368536574ba44859596b8b7340300007870770c000000103f4000000000000174000361707078017371007e0027770c000000103f40000000000000787371007e00173f400000000000007708000000100000000078740014687474703a2f2f7777772e62616964752e636f6d707371007e0027770c000000103f40000000000000787371007e0027770c000000103f4000000000000171007e001e787372004f6f72672e737072696e676672616d65776f726b2e73656375726974792e61757468656e7469636174696f6e2e557365726e616d6550617373776f726441757468656e7469636174696f6e546f6b656e00000000000001a40200024c000b63726564656e7469616c7371007e00054c00097072696e636970616c71007e00057871007e0003017371007e00077371007e000b000000007704000000007871007e0032737200486f72672e737072696e676672616d65776f726b2e73656375726974792e7765622e61757468656e7469636174696f6e2e57656241757468656e7469636174696f6e44657461696c7300000000000001a40200024c000d72656d6f74654164647265737371007e000f4c000973657373696f6e496471007e000f787074000f303a303a303a303a303a303a303a317070740006636c69656e74, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for oauth_approvals
+--  Table structure for `oauth_approvals`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_approvals`;
 CREATE TABLE `oauth_approvals` (
-  `userId` varchar(256) DEFAULT NULL,
-  `clientId` varchar(256) DEFAULT NULL,
-  `scope` varchar(256) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
+  `userId` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `clientId` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `scope` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `expiresAt` datetime DEFAULT NULL,
   `lastModifiedAt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_approvals
--- ----------------------------
-
--- ----------------------------
--- Table structure for oauth_client_details
+--  Table structure for `oauth_client_details`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_details`;
 CREATE TABLE `oauth_client_details` (
@@ -431,57 +400,46 @@ CREATE TABLE `oauth_client_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_client_details
+--  Records of `oauth_client_details`
 -- ----------------------------
-INSERT INTO `oauth_client_details` VALUES ('client', null, 'secret', 'app', 'authorization_code', 'http://localhost:8080/test', null, null, null, null, null);
-INSERT INTO `oauth_client_details` VALUES ('segema1', null, 'segemasecret1', 'app', 'authorization_code', 'http://localhost:8080/index.html', null, null, null, null, null);
+BEGIN;
+INSERT INTO `oauth_client_details` VALUES ('client1', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'app', 'authorization_code', 'http://localhost:8080/login', null, null, null, null, null), ('client2', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'app', 'authorization_code', 'http://localhost:8080/test', null, null, null, null, null), ('system', null, '$2a$10$dYRcFip80f0jIKGzRGulFelK12036xWQKgajanfxT65QB4htsEXNK', 'app', 'authorization_code', 'http://localhost:12000/login', null, null, null, null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for oauth_client_token
+--  Table structure for `oauth_client_token`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_token`;
 CREATE TABLE `oauth_client_token` (
-  `token_id` varchar(256) DEFAULT NULL,
+  `token_id` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `token` blob,
-  `authentication_id` varchar(128) NOT NULL,
-  `user_name` varchar(256) DEFAULT NULL,
-  `client_id` varchar(256) DEFAULT NULL,
+  `authentication_id` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `user_name` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `client_id` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`authentication_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_client_token
--- ----------------------------
-
--- ----------------------------
--- Table structure for oauth_code
+--  Table structure for `oauth_code`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_code`;
 CREATE TABLE `oauth_code` (
-  `code` varchar(256) DEFAULT NULL,
+  `code` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `authentication` blob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_code
--- ----------------------------
-
--- ----------------------------
--- Table structure for oauth_refresh_token
+--  Table structure for `oauth_refresh_token`
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_refresh_token`;
 CREATE TABLE `oauth_refresh_token` (
-  `token_id` varchar(256) DEFAULT NULL,
+  `token_id` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `token` blob,
   `authentication` blob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
--- Records of oauth_refresh_token
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_address
+--  Table structure for `sys_address`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_address`;
 CREATE TABLE `sys_address` (
@@ -501,11 +459,7 @@ CREATE TABLE `sys_address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='地址信息';
 
 -- ----------------------------
--- Records of sys_address
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_option
+--  Table structure for `sys_option`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_option`;
 CREATE TABLE `sys_option` (
@@ -517,73 +471,14 @@ CREATE TABLE `sys_option` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='配置参数信息';
 
 -- ----------------------------
--- Records of sys_option
+--  Records of `sys_option`
 -- ----------------------------
-INSERT INTO `sys_option` VALUES ('2', 'alipay_appid', 'alipayid');
-INSERT INTO `sys_option` VALUES ('3', 'autosave', 'alipay_appid,alipay_rsa_private_key,alipay_rsa_public_key,alipay_public_key,alipay_timeout_express');
-INSERT INTO `sys_option` VALUES ('4', 'alipay_timeout_express', '10');
-INSERT INTO `sys_option` VALUES ('5', 'alipay_rsa_private_key', 'shiyao');
-INSERT INTO `sys_option` VALUES ('6', 'ucode', '360e50a748531a82b67ed669282341cc');
-INSERT INTO `sys_option` VALUES ('7', 'alipay_rsa_public_key', 'gongyao');
-INSERT INTO `sys_option` VALUES ('8', 'alipay_public_key', 'zhifubaogongyao');
-INSERT INTO `sys_option` VALUES ('9', 'oauth2_facebook_appsecret', null);
-INSERT INTO `sys_option` VALUES ('10', 'oauth2_wechat_appkey', 'wxb51514a2739c3e42');
-INSERT INTO `sys_option` VALUES ('11', 'oauth2_weibo_appsecret', null);
-INSERT INTO `sys_option` VALUES ('12', 'oauth2_twitter_appsecret', null);
-INSERT INTO `sys_option` VALUES ('13', 'oauth2_qq_appsecret', null);
-INSERT INTO `sys_option` VALUES ('14', 'oauth2_linkedin_appsecret', null);
-INSERT INTO `sys_option` VALUES ('15', 'oauth2_linkedin_appkey', null);
-INSERT INTO `sys_option` VALUES ('16', 'oauth2_github_appsecret', null);
-INSERT INTO `sys_option` VALUES ('17', 'register_sms_valid_content', null);
-INSERT INTO `sys_option` VALUES ('18', 'oauth2_github_appkey', null);
-INSERT INTO `sys_option` VALUES ('19', 'oauth2_oschina_appsecret', null);
-INSERT INTO `sys_option` VALUES ('20', 'register_email_valid_enable', null);
-INSERT INTO `sys_option` VALUES ('21', 'register_email_valid_content', null);
-INSERT INTO `sys_option` VALUES ('22', 'oauth2_weibo_appkey', null);
-INSERT INTO `sys_option` VALUES ('23', 'oauth2_oschina_appkey', null);
-INSERT INTO `sys_option` VALUES ('24', 'oauth2_facebook_appkey', null);
-INSERT INTO `sys_option` VALUES ('25', 'oauth2_wechat_appsecret', '96449b80b25d005f68087416872bae3b');
-INSERT INTO `sys_option` VALUES ('26', 'oauth2_qq_appkey', null);
-INSERT INTO `sys_option` VALUES ('27', 'oauth2_twitter_appkey', null);
-INSERT INTO `sys_option` VALUES ('28', 'register_sms_valid_enable', null);
-INSERT INTO `sys_option` VALUES ('29', 'wechat_jsSign_enable', null);
-INSERT INTO `sys_option` VALUES ('30', 'wechat_partner', '语味果业');
-INSERT INTO `sys_option` VALUES ('31', 'wechat_paternerKey', null);
-INSERT INTO `sys_option` VALUES ('32', 'wechat_appid', 'wx341e1ecdc00e388f');
-INSERT INTO `sys_option` VALUES ('33', 'wechat_appsecret', '8d488da99b02d61899f76e3240328139');
-INSERT INTO `sys_option` VALUES ('34', 'wechat_dkf_enter_key', null);
-INSERT INTO `sys_option` VALUES ('35', 'wechat_search_mall_enable', null);
-INSERT INTO `sys_option` VALUES ('36', 'wechat_token', 'jpress_mall_test');
-INSERT INTO `sys_option` VALUES ('37', 'wechat_dkf_quit_key', null);
-INSERT INTO `sys_option` VALUES ('38', 'wechat_transferDesc', null);
-INSERT INTO `sys_option` VALUES ('39', 'wechat_search_mall_prefix', null);
-INSERT INTO `sys_option` VALUES ('40', 'wechat_search_mall_count', null);
-INSERT INTO `sys_option` VALUES ('41', 'attachment_must_audited', null);
-INSERT INTO `sys_option` VALUES ('42', 'web_subtitle', null);
-INSERT INTO `sys_option` VALUES ('43', 'attachment_image_must_compress', null);
-INSERT INTO `sys_option` VALUES ('44', 'web_copyright', null);
-INSERT INTO `sys_option` VALUES ('45', 'web_administrator_email', null);
-INSERT INTO `sys_option` VALUES ('46', 'web_administrator_wechat_openid', null);
-INSERT INTO `sys_option` VALUES ('47', 'web_icp_number', null);
-INSERT INTO `sys_option` VALUES ('48', 'web_title', '语味果业');
-INSERT INTO `sys_option` VALUES ('49', 'web_domain', 'http://172.20.10.2:8080');
-INSERT INTO `sys_option` VALUES ('50', 'content_must_audited', null);
-INSERT INTO `sys_option` VALUES ('51', 'web_administrator_phone', null);
-INSERT INTO `sys_option` VALUES ('52', 'wechat_signature', 'dacf9774c61c1be80409301f24a7a3414a35c841');
-INSERT INTO `sys_option` VALUES ('53', 'wechat_timestamp', '1521720638');
-INSERT INTO `sys_option` VALUES ('54', 'wechat_nonceStr', '3c3cb269-50f2-4ae8-8b52-0f3de5c000d7');
-INSERT INTO `sys_option` VALUES ('60', 'wechat_pay_spbill_create_ip', 'm.yuweiguoye.com');
-INSERT INTO `sys_option` VALUES ('61', 'tencent_sms_APPID', '1400070735');
-INSERT INTO `sys_option` VALUES ('62', 'tencent_sms_APPKEY', '38b1e95302833109287dc76a4006363f');
-INSERT INTO `sys_option` VALUES ('63', 'wechat_pay_mchid', '1337083401');
-INSERT INTO `sys_option` VALUES ('64', 'wechat_pay_mchsecret', 'yuweiguoye2018opentmallbanzhangA');
-INSERT INTO `sys_option` VALUES ('65', 'share_title', '语味果业');
-INSERT INTO `sys_option` VALUES ('66', 'share_desc', '健康生活从这里开始');
-INSERT INTO `sys_option` VALUES ('67', 'share_img_url', 'https://m.yuweiguoye.com/attachment/logo/sharelogo.png');
-INSERT INTO `sys_option` VALUES ('68', 'option_web_domain', 'm.yuweiguoye.com');
+BEGIN;
+INSERT INTO `sys_option` VALUES ('2', 'alipay_appid', 'alipayid'), ('3', 'autosave', 'alipay_appid,alipay_rsa_private_key,alipay_rsa_public_key,alipay_public_key,alipay_timeout_express'), ('4', 'alipay_timeout_express', '10'), ('5', 'alipay_rsa_private_key', 'shiyao'), ('6', 'ucode', '360e50a748531a82b67ed669282341cc'), ('7', 'alipay_rsa_public_key', 'gongyao'), ('8', 'alipay_public_key', 'zhifubaogongyao'), ('9', 'oauth2_facebook_appsecret', null), ('10', 'oauth2_wechat_appkey', 'wxb51514a2739c3e42'), ('11', 'oauth2_weibo_appsecret', null), ('12', 'oauth2_twitter_appsecret', null), ('13', 'oauth2_qq_appsecret', null), ('14', 'oauth2_linkedin_appsecret', null), ('15', 'oauth2_linkedin_appkey', null), ('16', 'oauth2_github_appsecret', null), ('17', 'register_sms_valid_content', null), ('18', 'oauth2_github_appkey', null), ('19', 'oauth2_oschina_appsecret', null), ('20', 'register_email_valid_enable', null), ('21', 'register_email_valid_content', null), ('22', 'oauth2_weibo_appkey', null), ('23', 'oauth2_oschina_appkey', null), ('24', 'oauth2_facebook_appkey', null), ('25', 'oauth2_wechat_appsecret', '96449b80b25d005f68087416872bae3b'), ('26', 'oauth2_qq_appkey', null), ('27', 'oauth2_twitter_appkey', null), ('28', 'register_sms_valid_enable', null), ('29', 'wechat_jsSign_enable', null), ('30', 'wechat_partner', '语味果业'), ('31', 'wechat_paternerKey', null), ('32', 'wechat_appid', 'wx341e1ecdc00e388f'), ('33', 'wechat_appsecret', '8d488da99b02d61899f76e3240328139'), ('34', 'wechat_dkf_enter_key', null), ('35', 'wechat_search_mall_enable', null), ('36', 'wechat_token', 'jpress_mall_test'), ('37', 'wechat_dkf_quit_key', null), ('38', 'wechat_transferDesc', null), ('39', 'wechat_search_mall_prefix', null), ('40', 'wechat_search_mall_count', null), ('41', 'attachment_must_audited', null), ('42', 'web_subtitle', null), ('43', 'attachment_image_must_compress', null), ('44', 'web_copyright', null), ('45', 'web_administrator_email', null), ('46', 'web_administrator_wechat_openid', null), ('47', 'web_icp_number', null), ('48', 'web_title', '语味果业'), ('49', 'web_domain', 'http://172.20.10.2:8080'), ('50', 'content_must_audited', null), ('51', 'web_administrator_phone', null), ('52', 'wechat_signature', 'dacf9774c61c1be80409301f24a7a3414a35c841'), ('53', 'wechat_timestamp', '1521720638'), ('54', 'wechat_nonceStr', '3c3cb269-50f2-4ae8-8b52-0f3de5c000d7'), ('60', 'wechat_pay_spbill_create_ip', 'm.yuweiguoye.com'), ('61', 'tencent_sms_APPID', '1400070735'), ('62', 'tencent_sms_APPKEY', '38b1e95302833109287dc76a4006363f'), ('63', 'wechat_pay_mchid', '1337083401'), ('64', 'wechat_pay_mchsecret', 'yuweiguoye2018opentmallbanzhangA'), ('65', 'share_title', '语味果业'), ('66', 'share_desc', '健康生活从这里开始'), ('67', 'share_img_url', 'https://m.yuweiguoye.com/attachment/logo/sharelogo.png'), ('68', 'option_web_domain', 'm.yuweiguoye.com');
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_organization
+--  Table structure for `sys_organization`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_organization`;
 CREATE TABLE `sys_organization` (
@@ -599,15 +494,14 @@ CREATE TABLE `sys_organization` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='机构信息';
 
 -- ----------------------------
--- Records of sys_organization
+--  Records of `sys_organization`
 -- ----------------------------
-INSERT INTO `sys_organization` VALUES ('0', '0', '0', '根组织', '0', null);
-INSERT INTO `sys_organization` VALUES ('101', '101', '101', '分中心1', '0', '0');
-INSERT INTO `sys_organization` VALUES ('102', '', '102', '分中心2', '0', '0');
-INSERT INTO `sys_organization` VALUES ('101002', '', '101002', '人事部', '2', '101');
+BEGIN;
+INSERT INTO `sys_organization` VALUES ('0', '0', '0', '根组织', '0', null), ('101', '101', '101', '分中心1', '0', '0'), ('102', '', '102', '分中心2', '0', '0'), ('101002', '', '101002', '人事部', '2', '101');
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_organization_personal
+--  Table structure for `sys_organization_personal`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_organization_personal`;
 CREATE TABLE `sys_organization_personal` (
@@ -623,11 +517,7 @@ CREATE TABLE `sys_organization_personal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='机构人员关系';
 
 -- ----------------------------
--- Records of sys_organization_personal
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_personal
+--  Table structure for `sys_personal`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_personal`;
 CREATE TABLE `sys_personal` (
@@ -646,15 +536,16 @@ CREATE TABLE `sys_personal` (
   `nation` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `personal_name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `weight` decimal(19,2) DEFAULT NULL,
+  `born_address_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `born_time` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `group_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `home_address_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`personal_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='人员信息';
 
 -- ----------------------------
--- Records of sys_personal
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_personal_organization
+--  Table structure for `sys_personal_organization`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_personal_organization`;
 CREATE TABLE `sys_personal_organization` (
@@ -669,11 +560,7 @@ CREATE TABLE `sys_personal_organization` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='人员机构关系';
 
 -- ----------------------------
--- Records of sys_personal_organization
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_post
+--  Table structure for `sys_post`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post` (
@@ -686,11 +573,7 @@ CREATE TABLE `sys_post` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='岗位信息';
 
 -- ----------------------------
--- Records of sys_post
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_resource
+--  Table structure for `sys_resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_resource`;
 CREATE TABLE `sys_resource` (
@@ -716,49 +599,19 @@ CREATE TABLE `sys_resource` (
   `resourceids` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `scope` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `webserverredirecturi` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `parent_id` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`resource_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='资源信息';
 
 -- ----------------------------
--- Records of sys_resource
+--  Records of `sys_resource`
 -- ----------------------------
-INSERT INTO `sys_resource` VALUES ('101', null, '系统基础管理', 'fa-desktop', null, '1', '0', 'system', '系统管理', 'system', '0', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102', null, '业务管理', 'large_chart', null, '1', '0', 'business', '业务管理', 'business', '0', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('103', null, '系统监控管理', 'fa-tag', null, '16', '0', 'monitor', '系统监控管理', 'monitor', '0', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('104', null, null, 'fa-desktop', null, '21', '0', 'log', '日志管理', 'log', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001', null, null, 'fa-desktop', null, '2', '101', 'system:user:listUI', '用户管理', 'system/user/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002', null, '组管理', 'fa-list', null, '7', '101', 'system:role:listUI', '角色管理', 'system/role/rolelistUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003', null, '菜单管理', 'fa-list-alt', null, '12', '101', 'system:resource:listUI', '菜单资源管理', 'system/resources/list.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001', null, '合同管理', 'large_chart', null, null, '102', 'business:contract:listUI', '合同管理', 'business/contract/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('103001', null, '实时监控', 'fa-desktop', null, '17', '103', 'monitor:realtime:listUI', '实时监控', 'monitor/realtime/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('103002', null, '告警列表', 'fa-desktop', null, null, '103', 'monitor:warn:listUI', '告警列表', 'monitor/warn/list.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('104001', null, '用户登录记录', 'fa-desktop', null, '19', '104', 'log:login:listUI', '登录日志管理', 'log/login/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('104002', null, '操作日志管理', 'fa-picture-o', null, '20', '104', 'log:operation:listUI', '操作日志管理', 'log/operation/listUI.shtml', '0', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001001', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '3', '101001', 'system:user:addUI', '新增用户', 'system/user/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001002', null, '&lt;button type=&quot;button&quot; id=&quot;editUser&quot; class=&quot;btn btn-info marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '4', '101001', 'system:user:editUI', '修改用户', 'system/user/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001003', null, '&lt;button type=&quot;button&quot; id=&quot;delUser&quot; class=&quot;btn btn-danger marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '5', '101002', 'system:user:delete', '用户删除', 'system/user/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001004', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;permissions&quot;&nbsp;class=&quot;btn&nbsp;btn&nbsp;btn-grey&nbsp;marR10&quot;&gt;分配权限&lt;/button&gt;', 'fa-desktop', null, '6', '101001', 'system:user:authorization', '用户授权', 'system/user/authorization.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001005', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '3', '101001', 'system:user:add', '用户新增', 'system/user/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101001006', null, null, null, null, null, '101001', 'system:user:edit', '用户编辑', null, null, '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002001', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;addRole&quot;&nbsp;class=&quot;btn&nbsp;btn-primary&nbsp;marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '8', '101002', 'system:role:addUI', '新增角色', 'system/role/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002002', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;editRole&quot;&nbsp;class=&quot;btn&nbsp;btn-info&nbsp;marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '9', '101002', 'system:role:editUI', '修改角色', 'system/role/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002003', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delRole&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '10', '101002', 'system:role:delete', '角色删除', 'system/role/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002004', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;permissions&quot;&nbsp;class=&quot;btn&nbsp;btn&nbsp;btn-grey&nbsp;marR10&quot;&gt;分配权限&lt;/button&gt;', 'fa-desktop', null, '11', '101002', 'system:role:authorization', '角色授权', 'system/role/authorization.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002005', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delRole&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '10', '101002', 'system:role:add', '角色新增', 'system/role/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101002006', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;editRole&quot;&nbsp;class=&quot;btn&nbsp;btn-info&nbsp;marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '9', '101002', 'system:role:edit', '角色修改', 'system/role/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003001', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:addUI', '新增菜单资源', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003002', null, '&lt;button type=&quot;button&quot; id=&quot;editResources&quot; class=&quot;btn btn-info marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '14', '101003', 'system:resource:editUI', '修改菜单资源', 'system/resources/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003003', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delFun&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '15', '101003', 'system:resource:delete', '删除菜单资源', 'system/resource/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003004', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:add', '菜单资源新增', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('101003005', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:edit', '菜单资源编辑', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001001', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:addUI', '新增合同', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001002', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:editUI', '编辑合同', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001003', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:delete', '合同删除', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001004', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:add', '合同新增', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `sys_resource` VALUES ('102001005', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:edit', '合同编辑', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null);
+BEGIN;
+INSERT INTO `sys_resource` VALUES ('101', null, '系统基础管理', 'fa-desktop', null, '1', '0', 'system', '系统管理', 'system', '0', '', null, null, null, null, null, null, null, null, null, null, null), ('102', null, '业务管理', 'large_chart', null, '1', '0', 'business', '业务管理', 'business', '0', '', null, null, null, null, null, null, null, null, null, null, null), ('103', null, '系统监控管理', 'fa-tag', null, '16', '0', 'monitor', '系统监控管理', 'monitor', '0', '', null, null, null, null, null, null, null, null, null, null, null), ('104', null, null, 'fa-desktop', null, '21', '0', 'log', '日志管理', 'log', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('101001', null, null, 'fa-desktop', null, '2', '101', 'system:user:listUI', '用户管理', 'system/user/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('101002', null, '组管理', 'fa-list', null, '7', '101', 'system:role:listUI', '角色管理', 'system/role/rolelistUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('101003', null, '菜单管理', 'fa-list-alt', null, '12', '101', 'system:resource:listUI', '菜单资源管理', 'system/resources/list.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('102001', null, '合同管理', 'large_chart', null, null, '102', 'business:contract:listUI', '合同管理', 'business/contract/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('103001', null, '实时监控', 'fa-desktop', null, '17', '103', 'monitor:realtime:listUI', '实时监控', 'monitor/realtime/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('103002', null, '告警列表', 'fa-desktop', null, null, '103', 'monitor:warn:listUI', '告警列表', 'monitor/warn/list.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('104001', null, '用户登录记录', 'fa-desktop', null, '19', '104', 'log:login:listUI', '登录日志管理', 'log/login/listUI.shtml', '1', '', null, null, null, null, null, null, null, null, null, null, null), ('104002', null, '操作日志管理', 'fa-picture-o', null, '20', '104', 'log:operation:listUI', '操作日志管理', 'log/operation/listUI.shtml', '0', '', null, null, null, null, null, null, null, null, null, null, null), ('101001001', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '3', '101001', 'system:user:addUI', '新增用户', 'system/user/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101001002', null, '&lt;button type=&quot;button&quot; id=&quot;editUser&quot; class=&quot;btn btn-info marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '4', '101001', 'system:user:editUI', '修改用户', 'system/user/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101001003', null, '&lt;button type=&quot;button&quot; id=&quot;delUser&quot; class=&quot;btn btn-danger marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '5', '101002', 'system:user:delete', '用户删除', 'system/user/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101001004', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;permissions&quot;&nbsp;class=&quot;btn&nbsp;btn&nbsp;btn-grey&nbsp;marR10&quot;&gt;分配权限&lt;/button&gt;', 'fa-desktop', null, '6', '101001', 'system:user:authorization', '用户授权', 'system/user/authorization.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101001005', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '3', '101001', 'system:user:add', '用户新增', 'system/user/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101001006', null, null, null, null, null, '101001', 'system:user:edit', '用户编辑', null, null, '', null, null, null, null, null, null, null, null, null, null, null), ('101002001', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;addRole&quot;&nbsp;class=&quot;btn&nbsp;btn-primary&nbsp;marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '8', '101002', 'system:role:addUI', '新增角色', 'system/role/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101002002', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;editRole&quot;&nbsp;class=&quot;btn&nbsp;btn-info&nbsp;marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '9', '101002', 'system:role:editUI', '修改角色', 'system/role/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101002003', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delRole&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '10', '101002', 'system:role:delete', '角色删除', 'system/role/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101002004', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;permissions&quot;&nbsp;class=&quot;btn&nbsp;btn&nbsp;btn-grey&nbsp;marR10&quot;&gt;分配权限&lt;/button&gt;', 'fa-desktop', null, '11', '101002', 'system:role:authorization', '角色授权', 'system/role/authorization.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101002005', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delRole&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '10', '101002', 'system:role:add', '角色新增', 'system/role/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101002006', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;editRole&quot;&nbsp;class=&quot;btn&nbsp;btn-info&nbsp;marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '9', '101002', 'system:role:edit', '角色修改', 'system/role/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101003001', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:addUI', '新增菜单资源', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101003002', null, '&lt;button type=&quot;button&quot; id=&quot;editResources&quot; class=&quot;btn btn-info marR10&quot;&gt;编辑&lt;/button&gt;', 'fa-desktop', null, '14', '101003', 'system:resource:editUI', '修改菜单资源', 'system/resources/editUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101003003', null, '&lt;button&nbsp;type=&quot;button&quot;&nbsp;id=&quot;delFun&quot;&nbsp;class=&quot;btn&nbsp;btn-danger&nbsp;marR10&quot;&gt;删除&lt;/button&gt;', 'fa-desktop', null, '15', '101003', 'system:resource:delete', '删除菜单资源', 'system/resource/delete.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101003004', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:add', '菜单资源新增', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('101003005', null, '&lt;button type=&quot;button&quot; id=&quot;addResources&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, '13', '101003', 'system:resources:edit', '菜单资源编辑', 'system/resources/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('102001001', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:addUI', '新增合同', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('102001002', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:editUI', '编辑合同', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('102001003', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:delete', '合同删除', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('102001004', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:add', '合同新增', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null), ('102001005', null, '&lt;button type=&quot;button&quot; id=&quot;addUser&quot; class=&quot;btn btn-primary marR10&quot;&gt;新增&lt;/button&gt;', 'fa-desktop', null, null, '102001', 'business:contract:edit', '合同编辑', 'business/contract/addUI.shtml', '2', '', null, null, null, null, null, null, null, null, null, null, null);
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_role
+--  Table structure for `sys_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
@@ -774,13 +627,14 @@ CREATE TABLE `sys_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='岗位信息';
 
 -- ----------------------------
--- Records of sys_role
+--  Records of `sys_role`
 -- ----------------------------
-INSERT INTO `sys_role` VALUES ('1', '0', '0', '0', 'ADMIN', 'ADMIN');
-INSERT INTO `sys_role` VALUES ('2', '0', '2', '0', 'NORMAL', 'NORMAL');
+BEGIN;
+INSERT INTO `sys_role` VALUES ('1', '0', '0', '0', 'ADMIN', 'ADMIN'), ('2', '0', '2', '0', 'NORMAL', 'NORMAL');
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_role_resource
+--  Table structure for `sys_role_resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_resource`;
 CREATE TABLE `sys_role_resource` (
@@ -795,13 +649,14 @@ CREATE TABLE `sys_role_resource` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='角色资源关系';
 
 -- ----------------------------
--- Records of sys_role_resource
+--  Records of `sys_role_resource`
 -- ----------------------------
-INSERT INTO `sys_role_resource` VALUES ('1', '101', '1');
-INSERT INTO `sys_role_resource` VALUES ('2', '101001', '2');
+BEGIN;
+INSERT INTO `sys_role_resource` VALUES ('1', '101', '1'), ('2', '101001', '2');
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_system
+--  Table structure for `sys_system`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_system`;
 CREATE TABLE `sys_system` (
@@ -814,11 +669,7 @@ CREATE TABLE `sys_system` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='子系统信息';
 
 -- ----------------------------
--- Records of sys_system
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_user
+--  Table structure for `sys_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
@@ -834,13 +685,14 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息';
 
 -- ----------------------------
--- Records of sys_user
+--  Records of `sys_user`
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('64013692067905536', null, '1', 'wangyong', '111111', 'wangyong', null, '0');
-INSERT INTO `sys_user` VALUES ('64013692067905537', null, '1', '1', '111111', '1', null, '0');
+BEGIN;
+INSERT INTO `sys_user` VALUES ('64013692067905536', null, '1', 'wangyong', '111111', 'wangyong', null, '0'), ('64013692067905537', null, '1', '1', '111111', '1', null, '0');
+COMMIT;
 
 -- ----------------------------
--- Table structure for sys_user_personal
+--  Table structure for `sys_user_personal`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_personal`;
 CREATE TABLE `sys_user_personal` (
@@ -855,11 +707,7 @@ CREATE TABLE `sys_user_personal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户人员关系';
 
 -- ----------------------------
--- Records of sys_user_personal
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_user_resource
+--  Table structure for `sys_user_resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_resource`;
 CREATE TABLE `sys_user_resource` (
@@ -874,17 +722,14 @@ CREATE TABLE `sys_user_resource` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户资源关系';
 
 -- ----------------------------
--- Records of sys_user_resource
--- ----------------------------
-
--- ----------------------------
--- Table structure for sys_user_role
+--  Table structure for `sys_user_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
   `userrole_id` bigint(64) NOT NULL COMMENT '??????ID',
   `role_id` bigint(64) DEFAULT NULL COMMENT '??ID',
   `user_id` bigint(64) DEFAULT NULL COMMENT '??ID',
+  `user_role_id` decimal(19,2) NOT NULL,
   PRIMARY KEY (`userrole_id`),
   KEY `FKo4jryuw2ef7sb3vedhdwddp9x` (`role_id`),
   KEY `FKp53n1gguvrlo0fy8y0f7o7cx9` (`user_id`),
@@ -892,6 +737,4 @@ CREATE TABLE `sys_user_role` (
   CONSTRAINT `FKp53n1gguvrlo0fy8y0f7o7cx9` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户角色关系';
 
--- ----------------------------
--- Records of sys_user_role
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;

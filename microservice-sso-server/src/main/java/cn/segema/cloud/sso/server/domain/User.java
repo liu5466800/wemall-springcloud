@@ -6,9 +6,11 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.List;
 
+import cn.segema.cloud.sso.server.vo.RoleVO;
+
 @Data
 @ToString
-public class SysUser implements Serializable {
+public class User implements Serializable {
 
     private Long id;
 
@@ -35,9 +37,9 @@ public class SysUser implements Serializable {
     /**
      * 用户角色
      */
-    private List<SysRole> roleList;
+    private List<RoleVO> roleList;
 
-    public SysUser(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

@@ -11,10 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import cn.segema.cloud.sso.server.domain.SysPermission;
-import cn.segema.cloud.sso.server.domain.SysRole;
-import cn.segema.cloud.sso.server.domain.SysUser;
 import cn.segema.cloud.sso.server.service.UserService;
+import cn.segema.cloud.sso.server.vo.ResourceVO;
+import cn.segema.cloud.sso.server.vo.RoleVO;
+import cn.segema.cloud.sso.server.vo.UserVO;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -28,14 +28,14 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser sysUser = userService.getUserByName(username);
+    		UserVO sysUser = userService.getUserByName(username);
         if (null == sysUser) {
             throw new UsernameNotFoundException(username);
         }
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for (SysRole role : sysUser.getRoleList()) {
-            for (SysPermission permission : role.getPermissionList()) {
-                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
+        for (RoleVO role : sysUser.getRoleList()) {
+            for (ResourceVO resourceVO : role.getResourceList()) {
+                authorities.add(new SimpleGrantedAuthority(resourceVO.getCode()));
             }
         }
 

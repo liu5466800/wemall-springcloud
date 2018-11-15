@@ -3,11 +3,9 @@ package cn.segema.cloud.system.controller;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +23,6 @@ import cn.segema.cloud.common.page.PagerParamVO;
 import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.UserRepository;
-import cn.segema.cloud.system.service.OrganizationService;
 import cn.segema.cloud.system.service.UserService;
 import cn.segema.cloud.system.vo.UserPersonalVO;
 
@@ -35,24 +32,24 @@ import cn.segema.cloud.system.vo.UserPersonalVO;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
-	
-  @Autowired
+
+	@Autowired
 	private UserService userService;
-  
-  @Autowired
-  private UserRepository userRepository;
-  
-  /**
-   * @param id
-   * @return user信息
-   */
-  @GetMapping("/{userId}")
-  public Optional<User> findById(@PathVariable BigInteger userId) throws Exception {
-	  Optional<User> user = this.userRepository.findById(userId);
-    return user;
-  }
-  
-  @GetMapping("/list")
+
+	@Autowired
+	private UserRepository userRepository;
+
+	/**
+	 * @param id
+	 * @return user信息
+	 */
+	@GetMapping("/{userId}")
+	public Optional<User> findById(@PathVariable BigInteger userId) throws Exception {
+		Optional<User> user = this.userRepository.findById(userId);
+		return user;
+	}
+
+	@GetMapping("/list")
 	public List<User> list(User user, Model model) {
 		List<User> userList = userRepository.findAll();
 		return userList;
@@ -69,8 +66,8 @@ public class UserController {
 
 	@RequestMapping(value = "edit")
 	public User edit(User user, Model model) {
-		// Role oldRole = roleRepository.getOne(role.getRoleId());
-		// BeanUtils.copyProperties(role, oldRole);
+		User oldRole = userRepository.getOne(user.getUserId());
+		BeanUtils.copyProperties(user, oldRole);
 		userRepository.save(user);
 		return user;
 	}
@@ -80,18 +77,25 @@ public class UserController {
 		userRepository.delete(user);
 		return user;
 	}
-  
-  
-  @GetMapping("/listUserPersonalByUserName/{userName}") 
-  public List<UserPersonalVO> listUserPersonalByUserName(@PathVariable String userName) {
-	  List<UserPersonalVO> userList = userRepository.findUserPersonalByUserName(userName);
-	  return userList;
+
+	@GetMapping("/list_personal_user_name/{userName}")
+	public List<UserPersonalVO> listUserPersonalByUserName(@PathVariable String userName) {
+		List<UserPersonalVO> userList = userRepository.findUserPersonalByUserName(userName);
+		return userList;
 	}
-  
-  @GetMapping("/listByPage")
+	
+	@GetMapping("/list_nick_name/{nickName}")
+	public Page<User> listByNickName(@PathVariable String nickName) {
+		Sort sort = new Sort(Sort.Direction.DESC,"delete_status");
+	    Pageable pageable = PageRequest.of(1, 20, sort);
+	    Page<User> userList = userRepository.findByNickName(nickName,pageable);
+		return userList;
+	}
+
+	@GetMapping("/list_page")
 	public Pager<User> listByPage(PagerParamVO pagerParam) {
 		Sort sort = new Sort(Direction.DESC, "userId");
-		Pageable pageable = PageRequest.of(pagerParam.getCurr()-1, pagerParam.getNums(), sort);
+		Pageable pageable = PageRequest.of(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
 		Page<User> page = userService.findByPage(pageable, pagerParam.getParams());
 		Pager<User> pager = new Pager<User>();
 		pager.setCode("0");
@@ -100,5 +104,7 @@ public class UserController {
 		pager.setData(page.getContent());
 		return pager;
 	}
+	
+	
 
 }
