@@ -1,44 +1,130 @@
 package cn.segema.cloud.sso.server.domain;
 
-import java.io.Serializable;
+import java.math.BigInteger;
 
-import lombok.Data;
-import lombok.ToString;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Data
-@ToString
-public class Resource implements Serializable {
+/**
+ * 资源
+ * 
+ * @author wangyong
+ *
+ */
+@Table(name = "sys_resource")
+@Entity
+public class Resource {
+	@Id
+	@Column(name = "resource_id")
+	private BigInteger resourceId;
+	@Column(name = "resource_name")
+	private String resourceName;
+	@Column(name = "parent_id")
+	private BigInteger parentId;
+	@Column(name = "resource_code")
+	private String resourceCode;
+	@Column(name = "type")
+	private Integer type;
+	@Column(name = "resource_url")
+	private String resourceUrl;
+	@Column(name = "rank")
+	private BigInteger rank;
+	@Column(name = "icon")
+	private String icon;
+	@Column(name = "hide")
+	private Integer hide;
+	@Column(name = "description")
+	private String description;
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
 
-    private Long id;
+	public BigInteger getResourceId() {
+		return resourceId;
+	}
 
-    /**
-     * 权限名称
-     */
-    private String name;
+	public void setResourceId(BigInteger resourceId) {
+		this.resourceId = resourceId;
+	}
 
-    /**
-     * 权限字符串
-     */
-    private String code;
+	public String getResourceName() {
+		return resourceName;
+	}
 
-    /**
-     * 资源类型
-     */
-    private Integer type;
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
 
-    /**
-     * URL
-     */
-    private String url;
+	public BigInteger getParentId() {
+		return parentId;
+	}
 
-    /**
-     * 排序
-     */
-    private Integer sort;
+	public void setParentId(BigInteger parentId) {
+		this.parentId = parentId;
+	}
 
-    /**
-     * 父菜单ID
-     */
-    private Long pid;
+	public String getResourceCode() {
+		return resourceCode;
+	}
 
+	public void setResourceCode(String resourceCode) {
+		this.resourceCode = resourceCode;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public String getResourceUrl() {
+		return resourceUrl;
+	}
+
+	public void setResourceUrl(String resourceUrl) {
+		this.resourceUrl = resourceUrl;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public BigInteger getRank() {
+		return rank;
+	}
+
+	public void setRank(BigInteger rank) {
+		this.rank = rank;
+	}
+
+	public Integer getHide() {
+		return hide;
+	}
+
+	public void setHide(Integer hide) {
+		this.hide = hide;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
 }

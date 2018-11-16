@@ -1,46 +1,105 @@
 package cn.segema.cloud.sso.server.domain;
 
-import lombok.Data;
-import lombok.ToString;
-
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigInteger;
 
-import cn.segema.cloud.sso.server.vo.RoleVO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Data
-@ToString
+@Table(name = "sys_user")
+@Entity
 public class User implements Serializable {
 
-    private Long id;
+	private static final long serialVersionUID = -4099450485824039374L;
 
-    /**
-     * 用户编号
-     */
-    private String usercode;
+	@Id
+	@Column(name = "user_id")
+	private BigInteger userId;
+	
+	@Column(name = "user_name")
+	private String userName;
+	
+	@Column(name = "nick_name")
+	private String nickName;
+	
+	@Column(name = "password")
+	private String password;
+	
+	@Column(name = "mobile_number")
+	private String mobileNumber;
+	
+	@Column(name = "credentials_salt")
+	private String credentialsSalt;
+	
+	@Column(name = "gender")
+	private Integer gender;
+	
+	@Column(name = "delete_status")
+	private Integer deletestatus;
 
-    /**
-     * 用户名
-     */
-    private String username;
+	public BigInteger getUserId() {
+		return userId;
+	}
 
-    /**
-     * 密码
-     */
-    private String password;
+	public void setUserId(BigInteger userId) {
+		this.userId = userId;
+	}
 
-    /**
-     * 盐
-     */
-    private String salt;
+	public String getUserName() {
+		return this.userName;
+	}
 
-    /**
-     * 用户角色
-     */
-    private List<RoleVO> roleList;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getCredentialsSalt() {
+		return credentialsSalt;
+	}
+
+	public void setCredentialsSalt(String credentialsSalt) {
+		this.credentialsSalt = credentialsSalt;
+	}
+	
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
+
+	public Integer getDeletestatus() {
+		return deletestatus;
+	}
+
+	public void setDeletestatus(Integer deletestatus) {
+		this.deletestatus = deletestatus;
+	}
 }

@@ -1,6 +1,7 @@
 package cn.segema.cloud.sso.server.vo;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 import lombok.Data;
 import lombok.ToString;
@@ -9,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class ResourceVO implements Serializable {
 
-    private Long id;
+    private BigInteger id;
 
     /**
      * 权限名称
@@ -34,11 +35,11 @@ public class ResourceVO implements Serializable {
     /**
      * 排序
      */
-    private Integer sort;
+    private BigInteger sort;
 
     /**
      * 父菜单ID
      */
-    private Long pid;
+    private BigInteger pid;
 
 }

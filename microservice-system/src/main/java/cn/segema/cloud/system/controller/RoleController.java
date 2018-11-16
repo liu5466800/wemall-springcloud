@@ -34,7 +34,7 @@ public class RoleController {
 	   * @return Role信息
 	   */
 	@GetMapping("/{id}")
-	public Optional<Role> findById(@PathVariable String roleId) {
+	public Optional<Role> findById(@PathVariable BigInteger roleId) {
 		Optional<Role> findOne = this.roleRepository.findById(roleId);
 		return findOne;
 	}

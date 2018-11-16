@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,9 +58,11 @@ public class UserController {
 
 	@PostMapping("/add")
 	public User add(User user, Model model) {
-		if (user.getUserId() == null || "".equals(user.getUserId())) {
+		if (user.getUserId() == null) {
 			user.setUserId(BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
 		}
+		String pass = new BCryptPasswordEncoder().encode(user.getPassword());
+		user.setPassword(pass);
 		userRepository.save(user);
 		return user;
 	}
