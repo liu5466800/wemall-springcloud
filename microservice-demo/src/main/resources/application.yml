@@ -84,6 +84,16 @@ management:
       cors:
         allowed-origins: "*"
         allowed-methods: "*"
+        
+#security:
+#  oauth2:
+#    client:
+#      client-id: client1
+#      client-secret: 12345
+#      access-token-uri: http://localhost:9999/oauth/token
+#      user-authorization-uri: http://localhost:9999/oauth/authorize
+#    resource:
+#      user-info-uri: http://localhost:9999/user/me        
 
 #本地配置   
 demo.local.directory: /Users/wangyong/test/testfiles

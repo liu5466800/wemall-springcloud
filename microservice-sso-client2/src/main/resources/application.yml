@@ -29,7 +29,7 @@ eureka:
 security:
   oauth2:
     client:
-      client-id: CouponSystem
+      client-id: client2
       client-secret: 12345
       access-token-uri: http://localhost:9999/oauth/token
       user-authorization-uri: http://localhost:9999/oauth/authorize

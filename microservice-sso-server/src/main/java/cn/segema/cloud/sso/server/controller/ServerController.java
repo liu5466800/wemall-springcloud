@@ -24,14 +24,14 @@ public class ServerController {
 		oauthClientDetails.setClient_id(client_id);
 		oauthClientDetails.setResource_ids(null);
 		oauthClientDetails.setClient_secret(new BCryptPasswordEncoder().encode(password));
-		oauthClientDetails.setScope("user_info");
+		oauthClientDetails.setScope("app");
 		oauthClientDetails.setAuthorized_grant_types("authorization_code");
 		oauthClientDetails.setWeb_server_redirect_uri(webRedirectUrl);
 		oauthClientDetails.setAuthorities(null);
 		oauthClientDetails.setAccess_token_validity(null);
 		oauthClientDetails.setRefresh_token_validity(null);
 		oauthClientDetails.setAdditional_information(null);
-		oauthClientDetails.setAutoapprove("user_info");
+		oauthClientDetails.setAutoapprove(null);
 		oauthClientDetailsRepository.save(oauthClientDetails);
         return oauthClientDetails;
     }
