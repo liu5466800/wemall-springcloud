@@ -12,35 +12,35 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "MALL_PRODUCT_CATEGORY")
+@Table(name = "mall_category")
 @Entity
-public class ProductCategory {
+public class Category {
 	@Id
-	@Column(name = "CATEGORYID")
+	@Column(name = "category_id")
 	private BigInteger categoryId;
 
-	@Column(name = "CATEGORYNAME")
+	@Column(name = "category_name")
 	private String categoryName;
 
-	@Column(name = "TEXT")
+	@Column(name = "text")
 	private String text;
 
 	@Column(name = "icon")
 	private String icon;
 
-	@Column(name = "ORDERNUMBER")
+	@Column(name = "order_number")
 	private int orderNumber;
 
-	@Column(name = "PARENTID")
+	@Column(name = "parentid")
 	private BigInteger parentId;
 
-	@Column(name = "STATUS")
+	@Column(name = "status")
 	private int status;
 
-	@Column(name = "DESCRIPTION")
+	@Column(name = "description")
 	private String description;
 
-	@Column(name = "createtime")
+	@Column(name = "create_time")
 	private LocalDateTime createTime;
 
 	public BigInteger getCategoryId() {

@@ -14,24 +14,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import cn.segema.cloud.mall.domain.ProductCategory;
-import cn.segema.cloud.mall.repository.ProductCategoryRepository;
+import cn.segema.cloud.mall.domain.Category;
+import cn.segema.cloud.mall.repository.CategoryRepository;
 
 @Service
-public class ProductCategoryService {
+public class CategoryService {
 	
-	@Resource(name = "productCategoryRepository")
-    private ProductCategoryRepository productCategoryRepository;
+	@Resource(name = "categoryRepository")
+    private CategoryRepository categoryRepository;
 	
-	 public List<ProductCategory> getAll() {
-	        return (List<ProductCategory>) productCategoryRepository.findAll();
+	 public List<Category> getAll() {
+	        return (List<Category>) categoryRepository.findAll();
 	    }
 	 
-	 public Page<ProductCategory> findByPage(Pageable pageable,final Map<String, String> params){
+	 public Page<Category> findByPage(Pageable pageable,final Map<String, String> params){
 
-	        Page<ProductCategory> objPage = productCategoryRepository.findAll(new Specification<ProductCategory>() {
+	        Page<Category> objPage = categoryRepository.findAll(new Specification<Category>() {
 
-	            public Predicate toPredicate(Root<ProductCategory> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+	            public Predicate toPredicate(Root<Category> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 	                List<Predicate> lstPredicates = new ArrayList<Predicate>();
 	                if (params.get("categoryName")!=null && (!"".equals(params.get("categoryName")))) {
 	                    lstPredicates.add(cb.like(root.get("categoryName").as(String.class), "%" + params.get("categoryName") + "%"));

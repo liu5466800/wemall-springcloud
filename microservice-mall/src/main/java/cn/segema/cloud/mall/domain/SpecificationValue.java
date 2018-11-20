@@ -13,17 +13,17 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "MALL_SPECIFICATION_VALUE")
+@Table(name = "mall_specification_value")
 @Entity
 public class SpecificationValue {
 	@Id
-	@Column(name = "VALUEID")
+	@Column(name = "valueid")
 	private BigInteger valueId;
 
-	@Column(name = "SPECIFICATIONID")
+	@Column(name = "specification_id")
 	private BigInteger specificationId;
 
-	@Column(name = "VALUE")
+	@Column(name = "value")
 	private BigDecimal value;
 	
 	@Column(name = "unit")
@@ -32,13 +32,13 @@ public class SpecificationValue {
 	@Column(name = "remarks")
 	private String remarks;
 
-	@Column(name = "ORDERNUMBER")
+	@Column(name = "order_number")
 	private int orderNumber;
 
-	@Column(name = "STATUS")
+	@Column(name = "status")
 	private int status;
 
-	@Column(name = "createtime")
+	@Column(name = "create_time")
 	private LocalDateTime createTime;
 
 	public BigInteger getValueId() {

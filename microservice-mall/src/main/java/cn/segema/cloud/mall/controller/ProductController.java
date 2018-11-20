@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.page.PagerParamVO;
 import cn.segema.cloud.mall.domain.Product;
-import cn.segema.cloud.mall.domain.ProductCategory;
 import cn.segema.cloud.mall.repository.ProductRepository;
 import cn.segema.cloud.mall.service.ProductService;
 

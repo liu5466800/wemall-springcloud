@@ -2,7 +2,7 @@ server:
   port: 13000
 spring:
   application:
-    name: microservice-cms
+    name: microservice-mall
   jpa:
     database: MYSQL
     generate-ddl: false

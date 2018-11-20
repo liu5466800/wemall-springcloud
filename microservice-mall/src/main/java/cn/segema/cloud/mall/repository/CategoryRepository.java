@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import cn.segema.cloud.mall.domain.ProductCategory;
+import cn.segema.cloud.mall.domain.Category;
 
 @Repository
-public interface ProductCategoryRepository extends PagingAndSortingRepository<ProductCategory, BigInteger>,JpaRepository<ProductCategory, BigInteger> ,JpaSpecificationExecutor<ProductCategory> {
+public interface CategoryRepository extends PagingAndSortingRepository<Category, BigInteger>,JpaRepository<Category, BigInteger> ,JpaSpecificationExecutor<Category> {
 	
 	
 //	 @Query("select new cn.segema.cloud.demo.vo.DemoUserPersonalVO(u.userId,u.userName,u.nickName,p.personalId,p.personalName)"

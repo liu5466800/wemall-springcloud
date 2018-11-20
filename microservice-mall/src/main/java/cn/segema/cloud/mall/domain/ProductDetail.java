@@ -13,20 +13,20 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "MALL_PRODUCT_DETAIL")
+@Table(name = "mall_product_detail")
 @Entity
 public class ProductDetail {
 	@Id
-	@Column(name = "PRODUCTDETAILID")
+	@Column(name = "product_detail_id")
 	private BigInteger productDetailId;
 
-	@Column(name = "PRODUCTID")
+	@Column(name = "productid")
 	private BigInteger productId;
 
-	@Column(name = "SPECIFICATIONID")
+	@Column(name = "specificationid")
 	private BigInteger specificationId;
 
-	@Column(name = "VALUEID")
+	@Column(name = "valueid")
 	private BigInteger valueId;
 
 	@Column(name = "unit")
@@ -38,7 +38,7 @@ public class ProductDetail {
 	@Column(name = "stock")
 	private BigDecimal stock;
 
-	@Column(name = "createtime")
+	@Column(name = "create_time")
 	private LocalDateTime createTime;
 
 	public BigInteger getProductDetailId() {

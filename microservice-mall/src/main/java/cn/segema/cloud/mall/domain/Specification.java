@@ -12,26 +12,26 @@ import javax.persistence.Table;
  * 
  * @author wangyong
  */
-@Table(name = "MALL_SPECIFICATION")
+@Table(name = "mall_specification")
 @Entity
 public class Specification {
 	@Id
-	@Column(name = "SPECIFICATIONID")
+	@Column(name = "specification_id")
 	private BigInteger specificationId;
 
-	@Column(name = "SPECIFICATIONNAME")
-	private String specificationname;
+	@Column(name = "specification_name")
+	private String specificationName;
 
-	@Column(name = "ORDERNUMBER")
+	@Column(name = "order_number")
 	private int orderNumber;
 
 	@Column(name = "remarks")
 	private String remarks;
 
-	@Column(name = "STATUS")
+	@Column(name = "status")
 	private int status;
 
-	@Column(name = "createtime")
+	@Column(name = "create_time")
 	private LocalDateTime createTime;
 
 	public BigInteger getSpecificationId() {
@@ -42,12 +42,12 @@ public class Specification {
 		this.specificationId = specificationId;
 	}
 
-	public String getSpecificationname() {
-		return specificationname;
+	public String getSpecificationName() {
+		return specificationName;
 	}
 
-	public void setSpecificationname(String specificationname) {
-		this.specificationname = specificationname;
+	public void setSpecificationName(String specificationName) {
+		this.specificationName = specificationName;
 	}
 
 	public int getOrderNumber() {

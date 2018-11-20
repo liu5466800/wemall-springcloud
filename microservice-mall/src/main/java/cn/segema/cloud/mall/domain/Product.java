@@ -14,50 +14,50 @@ import javax.persistence.Table;
  * 商品
  * @author wangyong
  */
-@Table(name = "MALL_PRODUCT")
+@Table(name = "mall_product")
 @Entity
 public class Product implements Serializable{
 	@Id
-	@Column(name = "PRODUCTID")
+	@Column(name = "product_id")
 	private BigInteger productId;
 
-	@Column(name = "PRODUCTNAME")
+	@Column(name = "product_name")
 	private String productName;
 	
-	@Column(name = "CATEGORYID")
+	@Column(name = "category_id")
 	private BigInteger categoryId;
 
-	@Column(name = "TITLE")
+	@Column(name = "title")
 	private String title;
 
-	@Column(name = "TEXT")
+	@Column(name = "text")
 	private String text;
 
-	@Column(name = "SUMMARY")
+	@Column(name = "summary")
 	private String summary;
 
-	@Column(name = "THUMBNAIL")
+	@Column(name = "thumbnail")
 	private String thumbnail;
 
-	@Column(name = "PARENTID")
+	@Column(name = "parent_id")
 	private BigInteger parentId;
 
-	@Column(name = "ORDERNUMBER")
+	@Column(name = "order_number")
 	private int orderNumber;
 
-	@Column(name = "STATUS")
+	@Column(name = "status")
 	private int status;
 
-	@Column(name = "BUYPRICE")
+	@Column(name = "buyprice")
 	private BigDecimal buyPrice;
 
-	@Column(name = "SALEPRICE")
+	@Column(name = "saleprice")
 	private BigDecimal salePrice;
 
 	@Column(name = "createtime")
 	private LocalDateTime createtime;
 
-	@Column(name = "REMARKS")
+	@Column(name = "remarks")
 	private String remarks;
 
 	public BigInteger getProductId() {
