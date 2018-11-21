@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.demo.service.ClickhouseTestService;
-import cn.segema.cloud.demo.vo.CarTransactionVO;
+import cn.segema.cloud.demo.vo.DemoCarTransactionVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +27,7 @@ public class DemoClickhouseController {
   
   @GetMapping("/save")
 	public String save() {
-		CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+		DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 		carsTransactionsVO.setPrice(123);
 		carsTransactionsVO.setColor("red");
 		carsTransactionsVO.setMake("HONDA");
@@ -44,20 +44,20 @@ public class DemoClickhouseController {
 
 	@GetMapping("/update")
 	public String update(Integer id, String name, String description) {
-		CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+		DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 		clickhouseTestService.save(carsTransactionsVO);
 		return "success";
 	}
 	
 	@GetMapping("/list")
-	public List<CarTransactionVO> list() {
-		List<CarTransactionVO> carsTransactionsVO = (List<CarTransactionVO>) clickhouseTestService.findList();
+	public List<DemoCarTransactionVO> list() {
+		List<DemoCarTransactionVO> carsTransactionsVO = (List<DemoCarTransactionVO>) clickhouseTestService.findList();
 		return carsTransactionsVO;
 	}
 
 	@GetMapping("/getOne")
-	public CarTransactionVO getOne(Integer id) {
-		CarTransactionVO carsTransactionsVO = (CarTransactionVO) clickhouseTestService.findById(id);
+	public DemoCarTransactionVO getOne(Integer id) {
+		DemoCarTransactionVO carsTransactionsVO = (DemoCarTransactionVO) clickhouseTestService.findById(id);
 		return carsTransactionsVO;
 	}
 

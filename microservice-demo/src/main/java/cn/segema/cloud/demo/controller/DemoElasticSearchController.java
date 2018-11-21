@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.demo.repository.DemoCarTransactionRepository;
-import cn.segema.cloud.demo.vo.CarTransactionVO;
+import cn.segema.cloud.demo.vo.DemoCarTransactionVO;
 
 @RestController
 @RequestMapping(value = "/demo/elastic_search")
@@ -26,21 +26,21 @@ public class DemoElasticSearchController {
 
 	@GetMapping("/save")
 	public ResponseEntity save(String id) {
-		 CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+		 DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 		 carsTransactionsVO.setId(id);
 		 carsTransactionsVO.setPrice(123);
 		 carsTransactionsVO.setColor("red");
 		 carsTransactionsVO.setMake("HONDA");
 		 carsTransactionsVO.setSold(new Date());
-		 CarTransactionVO resultVO = carsTransactionsRepository.save(carsTransactionsVO);
+		 DemoCarTransactionVO resultVO = carsTransactionsRepository.save(carsTransactionsVO);
 		return  new ResponseEntity(resultVO, HttpStatus.OK);
 	}
 
 	@GetMapping("/saveAll")
 	public String saveAll() {
-		List<CarTransactionVO> list = new ArrayList<CarTransactionVO>();
+		List<DemoCarTransactionVO> list = new ArrayList<DemoCarTransactionVO>();
 		for (int i = 0; i < 10; i++) {
-			CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+			DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 			carsTransactionsVO.setPrice(i);
 			carsTransactionsVO.setColor("red" + i);
 			carsTransactionsVO.setMake("HONDA" + i);
@@ -60,14 +60,14 @@ public class DemoElasticSearchController {
 
 	@GetMapping("/update")
 	public ResponseEntity update(String id, String color, String make) {
-		 CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+		 DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 		 carsTransactionsRepository.save(carsTransactionsVO);
 		return new ResponseEntity("更新失败", HttpStatus.OK);
 	}
 
 	@GetMapping("/getOne")
 	public ResponseEntity getOne(String id) {
-		 Optional<CarTransactionVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
+		 Optional<DemoCarTransactionVO> carsTransactionsVO = carsTransactionsRepository.findById(id);
 		return new ResponseEntity(carsTransactionsVO, HttpStatus.OK);
 	}
 
@@ -87,7 +87,7 @@ public class DemoElasticSearchController {
 		 // rangeQueryBuilder.to(price);
 		 // }
 		 // boolQueryBuilder.filter(rangeQueryBuilder);
-		 Iterable<CarTransactionVO> carsTransactionsList = carsTransactionsRepository.search(boolQueryBuilder);
+		 Iterable<DemoCarTransactionVO> carsTransactionsList = carsTransactionsRepository.search(boolQueryBuilder);
 		 return new ResponseEntity(carsTransactionsList, HttpStatus.OK);
 
 

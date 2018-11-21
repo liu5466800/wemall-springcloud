@@ -29,6 +29,11 @@ public class ClickhouseTestService<T> {
 	 }
 	 
 	 public T save(T entity){
+		 String sql ="";
+		 
+		 
+		 clickhouseRepository.save(sql);
+		 
 		 return null;
 	 }
 	 

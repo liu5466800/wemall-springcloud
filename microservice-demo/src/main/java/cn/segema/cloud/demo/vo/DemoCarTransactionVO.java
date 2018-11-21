@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Document(indexName = "car",type = "transaction",shards = 1, replicas = 0,refreshInterval = "-1") 
-public class CarTransactionVO  implements Serializable{
+public class DemoCarTransactionVO  implements Serializable{
 	private static final long serialVersionUID = 859452469559974554L;
 	
 	@Id

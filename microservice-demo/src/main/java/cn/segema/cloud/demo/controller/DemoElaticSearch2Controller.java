@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.vo.CarTransactionVO;
+import cn.segema.cloud.demo.vo.DemoCarTransactionVO;
 
 @RestController
 @RequestMapping(value = "/demo/elastic_search2")
@@ -70,9 +70,9 @@ public class DemoElaticSearch2Controller {
 
 	@PostMapping("/saveAll")
 	public String saveAll() {
-		List<CarTransactionVO> list = new ArrayList<CarTransactionVO>();
+		List<DemoCarTransactionVO> list = new ArrayList<DemoCarTransactionVO>();
 		for (int i = 0; i < 10; i++) {
-			CarTransactionVO carsTransactionsVO = new CarTransactionVO();
+			DemoCarTransactionVO carsTransactionsVO = new DemoCarTransactionVO();
 			carsTransactionsVO.setPrice(i);
 			carsTransactionsVO.setColor("red" + i);
 			carsTransactionsVO.setMake("HONDA" + i);
