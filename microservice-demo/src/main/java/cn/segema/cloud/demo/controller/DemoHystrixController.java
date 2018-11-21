@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
-@RequestMapping(value = "/hystrix")
-public class HystrixController {
+@RequestMapping(value = "/demo/hystrix")
+public class DemoHystrixController {
 	
 	@Autowired
 	private RestTemplate restTemplate;

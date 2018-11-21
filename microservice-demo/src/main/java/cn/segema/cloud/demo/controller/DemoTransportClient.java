@@ -72,7 +72,7 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class TransportClientTest {
+public class DemoTransportClient {
 
 	private TransportClient client;
 

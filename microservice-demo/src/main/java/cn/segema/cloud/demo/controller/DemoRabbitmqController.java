@@ -12,8 +12,8 @@ import cn.segema.cloud.demo.processor.MyMessagePostProcessor;
 import cn.segema.cloud.demo.vo.DemoStudentVO;
 
 @Controller
-@RequestMapping(value = "/rabbitmq/test")
-public class RabbitmqTestController {
+@RequestMapping(value = "/demo/rabbitmq")
+public class DemoRabbitmqController {
 
 	@Autowired
 	RabbitMessagingTemplate rabbitMessagingTemplate;

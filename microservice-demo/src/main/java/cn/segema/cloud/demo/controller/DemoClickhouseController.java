@@ -18,8 +18,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value = "/clickhouse/test")
-public class ClickhouseTestController {
+@RequestMapping(value = "/demo/clickhouse")
+public class DemoClickhouseController {
  
   @Autowired
   private ClickhouseTestService clickhouseTestService;

@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "goods",type = "book") 
-public class GoodsBookVO  implements Serializable{
+public class DemoGoodsBookVO  implements Serializable{
 	private static final long serialVersionUID = -3041977276379911577L;
 	@Id
 	private Integer id;
@@ -46,12 +46,12 @@ public class GoodsBookVO  implements Serializable{
 		this.description = description;
 	}
 
-	public GoodsBookVO(Integer id, String name, String description) {
+	public DemoGoodsBookVO(Integer id, String name, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 
-	public GoodsBookVO() {
+	public DemoGoodsBookVO() {
 	}
 }

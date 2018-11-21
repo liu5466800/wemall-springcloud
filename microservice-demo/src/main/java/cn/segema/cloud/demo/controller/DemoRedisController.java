@@ -28,7 +28,7 @@ import cn.segema.cloud.demo.vo.DemoUserVO;
 
 @RestController
 @RequestMapping(value = "/redis/test")
-public class RedisTestController {
+public class DemoRedisController {
   
   @Resource
   private StringRedisTemplate stringRedisTemplate;

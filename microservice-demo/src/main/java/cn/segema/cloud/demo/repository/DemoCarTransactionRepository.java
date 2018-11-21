@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import cn.segema.cloud.demo.vo.CarTransactionVO;
 
 @Repository
-public interface CarTransactionRepository extends ElasticsearchRepository<CarTransactionVO, String> {
+public interface DemoCarTransactionRepository extends ElasticsearchRepository<CarTransactionVO, String> {
 
 }

@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.demo.repository.CarTransactionRepository;
+import cn.segema.cloud.demo.repository.DemoCarTransactionRepository;
 import cn.segema.cloud.demo.vo.CarTransactionVO;
 
 @RestController
-@RequestMapping(value = "/elastic_search/test")
-public class ElasticSearchTestController {
+@RequestMapping(value = "/demo/elastic_search")
+public class DemoElasticSearchController {
 
 	@Autowired
-	private CarTransactionRepository carsTransactionsRepository;
+	private DemoCarTransactionRepository carsTransactionsRepository;
 
 	@GetMapping("/save")
 	public ResponseEntity save(String id) {

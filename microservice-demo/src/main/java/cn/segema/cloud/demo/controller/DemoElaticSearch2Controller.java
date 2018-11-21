@@ -38,8 +38,8 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.segema.cloud.demo.vo.CarTransactionVO;
 
 @RestController
-@RequestMapping(value = "/elastic_search2/test")
-public class ElaticSearch2TestController {
+@RequestMapping(value = "/demo/elastic_search2")
+public class DemoElaticSearch2Controller {
 
 	private static String indexName = "car";
 

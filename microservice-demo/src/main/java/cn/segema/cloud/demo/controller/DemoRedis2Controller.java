@@ -23,8 +23,8 @@ import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.vo.DemoUserVO;
 
 @RestController
-@RequestMapping(value = "/redis2/test")
-public class Redis2TestController {
+@RequestMapping(value = "/demo/redis2")
+public class DemoRedis2Controller {
   
   @Resource
   private StringRedisTemplate stringRedisTemplate;  //使用的是StringRedisSerializer
