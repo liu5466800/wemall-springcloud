@@ -191,7 +191,7 @@
 		</dependency>
 		
 		<!-- auth2用以下依赖，springcloud的tarter有问题 -->
-         <dependency>
+        <!--  <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
@@ -203,7 +203,7 @@
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<!-- 公共类文件 -->
 		<dependency>

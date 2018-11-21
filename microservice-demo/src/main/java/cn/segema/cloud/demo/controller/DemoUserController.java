@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.repository.DemoRepository;
-import cn.segema.cloud.demo.vo.DemoUserPersonalVO;
 import cn.segema.cloud.demo.vo.DemoEmployeeVO;
+import cn.segema.cloud.demo.vo.DemoUserPersonalVO;
+
+
 
 @RestController
 @RequestMapping(value = "/demo/user")
@@ -49,7 +50,7 @@ public class DemoUserController {
 	public DemoUser add(DemoUser user, Model model) {
 		
 		DemoUser demoUser  = new DemoUser();
-		demoUser.setUserId(String.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
+		//demoUser.setUserId(String.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
 		demoUser.setUserName("todayname");
 		demoRepository.save(demoUser);
 

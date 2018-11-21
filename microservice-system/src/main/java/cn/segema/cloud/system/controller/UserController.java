@@ -51,8 +51,11 @@ public class UserController {
 	}
 
 	@GetMapping("/list")
-	public List<User> list(User user, Model model) {
-		List<User> userList = userRepository.findAll();
+	public Page<User> list(int page,int limit,String sort) {
+		Sort sortOrder = new Sort(Sort.Direction.DESC,"userId"); //创建时间降序排序
+		Pageable pageable = PageRequest.of(page-1,limit,sortOrder);
+		//userRepository.findAllByUserIdIn(userIds,pageable);
+		Page<User> userList = userRepository.findAll(pageable);
 		return userList;
 	}
 
