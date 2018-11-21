@@ -20,8 +20,7 @@ import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.demo.domain.DemoUser;
 import cn.segema.cloud.demo.repository.DemoRepository;
 import cn.segema.cloud.demo.vo.DemoUserPersonalVO;
-import cn.segema.cloud.demo.vo.TestEmployeeVO;
-import cn.segema.cloud.demo.vo.TestUserVO;
+import cn.segema.cloud.demo.vo.DemoEmployeeVO;
 
 @RestController
 @RequestMapping(value = "/demo/user")
@@ -47,7 +46,7 @@ public class DemoUserController {
 	}
 
 	@PostMapping("/add")
-	public TestUserVO add(TestUserVO user, Model model) {
+	public DemoUser add(DemoUser user, Model model) {
 		
 		DemoUser demoUser  = new DemoUser();
 		demoUser.setUserId(String.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
@@ -60,7 +59,7 @@ public class DemoUserController {
 	}
 
 	@GetMapping("/getTable")
-	public List<TestEmployeeVO> getTable(List<TestEmployeeVO> employees, Model model) {
+	public List<DemoEmployeeVO> getTable(List<DemoEmployeeVO> employees, Model model) {
 		List<DemoUser> userList = demoRepository.findAll();
 
 		return employees;
@@ -68,12 +67,12 @@ public class DemoUserController {
 
 	@RequestMapping(value = "/editTable", method = { RequestMethod.POST })
 	@ResponseBody
-	public List<TestEmployeeVO> editTable(@RequestBody String employeesStr) {
+	public List<DemoEmployeeVO> editTable(@RequestBody String employeesStr) {
 		// @RequestParam(value = "data[]")long[] data
 
 		System.out.println("---------employees:" + employeesStr + "-------");
 
-		List<TestEmployeeVO> employeeList = new ArrayList<TestEmployeeVO>();
+		List<DemoEmployeeVO> employeeList = new ArrayList<DemoEmployeeVO>();
 
 		return employeeList;
 	}

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author wangyong
  *
  */
-public class TestEmployeeVO implements Serializable {
+public class DemoEmployeeVO implements Serializable {
 
 	private static final long serialVersionUID = 3336026114894190728L;
 
