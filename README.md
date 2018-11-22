@@ -37,8 +37,8 @@
 | microservice-config                      | 8050 | 配置服务                       |                 |
 | microservice-discovery                   | 8761 | 注册中心                       | /               |
 | microservice-monitor                     | 8060 | hystrix-Dashboard监控          |                 |
-| microservice-demo                        | 9090 | 实例demo服务                    | /1              |
-| microservice-demo-web                    | 9091 | 实例demo服务WEB                 | /1              |
+| microservice-demo                        | 10000| 实例demo服务                    | /1              |
+| microservice-demo-web                    | 10001| 实例demo服务WEB                 | /1              |
 | microservice-filecenter                  | 6060 | 文件中心服务                    | /1               |
 | microservice-sso-server                  | 9999 | SSO认证服务提供者               | /1               |
 | microservice-sso-client1                 | 8080 | SSO客户端测试1                  | /1               |
