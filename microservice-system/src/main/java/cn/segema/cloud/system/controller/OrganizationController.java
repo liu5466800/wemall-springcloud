@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.system.domain.Organization;
 import cn.segema.cloud.system.repository.OrganizationRepository;
 import cn.segema.cloud.system.vo.OrganizationPersonalVO;
 import cn.segema.cloud.system.vo.OrganizationTreeVO;
+import cn.segema.cloud.system.vo.OrganizationVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -100,13 +104,28 @@ public class OrganizationController {
 		@ApiImplicitParam(name = "limit", value = "每页数", required = true, paramType = "query"),
 		@ApiImplicitParam(name = "sort", value = "排序列", required = false, paramType = "query")})
 	@GetMapping("/page")
-	public Page<Organization> findByPage(@RequestParam(defaultValue ="1") int page, 
+	public Pager<OrganizationVO> findByPage(@RequestParam(defaultValue ="1") int page, 
 			@RequestParam(defaultValue = "20") int limit, 
 			@RequestParam(defaultValue = "organizationId") String sort) {
 		Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
 		Pageable pageable = PageRequest.of(page - 1, limit, sortOrder);
-		Page<Organization> organizationList = organizationRepository.findAll(pageable);
-		return organizationList;
+		Page<Organization> organizationPage = organizationRepository.findAll(pageable);
+		List<Organization> content = organizationPage.getContent();
+		List<OrganizationVO> data = new ArrayList<OrganizationVO>();
+		if(content!=null&&content.size()>0) {
+			for(Organization organization:content) {
+				OrganizationVO organizationVO = new OrganizationVO();
+				BeanUtils.copyProperties(organization, organizationVO, "chidren","parent");
+				organizationVO.setParentId(organization.getParent()==null?null:organization.getParent().getOrganizationId());
+				data.add(organizationVO);
+			}
+		}
+		Pager<OrganizationVO> pager = new Pager<OrganizationVO>();
+		pager.setCode("0");
+		pager.setMsg("success");
+		pager.setCount(organizationPage.getTotalElements());
+		pager.setData(data);
+		return pager;
 	}
 	
 	@ApiOperation(value = "根据节点id获取最大编码", notes = "根据节点id获取最大编码")

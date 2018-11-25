@@ -4,10 +4,11 @@ import java.math.BigInteger;
 
 /**
  * 组织机构信息VO(排除chidren,parent)
+ * 
  * @author wangyong
  */
-public class OrganizationVO{
-	
+public class OrganizationVO {
+
 	private BigInteger organizationId;
 
 	private String organizationName;
@@ -15,10 +16,10 @@ public class OrganizationVO{
 	private BigInteger organizationCode;
 
 	private String description;
-    
+
 	private Integer type;
-	
-	 private BigInteger parentId;
+
+	private BigInteger parentId;
 
 	public BigInteger getOrganizationId() {
 		return organizationId;
@@ -67,6 +68,5 @@ public class OrganizationVO{
 	public void setParentId(BigInteger parentId) {
 		this.parentId = parentId;
 	}
-
 
 }

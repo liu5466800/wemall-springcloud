@@ -65,10 +65,10 @@
 		  	element = layui.element;
 		  	table.render({
 			    elem: '#organizationTable',
-			    url: contextPath+'/MICROSERVICE-SYSTEM/organization/listByPage',
+			    url: contextPath+'/MICROSERVICE-SYSTEM/organizations/page',
 			    request:{
-			    		pageName:'curr',
-			    		limitName:'nums'
+			    		page:'curr',
+			    		limit:'nums'
 			    },
 			    where: {
 			    		//direction：'DESC',
