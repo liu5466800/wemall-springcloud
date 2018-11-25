@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.segema.cloud.common.constants.ApiConstant;
+import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.UserRepository;
+import cn.segema.cloud.system.vo.OrganizationVO;
 import cn.segema.cloud.system.vo.UserPersonalVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -102,13 +104,18 @@ public class UserController {
 		@ApiImplicitParam(name = "limit", value = "每页数", required = true, paramType = "query"),
 		@ApiImplicitParam(name = "sort", value = "排序列", required = false, paramType = "query")})
 	@GetMapping("/page")
-	public Page<User> findByPage(@RequestParam(defaultValue ="1") int page, 
+	public Pager<User> findByPage(@RequestParam(defaultValue ="1") int page, 
 			@RequestParam(defaultValue = "20") int limit, 
 			@RequestParam(defaultValue = "userId") String sort) {
 		Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
 		Pageable pageable = PageRequest.of(page - 1, limit, sortOrder);
-		Page<User> userList = userRepository.findAll(pageable);
-		return userList;
+		Page<User> userPage = userRepository.findAll(pageable);
+		Pager<User> pager = new Pager<User>();
+		pager.setCode("0");
+		pager.setMsg("success");
+		pager.setCount(userPage.getTotalElements());
+		pager.setData(userPage.getContent());
+		return pager;
 	}
 
 }
