@@ -5,74 +5,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.segema.cloud.common.page.Pager;
-import cn.segema.cloud.common.page.PagerParamVO;
 import cn.segema.cloud.system.domain.Organization;
 import cn.segema.cloud.system.repository.OrganizationRepository;
-import cn.segema.cloud.system.service.OrganizationService;
 import cn.segema.cloud.system.vo.OrganizationPersonalVO;
 import cn.segema.cloud.system.vo.OrganizationTreeVO;
-import cn.segema.cloud.system.vo.OrganizationVO;
-import cn.segema.cloud.system.vo.TreeVO;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 组织机构Controller
  */
 @RestController
-@RequestMapping(value = "/organization")
+@RequestMapping(value = "/organizations")
 public class OrganizationController {
 	
 	@Autowired
-	private OrganizationService organizationService;
-	@Autowired
 	private OrganizationRepository organizationRepository;
 
-	/**
-	 * @param userId
-	 * @return Organization
-	 */
-	@GetMapping("/{organizationId}")
-	public Optional<Organization> findById(@PathVariable BigInteger organizationId) throws Exception {
-		Optional<Organization> organization = organizationRepository.findById(organizationId);
-		return organization;
-	}
 
-	/**
-	 * @param organization
-	 * @return List<OrganizationVO>
-	 */
-	@GetMapping("/list")
-	public List<OrganizationVO> list(Organization organization) {
-		List<Organization> organizationList = organizationRepository.findAll();
-		List<OrganizationVO> organizationVoList = new ArrayList<OrganizationVO>();
-		if(organizationList!=null&&organizationList.size()>0) {
-			for(Organization org:organizationList) {
-				OrganizationVO organizationVO = new  OrganizationVO();
-				BeanUtils.copyProperties(org, organizationVO);
-				organizationVoList.add(organizationVO);
-			}
-		}
-		return organizationVoList;
-	}
-
-	/**
-	 * @param organization
-	 * @return Organization
-	 */
-	@PostMapping("/add")
+	@ApiOperation(value = "新增组织机构", notes = "新增组织机构")
+	@PostMapping
 	public Organization add(Organization organization) {
 		if(organization.getParent()!=null){
 			BigInteger maxOrganizationCode = organizationRepository.findMaxOrganization(organization.getParent().getOrganizationId());
@@ -96,66 +63,67 @@ public class OrganizationController {
 		return organization;
 	}
 
-	/**
-	 * @param organization
-	 * @return Organization
-	 */
-	@RequestMapping(value = "/edit")
+	@ApiOperation(value = "修改组织机构", notes = "修改组织机构")
+	@PutMapping
 	public Organization edit(Organization organization) {
 		organizationRepository.save(organization);
 		return organization;
 	}
 
-	/**
-	 * @param organization
-	 * @return Organization
-	 */
-	@PostMapping(value = "/delete")
+	@ApiOperation(value = "删除组织机构", notes = "删除组织机构")
+	@DeleteMapping
 	public Organization delete(Organization organization) {
 		organizationRepository.delete(organization);
 		return organization;
 	}
+	
+	@ApiOperation(value = "根据id获取组织机构", notes = "根据id获取组织机构")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "userId", value = "组织机构id", required = true, paramType = "path") })
+	@GetMapping("/{organizationId}")
+	public Optional<Organization> findById(@PathVariable BigInteger organizationId) throws Exception {
+		Optional<Organization> organization = organizationRepository.findById(organizationId);
+		return organization;
+	}
 
-	@GetMapping("/listOrganizationPersonalByName/{organizationName}")
-	public List<OrganizationPersonalVO> listOrganizationPersonalByName(@PathVariable String organizationName) {
-		List<OrganizationPersonalVO> organizationList = organizationRepository
-				.findOrganizationPersonalByName(organizationName);
+	@ApiOperation(value = "根据名称获取组织机构", notes = "根据名称获取组织机构")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "userName", value = "组织机构名称", required = true, paramType = "path") })
+	@GetMapping("/personal/{organizationName}")
+	public List<OrganizationPersonalVO> findPersonalByName(@PathVariable String organizationName) {
+		List<OrganizationPersonalVO> organizationList = organizationRepository.findOrganizationPersonalByName(organizationName);
 		return organizationList;
 	}
 
-	@GetMapping("/listByPage")
-	public Pager<OrganizationVO> listByPage(PagerParamVO pagerParam) {
-		Sort sort = new Sort(Direction.DESC, "organizationId");
-		Pageable pageable = PageRequest.of(pagerParam.getCurr() - 1, pagerParam.getNums(), sort);
-		Page<Organization> page = organizationService.findByPage(pageable, pagerParam.getParams());
-		Pager<OrganizationVO> pager = new Pager<OrganizationVO>();
-		pager.setCode("0");
-		pager.setMsg("success");
-		pager.setCount(page.getTotalElements());
-		List<Organization> content = page.getContent();
-		List<OrganizationVO> data = new ArrayList<OrganizationVO>();
-		if(content!=null&&content.size()>0) {
-			for(Organization organization:content) {
-				OrganizationVO organizationVO = new OrganizationVO();
-				BeanUtils.copyProperties(organization, organizationVO, "chidren","parent");
-				organizationVO.setParentId(organization.getParent()==null?null:organization.getParent().getOrganizationId());
-				data.add(organizationVO);
-			}
-		}
-		pager.setData(data);
-		return pager;
+	@ApiOperation(value = "分页获取用户", notes = "分页获取用户")
+	@ApiImplicitParams({@ApiImplicitParam(name = "page", value = "当前页", required = true, paramType = "query"),
+		@ApiImplicitParam(name = "limit", value = "每页数", required = true, paramType = "query"),
+		@ApiImplicitParam(name = "sort", value = "排序列", required = false, paramType = "query")})
+	@GetMapping("/page")
+	public Page<Organization> findByPage(@RequestParam(defaultValue ="1") int page, 
+			@RequestParam(defaultValue = "20") int limit, 
+			@RequestParam(defaultValue = "organizationId") String sort) {
+		Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
+		Pageable pageable = PageRequest.of(page - 1, limit, sortOrder);
+		Page<Organization> organizationList = organizationRepository.findAll(pageable);
+		return organizationList;
 	}
 	
-	@GetMapping("/maxOrganization/{parentId}")
-	public BigInteger maxOrganization(@PathVariable BigInteger parentId) {
+	@ApiOperation(value = "根据节点id获取最大编码", notes = "根据节点id获取最大编码")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "parentId", value = "父级节点id", required = true, paramType = "path") })
+	@GetMapping("/max-code/{parentId}")
+	public BigInteger findMaxCode(@PathVariable BigInteger parentId) {
 		BigInteger organizationCode = organizationRepository.findMaxOrganization(parentId);
 		return organizationCode;
 	}
 	
-	@GetMapping("/treeList/{parentId}")
-	public List<OrganizationTreeVO> treeList(@PathVariable String parentId) {
+	@ApiOperation(value = "根据节点id获取组织机构树", notes = "根据节点id获取组织机构树")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "parentId", value = "父级节点id", required = true, paramType = "path") })
+	@GetMapping("/tree-list/{parentId}")
+	public List<OrganizationTreeVO> findTreeList(@PathVariable String parentId) {
 		List<Organization> organizationList = organizationRepository.findTreeList(parentId);
-		
 		List<OrganizationTreeVO> treeList = new ArrayList<OrganizationTreeVO>();
 		if(organizationList!=null&&organizationList.size()>0) {
 			for(Organization organization:organizationList) {
@@ -166,40 +134,6 @@ public class OrganizationController {
 				treeList.add(organizationTreeVO);
 			}
 		}
-		
-		return treeList;
-	}
-	
-	@GetMapping("/treeTest/{parentId}")
-	public List<TreeVO> treeTest(@PathVariable String parentId) {
-		
-		List<TreeVO> treeList = new ArrayList<TreeVO>();
-		TreeVO treeVO1 = new TreeVO();
-		treeVO1.setId(new BigInteger("1"));
-		treeVO1.setText("NODE1节点1");
-		TreeVO treeVO2 = new TreeVO();
-		treeVO2.setId(new BigInteger("2"));
-		treeVO2.setText("NODE2节点2");
-		TreeVO treeVO3 = new TreeVO();
-		treeVO3.setId(new BigInteger("3"));
-		treeVO3.setText("NODE3节点3");
-		TreeVO treeVO4 = new TreeVO();
-		treeVO4.setId(new BigInteger("4"));
-		treeVO4.setText("NODE4节点4");
-		TreeVO treeVO5 = new TreeVO();
-		treeVO5.setId(new BigInteger("5"));
-		treeVO5.setText("NODE5节点5");
-		List<TreeVO> children4 = new ArrayList<TreeVO>();
-		children4.add(treeVO5);
-		treeVO4.setChildren(children4);
-		
-	
-		treeList.add(treeVO1);
-		treeList.add(treeVO2);
-		treeList.add(treeVO3);
-		treeList.add(treeVO4);
-		
-		
 		return treeList;
 	}
 

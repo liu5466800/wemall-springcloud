@@ -5,5 +5,5 @@ package cn.segema.cloud.common.constants;
  * @author wangyong
  */
 public class AlipayConstant {
-
+	public static final String WECHAT_APPID = "wechat_appid";
 }

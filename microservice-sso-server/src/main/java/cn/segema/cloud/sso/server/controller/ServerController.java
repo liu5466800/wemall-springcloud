@@ -2,24 +2,33 @@ package cn.segema.cloud.sso.server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.segema.cloud.common.constants.ApiConstant;
 import cn.segema.cloud.sso.server.domain.OauthClientDetails;
 import cn.segema.cloud.sso.server.repository.OauthClientDetailsRepository;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/server")
+@RequestMapping(ApiConstant.API_VERSION +"/server")
 public class ServerController {
 
 	@Autowired
 	private OauthClientDetailsRepository oauthClientDetailsRepository;
 
+	@ApiOperation(value = "应用注册", notes = "应用注册")
+	@ApiImplicitParams({@ApiImplicitParam(name = "client_id", value = "客户端id", required = true, paramType = "query"),
+		@ApiImplicitParam(name = "password", value = "密码", required = true, paramType = "query"),
+		@ApiImplicitParam(name = "webRedirectUrl", value = "重定向URL", required = true, paramType = "query")})
 	@PostMapping("/register")
-    public OauthClientDetails register(String client_id,String password,String webRedirectUrl){
-		
+    public OauthClientDetails register(@RequestParam String client_id, 
+			@RequestParam String password, 
+			@RequestParam String webRedirectUrl){
 		OauthClientDetails oauthClientDetails = new OauthClientDetails();
 		oauthClientDetails.setClient_id(client_id);
 		oauthClientDetails.setResource_ids(null);
@@ -36,9 +45,4 @@ public class ServerController {
 		oauthClientDetailsRepository.save(oauthClientDetails);
         return oauthClientDetails;
     }
-
-	@GetMapping("/index2")
-	public String index2() {
-		return "index2";
-	}
 }
