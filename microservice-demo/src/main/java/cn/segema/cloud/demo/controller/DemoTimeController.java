@@ -6,6 +6,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -16,16 +20,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import cn.segema.cloud.demo.domain.DemoTime;
 import cn.segema.cloud.demo.repository.DemoTimeRepository;
+import cn.segema.cloud.demo.utils.LocaleMessageSourceUtil;
 
 @RestController
 @RequestMapping(value = "/demo/time")
 public class DemoTimeController {
 
-	@Autowired
-	private MessageSource messageSource;
+	@Resource
+	private LocaleMessageSourceUtil localeMessage;
 
 	@Autowired
 	private DemoTimeRepository demoTimeRepository;
@@ -47,12 +54,24 @@ public class DemoTimeController {
 		return demo;
 	}
 
+	@GetMapping("/language")
+	public ResponseEntity language(HttpServletRequest request, HttpServletResponse response, String lang) {
+		LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
+		if ("zh".equals(lang)) {
+			localeResolver.setLocale(request, response, new Locale("zh", "CN"));
+		} else if ("en".equals(lang)) {
+			localeResolver.setLocale(request, response, new Locale("en", "US"));
+		}
+		Locale locale = LocaleContextHolder.getLocale();
+		return new ResponseEntity(localeMessage.getMessage("welcome",locale), HttpStatus.OK);
+	}
+
 	@GetMapping(value = "/category")
 	public ResponseEntity getMovieCategory() {
 		Locale locale = LocaleContextHolder.getLocale();
-		Map<Integer, String> kindsMap = new HashMap<>(16);
-		Integer code = Integer.valueOf(messageSource.getMessage("register.success.code", null, locale));
-		String message = messageSource.getMessage("register.success.message", null, locale);
+		Map<String, String> kindsMap = new HashMap<>(16);
+		String code = localeMessage.getMessage("welcome", locale);
+		String message = localeMessage.getMessage("welcome", locale);
 		kindsMap.put(code, message);
 		return new ResponseEntity(kindsMap, HttpStatus.BAD_REQUEST);
 	}
