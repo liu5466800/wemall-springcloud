@@ -21,6 +21,12 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root  
     password: root
+    
+  messages:                     # 国际化
+    encoding: UTF-8
+    basename: i18n/messages
+    #cache-duration: 3600  
+    
 #  redis: 
 #    database: 0
 #    host: 127.0.0.1

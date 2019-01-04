@@ -39,6 +39,9 @@ public class User {
 	
 	@Column(name = "delete_status")
 	private Integer deletestatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getUserId() {
 		return userId;
@@ -104,4 +107,12 @@ public class User {
 		this.deletestatus = deletestatus;
 	}
 
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+	
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+	
 }

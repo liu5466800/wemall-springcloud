@@ -15,19 +15,19 @@ import javax.persistence.Table;
 @Entity
 public class DemoTime {
 	@Id
-	@Column(name = "userid")
+	@Column(name = "user_id")
 	private String userId;
 
-	@Column(name = "username")
+	@Column(name = "user_name")
 	private String userName;
 
-	@Column(name = "nickname")
+	@Column(name = "nick_name")
 	private String nickName;
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "mobilenumber")
+	@Column(name = "mobile_number")
 	private String mobileNumber;
 
 	@Column(name = "create_time")
