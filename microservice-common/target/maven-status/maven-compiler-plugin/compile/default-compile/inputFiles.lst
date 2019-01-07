@@ -1,0 +1,15 @@
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/utils/HttpUtil.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/AlipayConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/TencentCloudConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/utils/AuthJsApiUtil.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/StatusConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/WechatConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/utils/IdGeneratorUtil.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/page/Pager.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/page/PagerParamVO.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/RedisCacheConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/utils/JsonUtil.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/utils/SnowflakeIdWorker.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/vo/ResultVO.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/ApiConstant.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-common/src/main/java/cn/segema/cloud/common/constants/OptionConstant.java

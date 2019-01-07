@@ -1,0 +1,53 @@
+server:
+  port: 6060
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  application:
+    name: microservice-filecenter
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+    multipart: 
+      max-file-size: 20MB
+      max-request-size: 20MB
+  jpa: 
+    database: MYSQL
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties: 
+      hibernate: 
+        dialect : org.hibernate.dialect.MySQL5Dialect  
+  datasource:                         
+     url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
+     driverClassName: com.mysql.jdbc.Driver
+     username: root
+     password: root
+  thymeleaf: 
+     cache: false
+     prefix: classpath:/templates/
+     suffix: .html
+     mode: HTML5
+     encoding: UTF-8
+     content-type: text/html
+logging: 
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+#    com.itmuch.youran.persistence: ERROR
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+    
+ #本地配置   
+segema.filecenter.localDirectory: /Users/wangyong/Downloads/test/testfiles/   
+segema.filecenter.dataSourceSave: false 

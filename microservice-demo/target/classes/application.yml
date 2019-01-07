@@ -1,0 +1,107 @@
+server:
+  port: 10000
+  servlet:
+    session: 
+     cookie:
+        name: SSO-DEMO
+spring: 
+  application:
+    name: microservice-demo    # 项目名称尽量用小写
+  jpa:
+    database: MYSQL
+   # database: POSTGRESQL
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties: 
+      hibernate: 
+       dialect : org.hibernate.dialect.MySQL5Dialect
+       #dialect : org.hibernate.dialect.PostgreSQLDialect
+  datasource:                           # 指定mysql数据源
+    url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
+    driverClassName: com.mysql.jdbc.Driver
+    username: root  
+    password: root
+#    plateform: h2
+#    schema: classpath:schema.sql
+#    data: classpath:data.sql 
+    
+    
+#  datasource:                           # 指定postgresql数据源
+#    url: jdbc:postgresql://127.0.0.1:5433/microservice_demo
+#    driverClassName: org.postgresql.Driver
+#    username: postgres  
+#    password: postgres  
+
+  messages:                     # 国际化
+    encoding: UTF-8
+    basename: i18n/messages
+    #cache-duration: 3600
+
+  redis:                               # 指定redis数据源
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    lettuce:
+      pool: 
+       max-active: 8
+       max-wait: -1
+       max-idle: 8
+       min-idle: 0
+    timeout: 0
+
+  rabbitmq:                               # 指定rabbitmq源
+     addresses: 127.0.0.1:5672
+     username: springcloud
+     password: springcloud
+     virtual-host: /
+     
+  elasticsearch:                    # 指定elasticsearch源
+    jest:
+      uris: http://127.0.0.1:9200
+      username: elastic
+      password: elastic
+      read-timeout: 5000
+      connection-timeout: 5000 
+#    transportClient:
+#      port: 9300
+     
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+#    com.itmuch.youran.persistence: ERROR
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+  instance:
+    hostname: demo
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+#hystrix turbin配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
+        
+#security:
+#  oauth2:
+#    client:
+#      client-id: demo
+#      client-secret: 12345
+#      access-token-uri: http://localhost:9999/oauth/token
+#      user-authorization-uri: http://localhost:9999/oauth/authorize
+#    resource:
+#      user-info-uri: http://localhost:9999/user/me        
+
+#本地配置   
+demo.local.directory: /Users/wangyong/test/testfiles

@@ -1,0 +1,42 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "name": "spring.task.pool",
+      "type": "cn.segema.cloud.demo.config.TaskThreadPoolConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "defaultValue": 5,
+      "name": "spring.task.pool.core-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "defaultValue": 60,
+      "name": "spring.task.pool.keep-alive-seconds",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "defaultValue": 200,
+      "name": "spring.task.pool.max-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "defaultValue": 1000,
+      "name": "spring.task.pool.queue-capacity",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.segema.cloud.demo.config.TaskThreadPoolConfig",
+      "defaultValue": "FSH-AsyncTask-",
+      "name": "spring.task.pool.thread-name-prefix",
+      "type": "java.lang.String"
+    }
+  ]
+}

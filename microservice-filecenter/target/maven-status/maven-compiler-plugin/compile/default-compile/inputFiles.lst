@@ -1,0 +1,8 @@
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/domain/Filecenter.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/controller/FilecenterController.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/repository/FilecenterRepository.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/util/FileUtil.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/config/filecenterProperties.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/vo/FilecenterVO.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/FilecenterApplication.java
+/Users/wangyong/wemall/servers/wemall-springcloud/microservice-filecenter/src/main/java/cn/segema/cloud/filecenter/config/FilecenterConfig.java

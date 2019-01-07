@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    session: 
+     cookie:
+        name: SSO-CLIENT1
+spring:
+  application:
+    name: microservice-sso-client1
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
+    username: root
+    password: root
+  thymeleaf:
+    cache: false  
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+eureka: 
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    hostname: demo
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}   
+security:
+  oauth2:
+    client:
+      client-id: client1
+      client-secret: 12345
+      access-token-uri: http://localhost:9999/oauth/token
+      user-authorization-uri: http://localhost:9999/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:9999/user/me
+    
+      

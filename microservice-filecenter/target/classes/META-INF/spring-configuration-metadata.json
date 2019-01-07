@@ -1,0 +1,24 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.segema.cloud.filecenter.config.filecenterProperties",
+      "name": "segema.filecenter",
+      "type": "cn.segema.cloud.filecenter.config.filecenterProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.segema.cloud.filecenter.config.filecenterProperties",
+      "defaultValue": false,
+      "name": "segema.filecenter.data-source-save",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "cn.segema.cloud.filecenter.config.filecenterProperties",
+      "defaultValue": "\/Users\/wangyong\/Downloads\/test\/testfiles\/",
+      "name": "segema.filecenter.local-directory",
+      "type": "java.lang.String"
+    }
+  ]
+}
