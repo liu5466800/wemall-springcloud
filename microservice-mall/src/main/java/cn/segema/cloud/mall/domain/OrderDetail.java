@@ -31,12 +31,21 @@ public class OrderDetail {
 
 	@Column(name = "unit")
 	private String unit;
+	
+	@Column(name = "stock")
+	private BigDecimal stock;
 
 	@Column(name = "price")
 	private BigDecimal price;
 
 	@Column(name = "money")
 	private BigDecimal money;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getOrderDetailId() {
 		return orderDetailId;
@@ -94,4 +103,20 @@ public class OrderDetail {
 		this.money = money;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+	
 }

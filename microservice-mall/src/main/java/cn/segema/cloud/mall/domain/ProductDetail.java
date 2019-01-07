@@ -20,13 +20,13 @@ public class ProductDetail {
 	@Column(name = "product_detail_id")
 	private BigInteger productDetailId;
 
-	@Column(name = "productid")
+	@Column(name = "product_id")
 	private BigInteger productId;
 
-	@Column(name = "specificationid")
+	@Column(name = "specification_id")
 	private BigInteger specificationId;
 
-	@Column(name = "valueid")
+	@Column(name = "value_id")
 	private BigInteger valueId;
 
 	@Column(name = "unit")
@@ -37,9 +37,12 @@ public class ProductDetail {
 
 	@Column(name = "stock")
 	private BigDecimal stock;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
 
 	@Column(name = "create_time")
-	private LocalDateTime createTime;
+	private BigInteger createTime;
 
 	public BigInteger getProductDetailId() {
 		return productDetailId;
@@ -97,11 +100,19 @@ public class ProductDetail {
 		this.stock = stock;
 	}
 
-	public LocalDateTime getCreateTime() {
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
+	public void setCreateTime(BigInteger createTime) {
 		this.createTime = createTime;
 	}
 

@@ -1,7 +1,7 @@
 package cn.segema.cloud.mall.domain;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,7 +31,7 @@ public class Category {
 	@Column(name = "order_number")
 	private int orderNumber;
 
-	@Column(name = "parentid")
+	@Column(name = "parent_id")
 	private BigInteger parentId;
 
 	@Column(name = "status")
@@ -39,9 +39,12 @@ public class Category {
 
 	@Column(name = "description")
 	private String description;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
 
 	@Column(name = "create_time")
-	private LocalDateTime createTime;
+	private BigInteger createTime;
 
 	public BigInteger getCategoryId() {
 		return categoryId;
@@ -107,11 +110,19 @@ public class Category {
 		this.description = description;
 	}
 
-	public LocalDateTime getCreateTime() {
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
+	public void setCreateTime(BigInteger createTime) {
 		this.createTime = createTime;
 	}
 

@@ -2,7 +2,7 @@ package cn.segema.cloud.mall.domain;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,18 +26,20 @@ public class Order {
 	@Column(name = "order_code")
 	private String orderCode;
 
-
 	@Column(name = "status")
 	private int status;
 
 	@Column(name = "remarks")
 	private String remarks;
 
-	@Column(name = "create_time")
-	private LocalDateTime createTime;
-
 	@Column(name = "order_money")
 	private BigDecimal orderMoney;
+
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getOrderId() {
 		return orderId;
@@ -79,14 +81,6 @@ public class Order {
 		this.remarks = remarks;
 	}
 
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
-	}
-
 	public BigDecimal getOrderMoney() {
 		return orderMoney;
 	}
@@ -94,5 +88,21 @@ public class Order {
 	public void setOrderMoney(BigDecimal orderMoney) {
 		this.orderMoney = orderMoney;
 	}
-	
+
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+
 }

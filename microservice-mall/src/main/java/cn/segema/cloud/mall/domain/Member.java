@@ -1,7 +1,6 @@
 package cn.segema.cloud.mall.domain;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +22,12 @@ public class Member {
 
 	@Column(name = "member_name")
 	private String memberName;
+	
+	@Column(name = "avatar")
+	private String avatar;
+	
+	@Column(name = "birthday")
+	private BigInteger birthday;
 
 	@Column(name = "real_name")
 	private String realName;
@@ -36,24 +41,12 @@ public class Member {
 	@Column(name = "mobile_number")
 	private String mobileNumber;
 
-	@Column(name = "credentials_salt")
-	private String credentialsSalt;
+	@Column(name = "salt")
+	private String salt;
 
 	@Column(name = "gender")
 	private Integer gender;
-
-	@Column(name = "delete_status")
-	private Integer deletestatus;
-
-	@Column(name = "avatar")
-	private String avatar;
-
-	@Column(name = "birthday")
-	private LocalDateTime birthday;
-
-	@Column(name = "create_time")
-	private LocalDateTime createTime;
-
+	
 	@Column(name = "email")
 	private String email;
 
@@ -61,7 +54,7 @@ public class Member {
 	private String idcard;
 
 	@Column(name = "idcard_type")
-	private String idcardType;
+	private Integer idcardType;
 
 	@Column(name = "openid")
 	private String openid;
@@ -74,6 +67,15 @@ public class Member {
 
 	@Column(name = "signature")
 	private String signature;
+	
+	@Column(name = "status")
+	private Integer status;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getMemberId() {
 		return memberId;
@@ -89,6 +91,22 @@ public class Member {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public BigInteger getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(BigInteger birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getRealName() {
@@ -123,12 +141,12 @@ public class Member {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getCredentialsSalt() {
-		return credentialsSalt;
+	public String getSalt() {
+		return salt;
 	}
 
-	public void setCredentialsSalt(String credentialsSalt) {
-		this.credentialsSalt = credentialsSalt;
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public Integer getGender() {
@@ -137,38 +155,6 @@ public class Member {
 
 	public void setGender(Integer gender) {
 		this.gender = gender;
-	}
-
-	public Integer getDeletestatus() {
-		return deletestatus;
-	}
-
-	public void setDeletestatus(Integer deletestatus) {
-		this.deletestatus = deletestatus;
-	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-	public LocalDateTime getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(LocalDateTime birthday) {
-		this.birthday = birthday;
-	}
-
-	public LocalDateTime getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(LocalDateTime createTime) {
-		this.createTime = createTime;
 	}
 
 	public String getEmail() {
@@ -187,11 +173,11 @@ public class Member {
 		this.idcard = idcard;
 	}
 
-	public String getIdcardType() {
+	public Integer getIdcardType() {
 		return idcardType;
 	}
 
-	public void setIdcardType(String idcardType) {
+	public void setIdcardType(Integer idcardType) {
 		this.idcardType = idcardType;
 	}
 
@@ -225,6 +211,30 @@ public class Member {
 
 	public void setSignature(String signature) {
 		this.signature = signature;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
 	}
 
 }

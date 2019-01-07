@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Table(name = "mall_product")
 @Entity
-public class Product implements Serializable{
+public class Product{
 	@Id
 	@Column(name = "product_id")
 	private BigInteger productId;
@@ -48,17 +48,20 @@ public class Product implements Serializable{
 	@Column(name = "status")
 	private int status;
 
-	@Column(name = "buyprice")
+	@Column(name = "buy_price")
 	private BigDecimal buyPrice;
 
 	@Column(name = "saleprice")
 	private BigDecimal salePrice;
 
-	@Column(name = "createtime")
-	private LocalDateTime createtime;
-
 	@Column(name = "remarks")
 	private String remarks;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createtime;
 
 	public BigInteger getProductId() {
 		return productId;
@@ -156,20 +159,28 @@ public class Product implements Serializable{
 		this.salePrice = salePrice;
 	}
 
-	public LocalDateTime getCreatetime() {
-		return createtime;
-	}
-
-	public void setCreatetime(LocalDateTime createtime) {
-		this.createtime = createtime;
-	}
-
 	public String getRemarks() {
 		return remarks;
 	}
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(BigInteger createtime) {
+		this.createtime = createtime;
 	}
 
 }
