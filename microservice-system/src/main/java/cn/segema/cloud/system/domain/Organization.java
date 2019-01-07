@@ -41,6 +41,12 @@ public class Organization {
 	@Column(name = "type")
 	private Integer type;
 	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
+	
 	@OneToMany(fetch=FetchType.LAZY)
     @JoinColumn(name="parent_id")
     private Set<Organization> children = new HashSet<Organization>();
@@ -101,4 +107,20 @@ public class Organization {
 		this.type = type;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+	
 }

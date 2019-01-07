@@ -60,9 +60,11 @@ public class Personal {
 	@Column(name = "identity_number")
 	private String identityNumber;
 	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
 	@Column(name = "create_time")
-	private LocalDateTime createTime;
-
+	private BigInteger createTime;
 
 	public BigInteger getPersonalId() {
 		return personalId;
@@ -176,11 +178,19 @@ public class Personal {
 		this.identityNumber = identityNumber;
 	}
 
-	public LocalDateTime getCreateTime() {
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
+	public void setCreateTime(BigInteger createTime) {
 		this.createTime = createTime;
 	}
 

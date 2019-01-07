@@ -32,7 +32,10 @@ public class Role {
 	private Integer locked;
 	
 	@Column(name = "delete_status")
-	private Integer deletestatus;
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getRoleId() {
 		return roleId;
@@ -74,12 +77,20 @@ public class Role {
 		this.locked = locked;
 	}
 
-	public Integer getDeletestatus() {
-		return deletestatus;
+	public Integer getDeleteStatus() {
+		return deleteStatus;
 	}
 
-	public void setDeletestatus(Integer deletestatus) {
-		this.deletestatus = deletestatus;
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
 	}
 
 }

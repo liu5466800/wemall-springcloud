@@ -52,6 +52,12 @@ public class Address {
 	
 	@Column(name = "latitude")
 	private String latitude;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getAddressId() {
 		return addressId;
@@ -149,4 +155,20 @@ public class Address {
 		this.latitude = latitude;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+	
 }

@@ -38,7 +38,7 @@ public class User {
 	private Integer gender;
 	
 	@Column(name = "delete_status")
-	private Integer deletestatus;
+	private Integer deleteStatus;
 	
 	@Column(name = "create_time")
 	private BigInteger createTime;
@@ -99,12 +99,12 @@ public class User {
 		this.gender = gender;
 	}
 
-	public Integer getDeletestatus() {
-		return deletestatus;
+	public Integer getDeleteStatus() {
+		return deleteStatus;
 	}
 
-	public void setDeletestatus(Integer deletestatus) {
-		this.deletestatus = deletestatus;
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
 	}
 
 	public BigInteger getCreateTime() {

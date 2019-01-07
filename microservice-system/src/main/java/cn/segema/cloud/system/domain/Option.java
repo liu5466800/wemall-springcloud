@@ -25,6 +25,12 @@ public class Option {
 
 	@Column(name = "option_value")
 	private String optionValue;
+	
+	@Column(name = "delete_status")
+	private Integer deleteStatus;
+	
+	@Column(name = "create_time")
+	private BigInteger createTime;
 
 	public BigInteger getOptionId() {
 		return optionId;
@@ -50,4 +56,20 @@ public class Option {
 		this.optionValue = optionValue;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
+
+	public BigInteger getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(BigInteger createTime) {
+		this.createTime = createTime;
+	}
+	
 }
