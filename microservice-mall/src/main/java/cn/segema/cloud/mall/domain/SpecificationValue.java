@@ -32,9 +32,6 @@ public class SpecificationValue {
 	@Column(name = "remarks")
 	private String remarks;
 
-	@Column(name = "order_number")
-	private Integer orderNumber;
-
 	@Column(name = "status")
 	private Integer status;
 	
@@ -43,6 +40,9 @@ public class SpecificationValue {
 
 	@Column(name = "create_time")
 	private BigInteger createTime;
+	
+	@Column(name = "sort_number")
+	private Integer sortNumber;
 
 	public BigInteger getValueId() {
 		return valueId;
@@ -84,14 +84,6 @@ public class SpecificationValue {
 		this.remarks = remarks;
 	}
 
-	public int getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-
 	public int getStatus() {
 		return status;
 	}
@@ -116,4 +108,16 @@ public class SpecificationValue {
 		this.createTime = createTime;
 	}
 
+	public Integer getSortNumber() {
+		return sortNumber;
+	}
+
+	public void setSortNumber(Integer sortNumber) {
+		this.sortNumber = sortNumber;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	
 }

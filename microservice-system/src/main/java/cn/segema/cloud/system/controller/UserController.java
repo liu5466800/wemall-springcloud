@@ -26,7 +26,6 @@ import cn.segema.cloud.common.page.Pager;
 import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.UserRepository;
-import cn.segema.cloud.system.vo.OrganizationVO;
 import cn.segema.cloud.system.vo.UserPersonalVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

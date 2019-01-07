@@ -1,7 +1,7 @@
 package cn.segema.cloud.mall.domain;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
