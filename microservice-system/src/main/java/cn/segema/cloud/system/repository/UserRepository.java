@@ -9,10 +9,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.vo.UserPersonalVO;
+import cn.segema.cloud.system.vo.UserVO;
 
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<User, BigInteger>,JpaRepository<User, BigInteger> ,JpaSpecificationExecutor<User>{
@@ -27,11 +29,14 @@ public interface UserRepository extends PagingAndSortingRepository<User, BigInte
 	 @Query("SELECT u from User u  where u.userName = ?1 ") 
 	 public List<User> findByUserName(String userName); 
 	 
+	 @Query("SELECT u from User u  where u.nickName = ?1 ") 
+	 public List<User> findByNickName(String nickName); 
+	 
 	 @Query("SELECT u from User u") 
 	 public List<User> findAllUser(); 
 	 
-	 @Query(value = "SELECT * FROM sys_user WHERE nick_name = ?1",
-			    countQuery = "SELECT count(*) FROM sys_user WHERE nick_name = ?1",
+	 @Query(value = "SELECT * FROM sys_user WHERE 1=1 if(:#{#user.userName}!=null,AND user_name = :#{#user.userName}) if(:#{#user.gender}!=null,AND gender = :#{#user.gender}) ",
+			    countQuery = "SELECT count(*) FROM sys_user WHERE 1=1 if(:#{#user.userName}!=null,AND user_name = :#{#user.userName}) if(:#{#user.gender}!=null,AND gender = :#{#user.gender}) ",
 			    nativeQuery = true)
-	 public	Page<User> findByNickName(String nickName, Pageable pageable);
+	 public	Page<User> findByPage(@Param("user") UserVO user, Pageable pageable);
 }

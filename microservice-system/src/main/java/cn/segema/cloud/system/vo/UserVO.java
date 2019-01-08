@@ -3,11 +3,15 @@ package cn.segema.cloud.system.vo;
 import java.io.Serializable;
 import java.math.BigInteger;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * 用户VO
  * @author wangyong
  *
  */
+@JsonInclude(value=Include.NON_EMPTY)
 public class UserVO  implements Serializable{
 
 	private static final long serialVersionUID = 3336026114894190728L;
@@ -15,6 +19,8 @@ public class UserVO  implements Serializable{
 	private BigInteger userId;
 	
 	private String userName;
+	
+	private Integer gender;
 	
 	private String nickName;
 	
@@ -38,6 +44,14 @@ public class UserVO  implements Serializable{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
 	}
 
 	public String getNickName() {

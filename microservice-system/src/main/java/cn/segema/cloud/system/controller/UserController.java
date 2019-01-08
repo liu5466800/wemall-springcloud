@@ -27,6 +27,7 @@ import cn.segema.cloud.common.utils.IdGeneratorUtil;
 import cn.segema.cloud.system.domain.User;
 import cn.segema.cloud.system.repository.UserRepository;
 import cn.segema.cloud.system.vo.UserPersonalVO;
+import cn.segema.cloud.system.vo.UserVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -89,12 +90,19 @@ public class UserController {
 
 	@ApiOperation(value = "根据昵称获取用户", notes = "根据昵称获取用户")
 	@ApiImplicitParams({
+			@ApiImplicitParam(name = "userName", value = "昵称", required = true, paramType = "path") })
+	@GetMapping("/user-name/{userName}")
+	public List<User> findByUserName(@PathVariable String userName) {
+		List<User> userList = userRepository.findByUserName(userName);
+		return userList;
+	}
+	
+	@ApiOperation(value = "根据用户名获取用户", notes = "根据用户名获取用户")
+	@ApiImplicitParams({
 			@ApiImplicitParam(name = "nickName", value = "昵称", required = true, paramType = "path") })
 	@GetMapping("/nick-name/{nickName}")
-	public Page<User> findByNickName(@PathVariable String nickName) {
-		Sort sort = new Sort(Sort.Direction.DESC, "userId");
-		Pageable pageable = PageRequest.of(1, 20, sort);
-		Page<User> userList = userRepository.findByNickName(nickName, pageable);
+	public List<User> findByNickName(@PathVariable String nickName) {
+		List<User> userList = userRepository.findByNickName(nickName);
 		return userList;
 	}
 
@@ -105,10 +113,10 @@ public class UserController {
 	@GetMapping("/page")
 	public Pager<User> findByPage(@RequestParam(defaultValue ="1") int page, 
 			@RequestParam(defaultValue = "20") int limit, 
-			@RequestParam(defaultValue = "userId") String sort) {
+			@RequestParam(defaultValue = "user_id") String sort,UserVO user) {
 		Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
 		Pageable pageable = PageRequest.of(page - 1, limit, sortOrder);
-		Page<User> userPage = userRepository.findAll(pageable);
+		Page<User> userPage = userRepository.findByPage(user,pageable);
 		Pager<User> pager = new Pager<User>();
 		pager.setCode("0");
 		pager.setMsg("success");

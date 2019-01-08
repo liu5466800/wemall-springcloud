@@ -5,7 +5,7 @@
 
   <groupId>cn.segema.cloud</groupId>
   <artifactId>wemall-springcloud</artifactId>
-  <version>${project.version}</version>
+  <version>${parent-version}</version>
   <packaging>pom</packaging>
   
   <modules>
@@ -36,7 +36,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.version>1.0.0</project.version>
+    <parent-version>1.0.0</parent-version>
   </properties>
 
   <dependencyManagement>

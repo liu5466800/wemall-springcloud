@@ -8,7 +8,7 @@
 	<parent>
 		<groupId>cn.segema.cloud</groupId>
 		<artifactId>wemall-springcloud</artifactId>
-		<version>${project.version}</version>
+		<version>${parent-version}</version>
 	</parent>
 
 	<dependencies>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>cn.segema.cloud</groupId>
 			<artifactId>microservice-common</artifactId>
-			<version>${project.version}</version>
+			<version>${parent-version}</version>
 		</dependency>
 
 	</dependencies>
