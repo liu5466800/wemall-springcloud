@@ -35,8 +35,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, BigInte
 	 @Query("SELECT u from User u") 
 	 public List<User> findAllUser(); 
 	 
-	 @Query(value = "SELECT * FROM sys_user WHERE 1=1 if(:#{#user.userName}!=null,AND user_name = :#{#user.userName}) if(:#{#user.gender}!=null,AND gender = :#{#user.gender}) ",
-			    countQuery = "SELECT count(*) FROM sys_user WHERE 1=1 if(:#{#user.userName}!=null,AND user_name = :#{#user.userName}) if(:#{#user.gender}!=null,AND gender = :#{#user.gender}) ",
+	 @Query(value = "SELECT * FROM sys_user WHERE if(:#{#user.userName}!=null,user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!=null,gender = :#{#user.gender},1=1) ",
+			    countQuery = "SELECT count(*) FROM sys_user WHERE if(:#{#user.userName}!=null,user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!=null,gender = :#{#user.gender},1=1) ",
 			    nativeQuery = true)
 	 public	Page<User> findByPage(@Param("user") UserVO user, Pageable pageable);
 }
