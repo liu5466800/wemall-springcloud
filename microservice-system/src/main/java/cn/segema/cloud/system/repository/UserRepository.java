@@ -35,8 +35,13 @@ public interface UserRepository extends PagingAndSortingRepository<User, BigInte
 	 @Query("SELECT u from User u") 
 	 public List<User> findAllUser(); 
 	 
-	 @Query(value = "SELECT * FROM sys_user WHERE if(:#{#user.userName}!=null,user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!=null,gender = :#{#user.gender},1=1) ",
-			    countQuery = "SELECT count(*) FROM sys_user WHERE if(:#{#user.userName}!=null,user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!=null,gender = :#{#user.gender},1=1) ",
+	 @Query(value = "SELECT * FROM sys_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!='',gender = :#{#user.gender},1=1) ",
+			    countQuery = "SELECT count(*) FROM sys_user WHERE if(:#{#user.userName}!='',user_name = :#{#user.userName},1=1) and if(:#{#user.gender}!='',gender = :#{#user.gender},1=1)",
 			    nativeQuery = true)
 	 public	Page<User> findByPage(@Param("user") UserVO user, Pageable pageable);
+	 
+	 @Query(value = "SELECT * FROM sys_user WHERE if(?1 !='',user_name=?1,1=1) and if(?2 !='',gender=?2,1=1) ",
+			    countQuery = "SELECT count(*) FROM sys_user WHERE if(?1 !='',user_name=?1,1=1) and if(?2 !='',gender=?2,1=1) ",
+			    nativeQuery = true)
+	 public	Page<User> findByPage(String userName,Integer gender, Pageable pageable);
 }

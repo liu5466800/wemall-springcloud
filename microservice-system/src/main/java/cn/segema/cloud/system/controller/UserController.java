@@ -1,6 +1,8 @@
 package cn.segema.cloud.system.controller;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,12 +47,13 @@ public class UserController {
 
 	@ApiOperation(value = "新增用户", notes = "新增用户")
 	@PostMapping
-	public User add(User user, Model model) {
+	public User add(@RequestBody User user) {
 		if (user.getUserId() == null) {
 			user.setUserId(BigInteger.valueOf(IdGeneratorUtil.generateSnowFlakeId()));
 		}
 		String pass = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(pass);
+		user.setCreateTime(BigInteger.valueOf(System.currentTimeMillis()));
 		userRepository.save(user);
 		return user;
 	}
@@ -64,10 +68,13 @@ public class UserController {
 	}
 
 	@ApiOperation(value = "删除用户", notes = "删除用户")
-	@DeleteMapping
-	public User delete(User user) {
-		userRepository.delete(user);
-		return user;
+	@DeleteMapping("/{userId}")
+	public User delete(@PathVariable BigInteger userId) {
+		Optional<User> user = userRepository.findById(userId);
+		if(user!=null) {
+			userRepository.delete(user.get());
+		}
+		return user.get();
 	}
 
 	@ApiOperation(value = "根据id获取用户", notes = "根据id获取用户")
@@ -116,6 +123,7 @@ public class UserController {
 			@RequestParam(defaultValue = "user_id") String sort,UserVO user) {
 		Sort sortOrder = new Sort(Sort.Direction.DESC, sort);
 		Pageable pageable = PageRequest.of(page - 1, limit, sortOrder);
+		//Page<User> userPage = userRepository.findByPage(user.getUserName(),user.getGender(),pageable);
 		Page<User> userPage = userRepository.findByPage(user,pageable);
 		Pager<User> pager = new Pager<User>();
 		pager.setCode("0");
