@@ -18,6 +18,7 @@
 		<groupId>cn.segema.cloud</groupId>
 		<artifactId>wemall-springcloud</artifactId>
 		<version>${parent-version}</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	
 	<dependencies>

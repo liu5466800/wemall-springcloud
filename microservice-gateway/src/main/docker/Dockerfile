@@ -1,5 +1,12 @@
-FROM java:8
-VOLUME /tmp
-ADD api-gateway-microservice-0.1.0.jar app.jar
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+# 指定基础镜像  
+FROM frolvlad/alpine-oraclejdk8:slim
+# 指定作者名和E-mail  
+MAINTAINER wangyong "vangyong@126.com"  
+#指定挂载点  
+VOLUME /tmp  
+#将本地文件或目录复制到由dockerfile构建的镜像中  
+ADD microservice-gateway.jar microservice-gateway.jar  
+#设置环境变量  
+#ENV JAVA_OPTS=""  
+#提供容器运行的默认命令  
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar", "/microservice-gateway.jar"] 
