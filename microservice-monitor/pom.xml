@@ -60,4 +60,8 @@
         </dependency>
 		
 	</dependencies>
+	
+	<build>
+		<finalName>microservice-monitor</finalName>
+	 </build>
 </project>

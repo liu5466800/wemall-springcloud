@@ -52,13 +52,9 @@
 		<artifactId>microservice-common</artifactId>
 		<version>${parent-version}</version>
 	</dependency>
-	
-	 <!-- 添加system 依赖 -->
-    <!-- <dependency>
-		<groupId>cn.segema.cloud</groupId>
-		<artifactId>microservice-system</artifactId>
-		<version>0.0.1</version>
-	</dependency> -->
-	
   </dependencies>
+  
+  <build>
+		<finalName>microservice-wemall</finalName>
+	 </build>
 </project>

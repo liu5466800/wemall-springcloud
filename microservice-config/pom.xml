@@ -22,4 +22,8 @@
       <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
   </dependencies>
+  
+  <build>
+	<finalName>microservice-config</finalName>
+  </build>
 </project>

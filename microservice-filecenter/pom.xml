@@ -93,4 +93,9 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<finalName>microservice-filecenter</finalName>
+	 </build>
+	 
 </project>

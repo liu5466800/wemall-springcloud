@@ -94,4 +94,8 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<finalName>microservice-sso-server</finalName>
+	 </build>
 </project>

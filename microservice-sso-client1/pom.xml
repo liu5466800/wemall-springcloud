@@ -83,4 +83,8 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<finalName>microservice-sso-client1</finalName>
+	 </build>
 </project>

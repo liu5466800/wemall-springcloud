@@ -66,4 +66,8 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<finalName>microservice-gateway</finalName>
+	 </build>
+	 
 </project>

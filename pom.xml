@@ -15,13 +15,13 @@
     <module>microservice-discovery</module>
     <module>microservice-monitor</module>
     <module>microservice-demo</module>
+    <module>microservice-system</module>
+    <module>microservice-mall</module>
+    <module>microservice-wemall</module>
     <module>microservice-filecenter</module>
     <module>microservice-sso-server</module>
     <module>microservice-sso-client1</module>
     <module>microservice-sso-client2</module>
-    <module>microservice-system</module>
-    <module>microservice-mall</module>
-    <module>microservice-wemall</module>
   </modules>
 
   <!-- 使用最新的spring-boot版本 -->
@@ -36,6 +36,8 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.source.version>1.8</java.source.version>
+	<java.target.version>1.8</java.target.version>
     <parent-version>1.0.0</parent-version>
   </properties>
 
@@ -53,10 +55,13 @@
 
   <build>
     <plugins>
-      	<plugin>
+      	<!-- <plugin>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
-		</plugin>
+			<configuration> 
+	        		<executable>true</executable>
+	      	</configuration> 
+		</plugin> -->
          <!-- java编译插件 -->
          <plugin>
              <groupId>org.apache.maven.plugins</groupId>
