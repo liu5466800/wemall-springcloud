@@ -22,8 +22,8 @@ target/*
 
 # idea ignore
 .idea/
-*.target/
-*.target/*
+*/target/
+*/target/*
 *.ipr
 *.iml
 *.iws
