@@ -49,7 +49,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		
+
 		<!-- swagger2 -->
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -61,27 +61,19 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		
+
 		<!-- servlet容器 -->
-		 <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-		
-		 <!-- auth2用以下依赖，springcloud的tarter有问题 -->
-        <!-- <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
 		<dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>2.3.3.RELEASE</version>
-        </dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-		</dependency> -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- auth2用以下依赖，springcloud的tarter有问题 -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+			</dependency> <dependency> <groupId>org.springframework.security.oauth</groupId> 
+			<artifactId>spring-security-oauth2</artifactId> <version>2.3.3.RELEASE</version> 
+			</dependency> <dependency> <groupId>org.springframework.security.oauth.boot</groupId> 
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId> </dependency> -->
 
 		<dependency>
 			<groupId>cn.segema.cloud</groupId>
@@ -89,29 +81,42 @@
 			<version>${parent-version}</version>
 		</dependency>
 	</dependencies>
-	
-	
-  <build>
-    <plugins>
-      	<plugin>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-			<configuration> 
-	        		<executable>true</executable>
-	      	</configuration> 
-		</plugin>
-         <!-- java编译插件 -->
-         <plugin>
-             <groupId>org.apache.maven.plugins</groupId>
-             <artifactId>maven-compiler-plugin</artifactId>
-             <configuration>
-                 <source>1.8</source>
-                 <target>1.8</target>
-                 <encoding>UTF-8</encoding>
-             </configuration>
-         </plugin>
-    </plugins>
-    <finalName>microservice-system</finalName>
-  </build>
-	 
+
+
+	<build>
+		<finalName>microservice-system</finalName>
+		<plugins>
+			<!-- java编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<imageName>${project.groupId}/${project.artifactId}:${project.version}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<!-- 与maven配置文件settings.xml一致 -->
+					<serverId>docker-registry</serverId>
+					<registryUrl>https://index.docker.io/v1/</registryUrl>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
 </project>

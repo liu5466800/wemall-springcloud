@@ -34,26 +34,24 @@
 		</dependency>
 
 		<!-- 消息总线 -->
-		<!-- <dependency> 
-				<groupId>org.springframework.cloud</groupId> 
-				<artifactId>spring-cloud-starter-bus-amqp</artifactId> 
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId>spring-cloud-starter-bus-amqp</artifactId> 
 			</dependency> -->
-			
+
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>	
-			
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-netflix-turbine</artifactId>
-		</dependency>	
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
@@ -120,53 +118,47 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-elasticsearch</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 		</dependency>
-		
+
 		<!-- transport客户端 -->
 		<dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>transport</artifactId>
-        </dependency>
- 
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>transport</artifactId>
+		</dependency>
+
 		<!-- IK分词器 -->
-<!-- 		<dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch-analysis-ik</artifactId>
-            <version>5.5.1</version>
-        </dependency> -->
+		<!-- <dependency> <groupId>org.elasticsearch</groupId> <artifactId>elasticsearch-analysis-ik</artifactId> 
+			<version>5.5.1</version> </dependency> -->
 
 		<dependency>
 			<groupId>io.searchbox</groupId>
 			<artifactId>jest</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.sun.jna</groupId>
-			<artifactId>jna</artifactId>
-			<version>3.0.9</version>
-		</dependency> -->
-		
+		<!-- <dependency> <groupId>com.sun.jna</groupId> <artifactId>jna</artifactId> 
+			<version>3.0.9</version> </dependency> -->
+
 		<!-- jsr310 -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.datatype</groupId>
-		    <artifactId>jackson-datatype-jsr310</artifactId>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
-		
+
 		<!-- alibaba fastjson -->
 		<dependency>
-		    <groupId>com.alibaba</groupId>
-		    <artifactId>fastjson</artifactId>
-		    <version>1.2.12</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.12</version>
 		</dependency>
-		
+
 		<!-- junit插件 -->
 		<dependency>
-		    <groupId>junit</groupId>
-		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
 		</dependency>
 
 		<!-- clickhouse -->
@@ -189,21 +181,13 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-		
+
 		<!-- auth2用以下依赖，springcloud的tarter有问题 -->
-        <!--  <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-		 <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>2.3.3.RELEASE</version>
-        </dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId> 
+			</dependency> <dependency> <groupId>org.springframework.security.oauth</groupId> 
+			<artifactId>spring-security-oauth2</artifactId> <version>2.3.3.RELEASE</version> 
+			</dependency> <dependency> <groupId>org.springframework.security.oauth.boot</groupId> 
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId> </dependency> -->
 
 		<!-- 公共类文件 -->
 		<dependency>
@@ -218,9 +202,40 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>microservice-demo</finalName>
-	 </build>
-	 
+		<plugins>
+			<!-- java编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<imageName>${project.groupId}/${project.artifactId}:${project.version}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+					<!-- 与maven配置文件settings.xml一致 -->
+					<serverId>docker-registry</serverId>
+					<registryUrl>https://index.docker.io/v1/</registryUrl>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

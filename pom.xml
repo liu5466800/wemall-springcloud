@@ -1,98 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>cn.segema.cloud</groupId>
-  <artifactId>wemall-springcloud</artifactId>
-  <version>${parent-version}</version>
-  <packaging>pom</packaging>
-  
-  <modules>
-  	<module>microservice-common</module>
-    <module>microservice-gateway</module>
-    <module>microservice-config</module>
-    <module>microservice-discovery</module>
-    <module>microservice-monitor</module>
-    <module>microservice-demo</module>
-    <module>microservice-system</module>
-    <module>microservice-mall</module>
-    <module>microservice-wemall</module>
-    <module>microservice-filecenter</module>
-    <module>microservice-sso-server</module>
-    <module>microservice-sso-client1</module>
-    <module>microservice-sso-client2</module>
-  </modules>
+	<groupId>cn.segema.cloud</groupId>
+	<artifactId>wemall-springcloud</artifactId>
+	<version>${parent-version}</version>
+	<packaging>pom</packaging>
 
-  <!-- 使用最新的spring-boot版本 -->
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.3.RELEASE</version>
-  </parent>
+	<modules>
+		<module>microservice-common</module>
+		<module>microservice-gateway</module>
+		<module>microservice-config</module>
+		<module>microservice-discovery</module>
+		<module>microservice-monitor</module>
+		<module>microservice-demo</module>
+		<module>microservice-system</module>
+		<module>microservice-mall</module>
+		<module>microservice-wemall</module>
+		<module>microservice-filecenter</module>
+		<module>microservice-sso-server</module>
+		<module>microservice-sso-client1</module>
+		<module>microservice-sso-client2</module>
+	</modules>
 
-  <properties>
-  	<maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.source.version>1.8</java.source.version>
-	<java.target.version>1.8</java.target.version>
-    <parent-version>1.0.0</parent-version>
-  </properties>
+	<!-- 使用最新的spring-boot版本 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+	</parent>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>Finchley.SR1</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-  </dependencyManagement>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.source.version>1.8</java.source.version>
+		<java.target.version>1.8</java.target.version>
+		<parent-version>1.0.0</parent-version>
+	</properties>
 
-  <build>
-    <plugins>
-      	<!-- <plugin>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-maven-plugin</artifactId>
-			<configuration> 
-	        		<executable>true</executable>
-	      	</configuration> 
-		</plugin> -->
-         <!-- java编译插件 -->
-         <plugin>
-             <groupId>org.apache.maven.plugins</groupId>
-             <artifactId>maven-compiler-plugin</artifactId>
-             <configuration>
-                 <source>1.8</source>
-                 <target>1.8</target>
-                 <encoding>UTF-8</encoding>
-             </configuration>
-         </plugin>
-         
-         <plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.0.0</version>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.SR1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<!-- java编译插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<imageName>${project.groupId}/${project.artifactId}:${project.version}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-					<!-- 与maven配置文件settings.xml一致 -->
-					<serverId>docker-registry</serverId>
-					<registryUrl>https://index.docker.io/v1/</registryUrl>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-         
-    </plugins>
-  </build>
+
+		</plugins>
+	</build>
 </project>
