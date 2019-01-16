@@ -33,7 +33,6 @@
 	</dependencies>
 
 	<build>
-
 		<finalName>microservice-common</finalName>
 		<plugins>
 			<!-- java编译插件 -->
