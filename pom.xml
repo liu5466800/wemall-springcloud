@@ -39,6 +39,7 @@
 		<java.source.version>1.8</java.source.version>
 		<java.target.version>1.8</java.target.version>
 		<parent-version>1.0.0</parent-version>
+		<docker.image.prefix>vangyong</docker.image.prefix>
 	</properties>
 
 	<dependencyManagement>
