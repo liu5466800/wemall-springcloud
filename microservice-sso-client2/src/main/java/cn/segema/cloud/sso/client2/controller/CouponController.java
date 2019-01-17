@@ -1,4 +1,4 @@
-package cn.segema.cloud.auth.client2.controller;
+package cn.segema.cloud.sso.client2.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

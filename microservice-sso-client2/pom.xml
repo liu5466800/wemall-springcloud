@@ -77,6 +77,13 @@
 	<build>
 		<finalName>microservice-sso-client2</finalName>
 		<plugins>
+			<plugin>  
+	          	<groupId>org.springframework.boot</groupId>  
+	          	<artifactId>spring-boot-maven-plugin</artifactId>  
+                <configuration>  
+                    <mainClass>cn.segema.cloud.sso.client2.SsoClient2Application</mainClass>
+                </configuration>  
+            </plugin>  
 			<!-- java编译插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

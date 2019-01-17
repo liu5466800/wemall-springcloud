@@ -67,6 +67,13 @@
 	<build>
 		<finalName>microservice-gateway</finalName>
 		<plugins>
+			<plugin>  
+	          	<groupId>org.springframework.boot</groupId>  
+	          	<artifactId>spring-boot-maven-plugin</artifactId>  
+                <configuration>  
+                    <mainClass>cn.segema.cloud.gateway.GatewayApplication</mainClass>
+                </configuration>  
+            </plugin>  
 			<!-- java编译插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
