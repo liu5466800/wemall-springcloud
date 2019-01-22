@@ -10,7 +10,13 @@ spring:
           uri: https://github.com/vangyong/wemall-springcloud.git/
           search-paths: config-repo
           username: vangyong
-          password: Wy513288
+          password: 123456
+#        health:
+#          repositories:
+#            check:
+#              name:
+#              label: 
+#              profiles: prod  
 #  rabbitmq:                            
 #     addresses: 127.0.0.1:5672
 #     username: springcloud

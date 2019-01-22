@@ -99,4 +99,4 @@ management:
 #      user-info-uri: http://localhost:9999/user/me        
 
 #本地配置   
-#demo.local.directory: /Users/wangyong/test/testfiles
+demo.local.directory: /Users/wangyong/test/testfiles
