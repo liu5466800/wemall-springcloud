@@ -23,11 +23,6 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root  
     password: root
-#    plateform: h2
-#    schema: classpath:schema.sql
-#    data: classpath:data.sql 
-    
-    
 #  datasource:                           # 指定postgresql数据源
 #    url: jdbc:postgresql://127.0.0.1:5433/microservice_demo
 #    driverClassName: org.postgresql.Driver
@@ -78,7 +73,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+      defaultZone: http://localhost:8761/eureka/    # 指定注册中心的地址
   instance:
     hostname: demo
     preferIpAddress: true
@@ -104,4 +99,4 @@ management:
 #      user-info-uri: http://localhost:9999/user/me        
 
 #本地配置   
-demo.local.directory: /Users/wangyong/test/testfiles
+#demo.local.directory: /Users/wangyong/test/testfiles
