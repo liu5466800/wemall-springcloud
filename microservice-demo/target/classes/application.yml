@@ -36,7 +36,7 @@ spring:
 
   messages:                     # 国际化
     encoding: UTF-8
-    basename: i18n/messages
+    basename: i18n/demo
     #cache-duration: 3600
 
   redis:                               # 指定redis数据源

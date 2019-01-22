@@ -2,7 +2,7 @@ server:
   port: 8761
 eureka:
   instance:
-    hostname: discovery
+    hostname: localhost
   client: 
     registerWithEureka: false    #是否注册自身到eureka服务器
     fetchRegistry: false         #是否从eureka服务器获取注册信息
