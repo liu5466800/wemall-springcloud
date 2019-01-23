@@ -8,33 +8,34 @@ spring:
   application:
     name: microservice-demo    # 项目名称尽量用小写
   jpa:
-    database: MYSQL
-   # database: POSTGRESQL
+    database: MYSQL # database: POSTGRESQL
     generate-ddl: false
     show-sql: true
     hibernate:
       ddl-auto: update
     properties: 
       hibernate: 
-       dialect : org.hibernate.dialect.MySQL5Dialect
-       #dialect : org.hibernate.dialect.PostgreSQLDialect
-  datasource:                           # 指定mysql数据源
+       dialect : org.hibernate.dialect.MySQL5Dialect  #dialect : org.hibernate.dialect.PostgreSQLDialect
+# 指定mysql数据源       
+  datasource:                           
     url: jdbc:mysql://127.0.0.1:3306/microservice_system?useUnicode=true&amp;characterEncoding=utf8
     driverClassName: com.mysql.jdbc.Driver
     username: root  
     password: root
-#  datasource:                           # 指定postgresql数据源
+# 指定postgresql数据源    
+#  datasource:                           
 #    url: jdbc:postgresql://127.0.0.1:5433/microservice_demo
 #    driverClassName: org.postgresql.Driver
 #    username: postgres  
 #    password: postgres  
 
-  messages:                     # 国际化
+# 国际化配置
+  messages:                     
     encoding: UTF-8
     basename: i18n/demo
     #cache-duration: 3600
-
-  redis:                               # 指定redis数据源
+# 指定redis数据源
+  redis:                               
     database: 0
     host: 127.0.0.1
     port: 6379
@@ -46,14 +47,14 @@ spring:
        max-idle: 8
        min-idle: 0
     timeout: 0
-
-  rabbitmq:                               # 指定rabbitmq源
+# 指定rabbitmq源
+  rabbitmq:                              
      addresses: 127.0.0.1:5672
      username: springcloud
      password: springcloud
      virtual-host: /
-     
-  elasticsearch:                    # 指定elasticsearch源
+# 指定elasticsearch源     
+  elasticsearch:                    
     jest:
       uris: http://127.0.0.1:9200
       username: elastic
@@ -87,7 +88,7 @@ management:
       cors:
         allowed-origins: "*"
         allowed-methods: "*"
-        
+# SSO单点登录    
 #security:
 #  oauth2:
 #    client:
@@ -99,4 +100,4 @@ management:
 #      user-info-uri: http://localhost:9999/user/me        
 
 #本地配置   
-demo.local.directory: /Users/wangyong/test/testfiles
+#demo.local.directory: /Users/wangyong/test/testfiles

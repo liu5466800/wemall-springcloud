@@ -10,21 +10,21 @@ spring:
           uri: https://github.com/vangyong/wemall-springcloud.git/
           search-paths: config-repo
           username: vangyong
-          password: 123456
+          password: Wy513288
 #        health:
 #          repositories:
 #            check:
 #              name:
 #              label: 
 #              profiles: prod  
-#  rabbitmq:                            
-#     addresses: 127.0.0.1:5672
-#     username: springcloud
-#     password: springcloud
-#     virtual-host: /       
+  rabbitmq:                            
+     addresses: 127.0.0.1:5672
+     username: springcloud
+     password: springcloud
+     virtual-host: /       
 eureka:
   instance:
-    hostname: config
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
